@@ -1,0 +1,943 @@
+% !TeX spellcheck = en_GB
+%\documentstyle[12pt]{article}
+\documentclass[a4paper,11pt]{article}
+\usepackage[bookmarks=true,
+              bookmarksnumbered=true, breaklinks=true,
+              pdfstartview=FitH, hyperfigures=false,
+              plainpages=false, naturalnames=true,
+              colorlinks=true,
+              pdfpagelabels]{hyperref}
+\usepackage{geometry,latexsym,amssymb,amsmath,amsthm,color,bm}
+\usepackage[latin5]{inputenc}
+\usepackage{enumerate}
+\usepackage{enumitem}
+\usepackage[T1]{fontenc}
+\usepackage{authblk}
+%\usepackage{hyperref}
+\usepackage[all]{xy}
+\usepackage{palatino}
+\usepackage{indentfirst}
+\usepackage{titlesec}
+\usepackage{graphics}
+\usepackage{tabularx}
+\usepackage{lipsum}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{fancyvrb,shortvrb}
+\usepackage[ruled,vlined]{algorithm2e}
+\input{newcomm}
+%\input{tcilatex.tex}
+
+%\titleformat{\section}{\Large\filcenter}{}{1em}{}
+%\titleformat{\section}{\Large\bfseries\filcenter}{}{1em}{}
+\geometry {textwidth=17cm, textheight=25cm}
+\def\baselinestretch{1.1}
+%\linespread{1.2}
+
+\renewcommand{\abstractname}{\normalsize\bfseries Abstract}
+
+%\usepackage{setspace}
+%\doublespacing
+% or:
+%\onehalfspacing
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newenvironment{Prf}{{\bf Proof:} }{\hfill $\Box$\mbox{}}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{remark}[theorem]{Remark}
+
+
+
+
+\begin{document}
+\title{Computing 3-Dimensional Groups : Crossed Squares and  Cat$^2$-Groups}
+
+\author[a]{Z. Arvasi}
+\author[a]{A. Odaba\c{s}}
+\author[b]{C.~D. Wensley}
+\affil[a]{\small{Department of Mathematics and Computer Science, Osmangazi University, Eskisehir, Turkey}}
+\affil[b]{\small{School of Computer Science, Bangor University, Bangor, UK}}
+
+\date{}
+
+\maketitle
+
+\begin{abstract}
+...\end{abstract}
+
+\noindent{\bf Key Words:} cat$^2$-group, crossed square, \textsf{GAP}
+\\ {\bf Classification:} 18D35, 18G50, .
+
+\section{Introduction}
+
+...
+
+\section{Crossed Modules and Cat$^{1}$-Groups}
+
+The notion of crossed module, generalizing the notion of a G-module, 
+was introduced by Whitehead \cite{wayted} in the course of his studies on the
+algebraic structure of the second relative homotopy group.
+
+A \emph{crossed module} consists of a group homomorphism $\partial
+:C\rightarrow G$, endowed with a left action $G$ on $C$ 
+(written by $(g,c)\rightarrow {}^{g}c$ for $g\in G$ and $c\in C$) 
+satisfying the
+following conditions:
+
+\begin{center}
+	\begin{tabular}{rclll}
+		$\partial (^{g}c)$ 
+		& $=$ 
+		& $g(\partial c)g^{-1}$ 
+		&   & $\forall c\in C,g\in G; $ \\
+		$^{(\partial c_{2})}c_{1}$ 
+		& $=$ 
+		& ${c}_{2}c_{1}c_{2}^{-1}$ 
+		&   & $\forall c_{1},c_{2}\in C$. 
+	\end{tabular}
+\end{center}
+
+The first condition is called the \emph{pre-crossed module property} 
+and the second one the \emph{Peiffer identity}. 
+We will denote such a crossed module by $\calX=(\partial:C\rightarrow G)$.
+
+A \emph{morphism of crossed modules} 
+$(\alpha ,\beta ):\calX_{1}\rightarrow \calX_{2}$, 
+where $\calX_{1} = (\partial_{1} : C_{1} \rightarrow G_{1})$ 
+and   $\calX_{2} = (\partial_{2} : C_{2} \rightarrow G_{2})$, 
+consists of two group homomorphisms $\alpha : C_{1}\rightarrow C_{2}$
+and $\beta : G_{1}\rightarrow G_{2}$ such that 
+$$ 
+\partial_{2}\circ\alpha ~=~ \beta\circ\partial_{1}, 
+\quad \mbox{and} \quad 
+\alpha(^{g}c) ~=~ ^{(\beta g)}\alpha c 
+\qquad
+\forall c\in C,~ g\in G.
+$$
+Standard constructions for crossed modules include the following. 
+
+\begin{enumerate}
+	\item 
+	A \emph{conjugation crossed module} \index{conjugation crossed module} 
+	is an inclusion of a normal subgroup $C \unlhd G$, 
+	where $G$ acts on $C$ by conjugation.
+	\item 
+	An \emph{automorphism crossed module} \index{automorphism crossed module} 
+	has as range a subgroup $G$ of the automorphism group $\mbox{Aut}(C)$ of $C$ 
+	which contains the inner automorphism group $\mbox{Inn}(C)$ of $C$. 
+	The boundary maps $c \in C$ to the inner automorphism of $C$ by $c$.
+	\item 
+	A \emph{zero boundary crossed module} \index{$R$-module} 
+	has a $G$-module as source and $\partial = 0$.
+	\item 
+	Any homomorphism $\partial : C \to G$, with $C$ abelian 
+	and $\im ~\partial$ in the centre of $G$, 
+	provides a crossed module with $G$ acting trivially on $C$.
+	\item 
+	A \emph{central extension crossed module} \index{central extension crossed module} 
+	has as boundary a surjection $\partial : C \to G$ with central kernel, 
+	where $g \in G$ acts on $C$ by conjugation with $\partial^{-1}c$.
+	\item 
+	The \emph{direct product} of \index{direct product!of crossed modules} 
+	$\calX_1 = (\partial_1 : C_1 \to G_1)$ and $\calX_2 = (\partial_2 : C_2 \to G_2)$ 
+	is $\calX_1 \times \calX_2 
+	= (\partial_1 \times \partial_2 : C_1 \times C_2 \to G_1 \times G_2)$ 
+	with $G_1, G_2$ acting trivially on $C_1,\ C_2$ respectively.
+\end{enumerate}
+
+Loday reformulated the notion of crossed module as a cat$^{1}$-group. 
+Recall from \cite{Loday} that a \emph{cat$^{1}$-group} is a triple $(G,s,t)$ consisting of a group $G$ with two endomorphisms having a common image: 
+the source map $s$, and the target map $t$, satisfying the following axioms. 
+$$
+s \circ t = t,\quad 
+t \circ s = s \quad \mbox{and}\quad 
+[\ker s,\ker t] = 1. 
+$$
+A \emph{morphism of cat}$^{1}$\emph{-groups} 
+$(G_{1},s_1,t_1) \rightarrow (G_{2},s_2,t_2)$ 
+is a group homomorphism $f : G_{1} \rightarrow G_{2}$ such that 
+$$
+f \circ s_1 ~=~ s_2 \circ f  
+\quad\mbox{and}\quad 
+f \circ t_1 ~=~ t_2 \circ f.
+$$
+Crossed modules and cat$^{1}$-groups are two-dimensional generalisations 
+of a group. 
+It was shown that in \cite[Lemma 2.2]{Loday} that, 
+setting $C = \ker s,~ G = \im s$ and $\partial =t|_{C}$, 
+then the conjugation action makes $\partial :C\rightarrow G$ into a crossed module. Conversely if $\partial : C \rightarrow G$ is a crossed module, 
+then setting $G^{\prime} = C\rtimes G$
+and letting $s,t$ be defined by $s(c,g) = (1,g)$ and $t(c,g) = (1,(\partial c)g)$
+for $c\in C$, $g\in G$, then $(G^{\prime},s,t)$ is a cat$^{1}$-group.
+
+
+\section{Crossed Squares and Cat$^{2}$-Groups}
+
+The notion of a crossed square is due to Guin-Walery and Loday \cite{walery}. 
+A \emph{crossed square of groups} is a commutative square of groups 
+\[
+\xymatrix@R=40pt@C=40pt
+{ L \ar[d]_{\lambda} \ar[r]^{\kappa} 
+	& M \ar[d]^{\mu} \\ 
+	N \ar[r]_{\nu} 
+	& P } 
+\]
+\noindent together with left actions of $P$ on $L,M,N$ 
+and a function $h : M\times N\rightarrow L$. 
+Let $M$ act on $N,L$ via $P$ and let $N$ act on $M,L$ via $P$. 
+{\bf [Previous sentence changed.]}  
+The structure must satisfy the following axioms 
+for all $l \in L,~ m,m^{\prime} \in M,~ n,n^{\prime} \in N$ and $p \in P$. 
+
+\begin{enumerate}
+	\item 
+	The homomorphisms $\kappa, \lambda, \mu, \nu$ 
+	and $\mu\circ\kappa = \nu\circ\lambda$ are crossed modules, 
+	and both $\kappa, \lambda$ are $P$-equivariant, 
+	\item
+	$h(mm^{\prime},n) ~=~ h(^{m}m^{\prime},^{m}n)\,h(m,n)$, 
+	\item
+	$h(m,nn^{\prime}) ~=~ h(m,n)\,h(^{n}m,^{n}n^{\prime})$, 
+	\item 
+	$\kappa h(m,n) ~=~ m^{n}m^{-1}$, {\bf ???}
+	\item 
+	$\lambda h(m,n) ~=~ ^{m}nn^{-1}$, 
+	\item 
+	$h(\kappa l,n) ~=~ l^{n}l^{-1}$, 
+	\item
+	$h(m,\lambda l) ~=~ ^{m}ll^{-1}$, 
+	\item 
+	$h(^{p}m,^{p}n) ~=~ ^{p}h(m,n)$. 
+\end{enumerate} 
+
+Standard constructions for crossed squares include the following.
+\begin{enumerate}
+	\item 
+	If $M,N$ are normal subgroups of the group $P$ then the diagram of inclusions
+	\[
+	\xymatrix@R=40pt@C=40pt
+	{ M \cap N \ar[r]^(0.6){} \ar[d]_{}  
+		& N \ar[d]^{} \\
+		M \ar[r]_{}  
+		& P }
+	\] 
+	\noindent together with the actions of $P$ on $M,N$ and $M\cap N$ 
+	given by conjugation, and the function
+	\[
+	h ~:~ M\times N \rightarrow M\cap N,\quad 
+	(m,n)\mapsto [m,n] \,=\, m^{-1}n^{-1}mn
+	\] 
+	is a crossed square. 
+	We call this an \emph{inclusion crossed square}.
+	\item 
+	The diagram
+	\[
+	\xymatrix@R=40pt@C=40pt
+	{ M \ar[r]^{\alpha} \ar[d]_{\alpha} 
+		& \Inn\,M \ar[d]^{\iota} \\
+		\Inn\,M \ar[r]_{\iota} 
+		& \Aut\,M }
+	\] 
+	\noindent is a crossed square, 
+	where $\alpha $ maps $m\in M$ to the inner automorphism%
+	\[
+	\beta_{m} : M \rightarrow M,\quad 
+	m^{\prime}\mapsto m^{-1}m^{\prime}m, 
+	\]
+	and where $\iota $ is the inclusion of $\Inn\,M$ in $\Aut\,M$; 
+	the actions are standard; and the crossed pairing is
+	\[
+	h ~:~ \Inn\,M \times \Inn\,M \rightarrow M,\quad 
+	(\beta_{m},\beta_{m^{\prime}}) \;\mapsto\; [m,m^{\prime}]~.
+	\]
+	\item 
+	If $P$ is a group and $M,N$ are ordinary $P$-modules, 
+	and if $A$ is an arbitrary abelian group on which $P$ is assumed to act trivially, 
+	then there is a crossed square
+	\[
+	\xymatrix@R=40pt@C=40pt
+	{ A \ar[r]^{0} \ar[d]_{0}  
+		& N \ar[d]^{0} \\
+		M \ar[r]_{0} 
+		& P }
+	\]
+	\item 
+	Given two crossed modules, $(\mu : M \rightarrow P)$ and $(\nu : N \rightarrow P)$, 
+	there is a universal crossed square defining a tensor product of the crossed modules, 
+	\[
+	\xymatrix@R=40pt@C=40pt
+	{ M \otimes N \ar[d]_{\lambda} \ar[r]^{\kappa} 
+		& M \ar[d]^{\mu} \\ 
+		N \ar[r]_{\nu} 
+		& P } 
+	\]
+\end{enumerate}
+
+A crossed square
+\[
+\xymatrix@R=40pt@C=40pt
+{ L \ar[d]_{\lambda} \ar[r]^{\kappa} 
+	& M \ar[d]^{\mu} \\ 
+	N \ar[r]_{\nu} 
+	& P } 
+\]
+\noindent can be thought of as a (horizontal or vertical) 
+crossed module of crossed modules :
+\[
+\xymatrix@R=17pt@C=17pt
+{ L \ar[dd]_{}  
+	& & M \ar[dd]^{} \\ 
+	\ar@{}[rr]^(.15){}="a"^(.85){}="b" \ar "a";"b" 
+	& & \\ 
+	N & & P } 
+\]
+\noindent $(\kappa,\nu)$ gives such a crossed module with domain 
+$\lambda : L \rightarrow N$ and codomain $\mu : M \rightarrow P$, and so on. 
+(See also \cite{wensley_notes} section 10.2.)
+
+There is an evident notion of morphism of crossed squares  
+which preserves all the structure, 
+and we obtain a category \textbf{Crs}$^{2}$, the category of crossed squares.
+
+Although when first introduced by Loday and Walery \cite{walery} 
+the notion of crossed square of groups was not linked to that of cat$^{2}$-groups, 
+it was in this form that Loday gave their generalisation 
+to an $n$-fold structure, cat$^{n}$-groups (see \cite{Loday}). 
+When $n=1$ this is the notion of cat$^1$-group given earlier.
+
+When $n=2$ we obtain a cat$^{2}$-group. 
+Again we have a group $G$, but this time with two independent cat$^{1}$-group 
+structures on it. 
+A \emph{cat$^{2}$-group} is a $5$-tuple, $(G,s_1,t_1,s_2,t_2)$, 
+where $(G,s_{i},t_{i}),~ i=1,2$ are cat$^{1}$-groups, and
+\[
+s_{i}s_{j} ~=~ s_{j}s_{i}, \quad 
+t_{i}t_{j} ~=~ t_{j}t_{i}, \quad 
+s_{i}t_{j} ~=~ t_{j}s_{i}
+\quad\mbox{for}\quad i,j = 1,2,~ i\neq j. 
+\]
+A morphism of cat$^{2}$-groups is a triple $(\alpha ,\beta ,\gamma )$,
+as shown in the diagram diagram
+\[
+\xymatrix@R=40pt@C=40pt 
+{ R_1 \ar@/_2pc/[d]_{e_1} \ar[r]^{\beta} 
+	& R'_1 \ar@/^2pc/[d]^{e'_1} \\
+	G \ar@<0.5ex>[u]^{s_1} \ar@<-0.5ex>[u]_{t_1} \ar@<0.5ex>[d]^{t_2} 
+	\ar@<-0.5ex>[d]_{s_2} \ar[r]^{\alpha} 
+	& G' \ar@<0.5ex>[u]^{s'_1} \ar@<-0.5ex>[u]_{t'_1} \ar@<0.5ex>[d]^{t'_2} 
+	\ar@<-0.5ex>[d]_{s'_2} \\
+	R_2 \ar@/^2pc/[u]^{e_2} \ar[r]^{\gamma} 
+	& R'_2 \ar@/_2pc/[u]_{e'_2} }
+\]
+\noindent where 
+$R_{1},R_{2} \leq G$,~ $R_{1}^{\prime}, R_{2}^{\prime} \leq G^{\prime},~ 
+\alpha : G \to G^{\prime},~ \beta : R_1 \to R^{\prime}_1$ 
+and $\gamma : R_2 \to R^{\prime}_2$ are homomorphisms satisfying
+\begin{eqnarray*}
+	&&
+	\begin{tabular}{llllll}
+		$%
+		\text{(i)}$ & $\beta s_1=s_1^{\prime}\alpha ,$ &  & $\beta
+		t_1=t_1^{\prime}\alpha ,$ &  & $e_{1}^{\prime}\beta =\alpha e_{1}$%
+	\end{tabular}
+	\\
+	&&
+	\begin{tabular}{llllll}
+		$\text{(ii)}$ & $\gamma s_2=s_2^{\prime}\alpha ,$ &  & $\gamma
+		t_2=t_2^{\prime}\alpha ,$ &  & $e_{2}^{\prime}\gamma =\alpha e_{2}$%
+	\end{tabular}%
+\end{eqnarray*}
+
+We thus obtain a category \textbf{Cat}$^{2}$\textbf{-Grp}, 
+the category of cat$^{2}$-groups. 
+The following proposition was given by Loday \cite{Loday}. 
+We only present the sketch proof (see also \cite{mutpor}) of this result 
+as we need some indication of proofs for later use.
+
+\begin{proposition}
+	\label{loday} \emph{(\cite{Loday})} 
+	There is an equivalence of categories between the category of cat$^{2}$-groups 
+	and that of crossed squares.
+\end{proposition}
+\begin{proof}
+	The cat$^{1}$-group $(G,s_1,t_1)$ determines a crossed module 
+	$(\partial : C \rightarrow B)$ with $C = \ker s,~ B = \im s$ and $\partial =t|_{C}$ 
+	but, as the two cat$^{1}$-group structures are independent, 
+	$(G,s_2,t_2)$ restricts to give cat$^{1}$-group structures on $C$ 
+	and $B$ makes $\partial $ a morphism of cat$^{1}$-groups. 
+	{\bf[Rewrite the previous sentence.]} 
+	We thus get a morphism of crossed modules
+	\[
+	\xymatrix@R=40pt@C=40pt
+	{ \ker s_1 \cap \ker s_2 \ar[d] \ar[r] 
+		& \im s_1 \cap \ker s_2 \ar[d] \\ 
+		\ker s_1 \cap \im s_2 \ar[r] 
+		& \im s_1 \cap \im s_2 } 
+	\]
+	\noindent where each morphism is a crossed module for natural action, 
+	i.e. conjugation in $G$. 
+	It remains to produce an $h$-map, but it is given by the commutator within $G$ 
+	since if $x \in \im s_1 \cap \ker s_2$ 
+	and $y\in \ker s_1 \cap \im s_2$ then $[x,y] \in \ker s_1 \cap \ker s_2$. 
+	It is easy to check the crossed square axioms.
+	
+	Conversely, if
+	\[
+	\xymatrix@R=40pt@C=40pt
+	{ L \ar[d] \ar[r] 
+		& M \ar[d] \\ 
+		N \ar[r] 
+		& P }  
+	\]
+	\noindent is a crossed square, 
+	then we can think of it as a morphism of crossed modules $(L,N) \rightarrow (M,P)$.
+	
+	Using the equivalence between crossed modules and cat$^{1}$-groups this
+	gives a morphism
+	\[
+	\partial : (L \rtimes N,s,t) \longrightarrow (M \rtimes P, s^{\prime}, t^{\prime})
+	\]
+	of cat$^{1}$-groups. 
+	There is an action of $(m,p) \in M \rtimes P$ on $(l,n) \in L \rtimes N$ 
+	given by
+	\[
+	^{(m,p)}(l,n) ~=~ (^{m}(^{p}l)h(m,^{p}n),^{p}n)\,.
+	\] 
+	Using this action, we form its associated cat$^{1}$-group with big group 
+	$(L \rtimes N) \rtimes (M \rtimes P)$ 
+	and induced endomorphisms $s_1,t_1,s_2,t_2$.
+\end{proof}
+
+\begin{definition}
+	A \emph{cat$^{n}$-group} is a group $G$ together with $2n$ endomorphisms 
+	$s_{i},t_{i},~ (1\leq i\leq n)$ such that 
+	{\bf [these axioms need rewriting]} 
+	\[
+	s_{i} \circ t_{i} = t_{i}, \quad\text{and}\quad 
+	t_{i} \circ s_{i} = s_{i} \quad\mbox{for all}~i,  
+	\]
+	\[
+	\begin{array}{ccccc}
+	s_{i}s_{j}=s_{j}s_{i}, &  & t_{i}t_{j}=t_{j}t_{i}, &  & s_{i}t_{j}=t_{j}s_{i}%
+	\text{ for }i\neq j%
+	\end{array}%
+	\]%
+	and, for all $i$,%
+	\[
+	\left[ \ker s_{i},\ker t_{i}\right] =1.
+	\]
+\end{definition}
+
+A cat$^{n}$-group is thus a group with $n$ independent cat$^{1}$-group 
+structures on it.
+
+A generalisation of crossed square to higher dimensions was given by Ellis
+and Stenier (cf. \cite{Sten}). It is called a \textquotedblleft crossed $n$%
+-cube\textquotedblright . We use only this construction for $n=2.$
+
+\section{Computer Implementation}
+
+\textsf{GAP} \cite{gap} is an open-source system for discrete computational
+algebra. The system consists of a library of implementations of mathematical
+structures: groups, vector spaces, modules, algebras, graphs, codes,
+designs, etc.; plus databases of groups of small order, character tables,
+etc. The system has world wide usage in the area of education and scientific
+research. \textsf{GAP} is free software and user contributions to the system
+are supported. These contributions are organized in a form of \textsf{GAP}
+packages and are distributed together with the system. Contributors can
+submit additional packages for inclusion after a reviewing process.
+
+The Small Groups library provides access to descriptions of the groups of
+small order by Besche, Eick and O'Brien in \cite{bettina}. The groups are
+listed up to isomorphism. The library contains the groups those of order at
+most 2000 except 1024.
+
+
+\subsection{2-Dimensional Groups}
+
+A shared package \textsf{XMod}, for the \textsf{GAP} which consists
+functions for computing crossed modules, cat$^{1}$-groups and their
+morphisms was described in \cite{alp3}. The \textsf{XMod} package may be
+used to select a cat$^{1}$-group from a data file. All cat$^{1}$-structures
+on groups of size up to 70 (ordered according to the GAP 4 numbering of
+small groups) are stored in a list in file cat1data.g.
+
+The function \textbf{Cat1Select} may be used in three ways. \textbf{%
+	Cat1Select( size )} returns the names of the groups with this size, while
+\textbf{Cat1Select( size, gpnum )} prints a list of cat1-structures for this
+chosen group. \textbf{Cat1Select( size, gpnum, num )} returns the chosen
+cat1-group.
+
+The following \textsf{GAP} session illustrates the use of these functions.
+
+\begin{Verbatim}[frame=single, fontsize=\small, commandchars=\\\{\}]
+\textcolor{blue}{gap> Cat1Select(12);}
+Usage:  Cat1Select( size, gpnum, num );
+[ "C3 : C4", "C12", "A4", "D12", "C6 x C2" ]
+\textcolor{blue}{gap> Cat1Select(12,3);}
+Usage:  Cat1Select( size, gpnum, num );
+There are 2 cat1-structures for the group A4.
+Using small generating set [ f1, f2 ] for source of homs.
+[ [range gens], [tail genimages], [head genimages] ] :-
+(1)  [ [ f1 ], [ f1, <identity> of ... ], [ f1, <identity> of ... ] ]
+(2)  [ [ f1, f2 ],  tail = head = identity mapping ]
+2
+\textcolor{blue}{gap> C1 := Cat1Select(12,3,2);}
+[A4=>A4]
+\textcolor{blue}{gap> XM := XModOfCat1Group(C1);}
+[triv->A4]
+\end{Verbatim}
+
+\subsection{3-Dimensional Groups}
+
+We have developed the new functions for \textsf{XMod} which constructs cat$%
+^2 $-groups, cat$^n$-groups and their morphisms. Functions to construct cat$%
+^{2} $-groups include \textbf{Cat2Group}, \textbf{IsCat2Group} and \textbf{%
+	PreCat2GroupByPreCat1Groups}. Attributes of a (pre)cat$^{2}$-group
+constructed in this way include \textbf{GeneratingCat1Groups}, \textbf{Size}
+and \textbf{Name}. As a generalization of these functions, we have developed
+the new functions \textbf{CatnGroup} and \textbf{HigherDimension} which
+construct higher dimensional cat$^{n}$-groups.
+
+The following \textsf{GAP} session illustrates the use of these functions.
+
+\begin{Verbatim}[frame=single, fontsize=\small, commandchars=\\\{\}]
+\textcolor{blue}{gap> a := (1,2,3,4)(5,6,7,8);;}
+\textcolor{blue}{gap> b := (1,5)(2,6)(3,7)(4,8);;}
+\textcolor{blue}{gap> c := (2,6)(4,8);;}
+\textcolor{blue}{gap> G := Group( a, b, c );;}
+\textcolor{blue}{gap> SetName( G, "c4c2:c2" );}
+\textcolor{blue}{gap> t1a := GroupHomomorphismByImages( G, G, [a,b,c], [(),(),c] );; }
+\textcolor{blue}{gap> C1a := PreCat1GroupByEndomorphisms( t1a, t1a );;}
+\textcolor{blue}{gap> t1b := GroupHomomorphismByImages( G, G, [a,b,c], [a,(),()] );;}
+\textcolor{blue}{gap> C1b := PreCat1GroupByEndomorphisms( t1b, t1b );;}
+\textcolor{blue}{gap> C2_1 := Cat2Group( C1a, C1b );}
+cat2-group with generating (pre-)cat1-groups:
+1 : [c4c2:c2 => Group( [ (), (), (2,6)(4,8) ] )]
+2 : [c4c2:c2 => Group( [ (1,2,3,4)(5,6,7,8), (), () ] )]
+\textcolor{blue}{gap> IsCat2Group( C2_1 );}
+true
+\textcolor{blue}{gap> Size(C2_1);}
+[ 16, 2, 4, 1 ]
+\textcolor{blue}{gap> t1c := GroupHomomorphismByImages( G, G, [a,b,c], [a,b,c] );;}
+\textcolor{blue}{gap> C1c := PreCat1GroupByEndomorphisms( t1c, t1c );;}
+\textcolor{blue}{gap> Cn_1 := CatnGroup([C1a,C1b,C1c]);}
+cat3-group with generating (pre-)cat1-groups:
+1 : [c4c2:c2 => Group( [ (), (), (2,6)(4,8) ] )]
+2 : [c4c2:c2 => Group( [ (1,2,3,4)(5,6,7,8), (), () ] )]
+3 : [c4c2:c2 => Group( [ (1,2,3,4)(5,6,7,8), (1,5)(2,6)(3,7)(4,8),
+(2,6)(4,8) ] )]
+\textcolor{blue}{gap> IsPreCatnGroup(Cn_1);}
+true
+\textcolor{blue}{gap> HigherDimension(Cn_1);}
+4
+\end{Verbatim}
+
+
+\subsection{Morphisms of 3-Dimensional Groups}
+
+The function \textbf{MakeHigherDimensionalGroupMorphism} which defines
+morphisms of higher dimensional groups, such as cat$^{2}$-groups and crossed
+squares. Functions to construct cat$^{2}$-group morphisms include \textbf{%
+	Cat2GroupMorphismByCat1GroupMorphisms}, \textbf{Cat2GroupMorphism} and
+\textbf{IsCat2GroupMorphism}. On the other hand, the function \textbf{%
+	AllCat2GroupMorphisms} is used to find all morphisms between two cat$^{2}$%
+-groups.
+
+In the following \textsf{GAP} session, we get a cat$^{2}$-group homomorphism
+by using the implemented functions.
+
+\begin{Verbatim}[frame=single, fontsize=\small, commandchars=\\\{\}]
+\textcolor{blue}{gap> C2_2 := Cat2Group(Cat1Group(8,2,1),Cat1Group(8,2,2));}
+cat2-group with generating (pre-)cat1-groups:
+1 : [C4 x C2 => Group( [ <identity> of ..., <identity> of ...,
+<identity> of ... ] )]
+2 : [C4 x C2 => Group( [ <identity> of ..., f2 ] )]
+\textcolor{blue}{gap> C2_3 := Cat2Group(Cat1Group(8,3,2),Cat1Group(8,3,3));}
+cat2-group with generating (pre-)cat1-groups:
+1 : [D8 => Group( [ f1, f1 ] )]
+2 : [D8=>D8]
+\textcolor{blue}{gap> u1 := GeneratingCat1Groups( C2_2 )[1];;}
+\textcolor{blue}{gap> d1 := GeneratingCat1Groups( C2_2 )[2];;}
+\textcolor{blue}{gap> u2 := GeneratingCat1Groups( C2_3 )[1];;}
+\textcolor{blue}{gap> d2 := GeneratingCat1Groups( C2_3 )[2];;}
+\textcolor{blue}{gap> G1 := Source(u1);; R1 := Range(u1);; N1 := Range(d1);;}
+\textcolor{blue}{gap> G2 := Source(u2);; R2 := Range(u2);; N2 := Range(d2);;}
+\textcolor{blue}{gap> alpha1 := AllHomomorphisms(G1,G2);;}
+\textcolor{blue}{gap> phi1 := AllHomomorphisms(R1,R2);;}
+\textcolor{blue}{gap> gamma1 := AllHomomorphisms(N1,N2);;}
+\textcolor{blue}{gap> mor1 := Make2DimensionalGroupMorphism([u1,u2,alpha1[1],phi1[1]]);;}
+\textcolor{blue}{gap> IsCat1GroupMorphism(mor1);}
+true
+\textcolor{blue}{gap> mor2 := Make2DimensionalGroupMorphism([d1,d2,alpha1[1],gamma1[1]]);;}
+\textcolor{blue}{gap> IsCat1GroupMorphism(mor2);}
+true
+\textcolor{blue}{gap> mm := MakeHigherDimensionalGroupMorphism(C2_2,C2_3,[mor1,mor2]);}
+<mapping: cat2-group with generating (pre-)cat1-groups:
+1 : [C4 x C2 => Group( [ <identity> of ...,
+<identity> of ..., <identity> of ... ] )]
+2 : [C4 x C2 => Group( [ <identity> of ..., f2 ] )] ->
+cat2-group with generating (pre-)cat1-groups:
+1 : [D8 => Group( [ f1, f1 ] )]
+2 : [D8=>D8] >
+\textcolor{blue}{gap> IsCat2GroupMorphism(mm);}
+true
+\textcolor{blue}{gap> AllCat2GroupMorphisms(C2_2,C2_3);;}
+\textcolor{blue}{gap> Length(last);}
+2
+\end{Verbatim}
+
+\subsection{Natural Equivalence}
+
+By using the natural equivalence of categories of crossed squares and cat$%
+^{2}$-groups, the package includes the functions \textbf{%
+	CrossedSquareByCat2Group} and \textbf{Cat2GroupByCrossedSquare} which
+constructs crossed squares and cat$^{2}$-groups from the given cat$^{2}$%
+-groups and crossed squares, respectively.
+
+The following \textsf{GAP} session illustrates the use of these functions.
+The dihedral group $D_{20}$ has two normal subgroups $D_{10}$ 
+whose intersection is the cyclic $C_5$.  
+We construct the crossed square of normal subgroups, 
+and then use the conversion functions to obtain the associated cat$^{2}$-group.
+
+\begin{Verbatim}[frame=single, fontsize=\small, commandchars=\\\{\}]
+\textcolor{blue}{gap> d20 := DihedralGroup( IsPermGroup, 20 );;}
+\textcolor{blue}{gap> gend20 := GeneratorsOfGroup( d20 ); }
+[ (1,2,3,4,5,6,7,8,9,10), (2,10)(3,9)(4,8)(5,7) ]
+\textcolor{blue}{gap> p1 := gend20[1];;  p2 := gend20[2];;  p12 := p1*p2; }
+(1,10)(2,9)(3,8)(4,7)(5,6)
+\textcolor{blue}{gap> d10a := Subgroup( d20, [ p1^2, p2 ] );; }
+\textcolor{blue}{gap> d10b := Subgroup( d20, [ p1^2, p12 ] );; }
+\textcolor{blue}{gap> c5d := Subgroup( d20, [ p1^2 ] );; }
+\textcolor{blue}{gap> SetName( d20, "d20" );  SetName( d10a, "d10a" ); }
+\textcolor{blue}{gap> SetName( d10b, "d10b" );  SetName( c5d, "c5d" );  }
+\textcolor{blue}{gap> XS1 := CrossedSquareByNormalSubgroups( c5d, d10a, d10b, d20 );  }
+[  c5d -> d10a ]
+[   |  |   ]
+[ d10b -> d20  ]
+\textcolor{blue}{gap> IsCrossedSquare(XS1); }
+true
+\textcolor{blue}{gap> C2_4 := Cat2GroupOfCrossedSquare(XS1); }
+cat2-group with generating (pre-)cat1-groups:
+1 : [((d20 |X d10a) |X (d10b |X c5d))=>(d20 |X d10a)]
+2 : [((d20 |X d10a) |X (d10b |X c5d))=>(d20 |X d10b)]
+\textcolor{blue}{gap> IsCat2Group(C2_4); }
+true
+\textcolor{blue}{gap> XS2 := CrossedSquareOfCat2Group( C2_1 ); }
+crossed square with crossed modules:
+up = [Group( [ (1,5)(2,6)(3,7)(4,8) ] ) -> Group( [ ( 2, 6)( 4, 8) ] )]
+left = [Group( [ (1,5)(2,6)(3,7)(4,8) ] ) -> Group(
+[ (1,2,3,4)(5,6,7,8), (), () ] )]
+right = [Group( [ ( 2, 6)( 4, 8) ] ) -> Group( () )]
+down = [Group( [ (1,2,3,4)(5,6,7,8), (), () ] ) -> Group( () )]
+\textcolor{blue}{gap> IsCrossedSquare(XS2); }
+true
+\textcolor{blue}{gap> IdGroup( XS2 ); }
+[ [ 2, 1 ], [ 2, 1 ], [ 4, 1 ], [ 1, 1 ] ]
+\end{Verbatim}
+
+\section{Table of Cat$^{2}$-groups}
+
+The new the function \textbf{AllCat2Groups(G)} which constructs all cat$^{2}$%
+-groups $(G,s_1,t_1,s_2,t_2)$ over $G$. The function \textbf{%
+	AreIsomorphicCat2Groups} is used for checking isomorphism among cat$^{2}$%
+-groups. The functions \textbf{IsomorphicCat2GroupFamily} and \textbf{%
+	AllCat2GroupsUpToIsomorphism} are used to used to classify given cat$^{2}$%
+-groups.
+
+In the following GAP session, we compute all cat$^{2}$-groups on $C_{4}
+\times C_{2}$ and their any isomorphism family.
+
+\begin{Verbatim}[frame=single, fontsize=\small, commandchars=\\\{\}]
+\textcolor{blue}{gap> all := AllCat2Groups(SmallGroup(8,2));;}
+\textcolor{blue}{gap> Length(all);}
+84
+\textcolor{blue}{gap> AreIsomorphicCat2Groups(all[23],all[25]);}
+false
+\textcolor{blue}{gap> AreIsomorphicCat2Groups(all[23],all[29]);}
+true
+\textcolor{blue}{gap> fam := IsomorphicCat2GroupFamily(all[23],all);;}
+[ 23, 29, 61, 67 ]
+\textcolor{blue}{gap> iso := AllCat2GroupsUpToIsomorphism(all);;}
+\textcolor{blue}{gap> Length(iso);}
+24
+\textcolor{blue}{gap> iso[16];}
+cat2-group with generating (pre-)cat1-groups:
+1 : [Group( [ (3,4,5,6), (1,2), (3,5)(4,6) ] ) =>
+Group( [ (3,4,5,6), () ] )]
+2 : [Group( [ (3,4,5,6), (1,2), (3,5)(4,6) ] ) =>
+Group( [ (3,4,5,6), (1,2), (3,5)(4,6) ] )]
+\end{Verbatim}
+
+In the following table the groups of size at most 30 are ordered by their
+GAP number. The number of isomorphism classes of cat$^{1}$-groups given by
+\cite{alp2}. The size of the set of all cat$^{2}$-groups and the number of
+isomorphism classes of cat$^{2}$-groups on $G$ are computed by given the
+functions in the manuscript.
+
+\bigskip
+
+Let $G=C_{p^{k}}$ cyclic with $p$ prime. ($C_{2},C_{3},C_{4},...$) \bigskip
+
+\begin{longtable}{ccccccc}
+	\hline\hline
+	& $G$ & $|\mathrm{IE}(G)|$ & $|\mathcal{C}(G)|$ & $|\mathcal{C}/\cong |$ & $|%
+	\mathcal{C}^{2}(G)|$ & $|\mathcal{C}^{2}/\cong |$ \\ \hline
+	& $C_{p^{k}}$ & 2 & 2 & 2 & 4 & 3 \\ \hline
+	\multicolumn{7}{l}{%
+		\begin{tabular}{ll}
+			Fam. 1 & $[G,I,I,I]$ \\ 
+			Fam. 2 & $[G,I,G,I],[G,G,I,I]$ \\ 
+			Fam. 3 & $[G,G,G,G]$%
+		\end{tabular}%
+	} \\ \hline
+\end{longtable}
+
+\bigskip
+
+Let $G=C_{p^{k}q^{j}}$ cyclic with $p,q$ two primes. ($%
+C_{6},C_{10},C_{12},...$) \bigskip
+
+\begin{longtable}{ccccccc}
+	\hline\hline
+	& $G$ & $|\mathrm{IE}(G)|$ & $|\mathcal{C}(G)|$ & $|\mathcal{C}/\cong |$ & $|%
+	\mathcal{C}^{2}(G)|$ & $|\mathcal{C}^{2}/\cong |$ \\ \hline
+	& $C_{p^{k}q^{j}}$ & 4 & 4 & 4 & 16 & 10 \\ \hline
+	\multicolumn{7}{l}{%
+		\begin{tabular}{ll}
+			Fam. 1 & $[G,I,I,I]$ \\ 
+			Fam. 2 & $[G,I,Cp,I],[G,Cp,I,I]$ \\ 
+			Fam. 3 & $[G,I,Cq,I],[G,Cq,I,I]$ \\ 
+			Fam. 4 & $[G,I,G,I],[G,G,I,I]$ \\ 
+			Fam. 5 & $[G,Cp,Cp,Cp]$ \\ 
+			Fam. 6 & $[G,Cp,Cq,I],[G,Cq,Cp,I]$ \\ 
+			Fam. 7 & $[G,Cp,G,Cp],G,G,Cp,Cp]$ \\ 
+			Fam. 8 & $[G,Cq,Cq,Cq]$ \\ 
+			Fam. 9 & $[G,Cq,G,Cq],G,G,Cq,Cq]$ \\ 
+			Fam. 10 & $[G,G,G,G]$%
+		\end{tabular}%
+	} \\ \hline
+\end{longtable}
+
+\bigskip
+
+Let $G=C_{2p}\times C_{2}$ with $p>2$ and $p$ prime. ($C_{6}\times
+C_{2},C_{10}\times C_{2},C_{14}\times C_{2}...$) \bigskip
+
+\begin{longtable}{ccccccc}
+	\hline\hline
+	& $G$ & $|\mathrm{IE}(G)|$ & $|\mathcal{C}(G)|$ & $|\mathcal{C}/\cong |$ & $|%
+	\mathcal{C}^{2}(G)|$ & $|\mathcal{C}^{2}/\cong |$ \\ \hline
+	& $C_{2p}\times C_{2}$ & 16 & 28 & 8 & 550 & 38 \\ \hline
+	\multicolumn{7}{l}{} \\ \hline
+\end{longtable}
+
+
+
+%{\small \
+\begin{longtable}{ccccccc}
+	\hline\hline
+	{\textsf{GAP}}\# & $G$ & $|\mathrm{IE}(G)|$ & $|\mathcal{C}(G)|$ & $|%
+	\mathcal{C}/\cong |$ & $|\mathcal{C}^{2}(G)|$ & $|\mathcal{C}^{2}/\cong |$
+	\\ \hline
+	1/1 & I & 1 & 1 & 1 & 1 & 1 \\ 
+	4/2 & K4 & 8 & 14 & 4 & 160 & 11 \\ 
+	6/1 & S3 & 5 & 4 & 2 & 16 & 4 \\ 
+	8/2 & C4 $\times $ C2 & 10 & 18 & 6 & 244 & 20 \\ 
+	8/3 & D8 & 10 & 9 & 3 & 73 & 7 \\ 
+	8/4 & Q8 & 2 & 1 & 1 & 1 & 1 \\ 
+	8/5 & C2 $\times $ C2 $\times $ C2 & 58 & 226 & 6 & 29572 & 25 \\ 
+	9/2 & C3 $\times $ C3 & 14 & 38 & 4 & 1156 & 11 \\ 
+	10/1 & D10 & 7 & 6 & 2 & 36 & 4 \\ 
+	12/1 & C3 $\ltimes $ C4 & 5 & 4 & 2 & 10 & 3 \\ 
+	12/3 & A4 & 6 & 5 & 2 & 25 & 4 \\ 
+	12/4 & D12 & 21 & 12 & 4 & 124 & 12 \\ 
+	14/1 & D14 & 9 & 8 & 2 & 64 & 4 \\ 
+	16/2 & C4 $\times $ C4 & 26 & 98 & 5 & 6628 & 15 \\ 
+	16/3 & (C4 $\times $ C2) $\ltimes $ C2 & 18 & 25 & 4 & 505 & 12 \\ 
+	16/4 & C4 $\ltimes $ C4 & 10 & 17 & 3 & 49 & 5 \\ 
+	16/5 & C8 $\times $ C2 & 10 & 18 & 6 & 244 & 20 \\ 
+	16/6 & C8 $\ltimes $ C2 & 6 & 5 & 2 & 21 & 4 \\ 
+	16/7 & D16 & 18 & 9 & 2 & 81 & 4 \\ 
+	16/8 & QD16 & 10 & 5 & 2 & 25 & 4 \\ 
+	16/9 & Q16 & 2 & 1 & 1 & 1 & 1 \\ 
+	16/10 & C4 $\times $ C2 $\times $ C2 & 82 & 322 & 12 & 53956 & 69 \\ 
+	16/11 & C2 $\times $ D8 & 82 & 97 & 9 & 3969 & 39 \\ 
+	16/12 & C2 $\times $ Q8 & 18 & 17 & 3 & 49 & 5 \\ 
+	16/13 & (C4 $\times $ C2) $\ltimes $ C2 & 26 & 13 & 2 & 157 & 4 \\ 
+	16/14 & C2 $\times $ C2 $\times $ C2 $\times $ C2 & 382 & 4162 & 9 &  &  \\ 
+	18/1 & D18 & 11 & 10 & 2 & 100 & 4 \\ 
+	18/3 & C3 $\times $ S3 & 12 & 8 & 4 & 58 & 12 \\ 
+	18/4 & (C3 $\times $ C3) $\ltimes $ C2 & 47 & 118 & 4 & 1180 & 11 \\ 
+	18/5 & C6 $\times $ C3 & 28 & 76 & 8 & 3664 & 38 \\ 
+	20/1 & Q20 & 7 & 6 & 2 & 16 & 3 \\ 
+	20/3 & C4 $\ltimes $ C5 & 7 & 6 & 2 & 36 & 4 \\ 
+	20/4 & D20 & 31 & 18 & 4 & 282 & 12 \\ 
+	21/1 & C3 $\ltimes $ C7 & 9 & 8 & 2 & 64 & 4 \\ 
+	22/1 & D22 & 13 & 12 & 2 & 144 & 4 \\ 
+	24/1 & C3$\ltimes $C8 & 5 & 4 & 2 & 10 & 3 \\ 
+	24/3 & SL(2,3) & 6 & 1 & 1 & 1 & 1 \\ 
+	24/4 & Q24 & 5 & 4 & 2 & 10 & 3 \\ 
+	24/5 & S3 $\times $ C4 & 27 & 12 & 4 & 124 & 12 \\ 
+	24/6 & D24 & 33 & 20 & 4 & 262 & 11 \\ 
+	24/7 & Q12 $\times $ C2 & 25 & 36 & 6 & 250 & 17 \\ 
+	24/8 & D8 $\ltimes $C3 & 23 & 12 & 4 & 100 & 11 \\ 
+	24/9 & C12 $\times $ C2 & 20 & 36 & 12 & 824 & 69 \\ 
+	24/10 & D8 $\times $ C3 & 20 & 18 & 6 & 252 & 23 \\ 
+	24/11 & Q8 $\times $ C3 & 4 & 2 & 2 & 4 & 3 \\ 
+	24/12 & S4 & 12 & 5 & 2 & 13 & 3 \\ 
+	24/13 & A4 $\times $ C2 & 15 & 10 & 4 & 88 & 12 \\ 
+	24/14 & S3 $\times $ K4 & 157 & 116 & 8 & 5974 & 41 \\ 
+	24/15 & C6 $\ltimes $ K4 & 116 & 452 & 12 & 93928 & 90 \\ 
+	25/2 & C5 $\times $ C5 & 32 & 152 & 4 & 19504 & 11 \\ 
+	26/1 & D26 & 15 & 14 & 2 & 196 & 4 \\ 
+	27/2 & C9 $\times $ C3 & 20 & 56 & 6 & 2218 & 20 \\ 
+	27/3 & (C3 $\times $ C3) $\ltimes $ C3 & 38 & 37 & 2 & 1297 & 4 \\ 
+	27/4 & C9 $\ltimes $C3 & 11 & 10 & 2 & 82 & 4 \\ 
+	27/5 & C3 $\times $ C3 $\times $ C3 & 236 & 2108 & 6 &  &  \\ 
+	28/1 & Q28 & 9 & 8 & 2 & 22 & 3 \\ 
+	28/3 & D28 & 41 & 24 & 4 & 504 & 12 \\ 
+	30/1 & D6 $\times $ C5 & 10 & 8 & 4 & 58 & 12 \\ 
+	30/2 & D10 $\times $ C3 & 14 & 12 & 4 & 124 & 12 \\ 
+	30/3 & D30 & 25 & 24 & 4 & 370 & 11 \\ 
+	30/4 & C30 & 8 & 8 & 8 & 64 & 36 \\ \hline
+\end{longtable}
+%}
+
+\section*{Acknowledgement}
+
+The first and second authors were supported by Eskisehir Osmangazi
+University Scientific Research Projects (Grant No: 2017/19033).
+
+\begin{thebibliography}{99}
+	\bibitem{alp2} \textsc{Alp M. and Wensley C.D. } Enumeration of cat$^{1}$-groups 
+	of low order, \emph{Int. J. Algebra Comput.}, 10, 407-424, (2000).
+	
+	\bibitem{Artin} \textsc{M. Artin} and \textsc{B. Mazur}, \textrm{On the Van
+		Kampen theorem, }\emph{Topology,} \textbf{5}, 179-189, (1966).
+	
+	\bibitem{arvasi2} \textsc{Arvasi Z. and Ulualan E.} On Algebraic Models for
+	Homotopy 3-types, \emph{Journal of Homotopy and Related Structures}, 1,
+	1-27, (2006).
+	
+	\bibitem{odabas1} \textsc{Arvasi Z. and Odabas A.} Crossed Modules and Cat$%
+	^1 $-algebras in \textsf{GAP}, \emph{Version 1.12 Manual for the \textsf{%
+			XModAlg} share package for \textsf{GAP}4 }, (2015).
+	
+	\bibitem{odabas2} \textsc{Arvasi Z. and Odabas A.} Computing 2-dimensional
+	algebras: Crossed modules and Cat1-algebras, \emph{J. Algebra Appl.}, 15,
+	1650185 (2016).
+	
+	\bibitem{gap} \textsc{GAP - Groups, Algortihms, and Programming, Version 4},
+	Lehrstuhl D f\"{u}r Mathematik, RWTH Aachen Germany and School of
+	Mathematical and Computational Sciences, \emph{U. St. Andrews, Scotland},
+	(1997). {\bf [Is this the correct citation?]}
+	
+	%\bibitem{baus1} \textsc{H.J. Baues}, \textrm{Algebraic homotopy, } \emph{%
+	%Cambridge Studies in Advanced Mathematics, }\textbf{15}, (1998), 450 pages.
+	
+	%\bibitem{baus2} \textsc{H.J. Baues}, \textrm{Combinatorial homotopy and
+	%4-dimenional complexes,} \emph{Walter de Gruyter, }\textbf{15}, (1991).
+	
+	%\bibitem{berger} \textsc{C. Berger}, \textrm{Double Loop spaces, braided
+	%monoidal categories and algebraic 3-types of spaces, }\emph{Contemporary
+	%Mathematics,} \textbf{227}, 46-66, (1999).
+	
+	\bibitem{Brown} \textsc{R. Brown} and \textsc{J.-L. Loday}, \textrm{Van
+		Kampen theorems for diagram of spaces, } \emph{Topology,} \textbf{26},
+	311-335, (1987).
+	
+	\bibitem{brown1} \textsc{Brown R.} Higher Dimensional Group Theory, Low
+	Dimensional Topology, \emph{London Math. Soc. Lecture Note Series}, 48,
+	215-238, (1982).
+	
+	%\bibitem{Spencer} \textsc{R. Brown} and \textsc{C.B. Spencer}, \textrm{%
+	%G-groupoids, crossed modules and the fundamental groupoid of topological
+	%group, } \emph{Proc. Kon. Ned. Akad.} \textbf{79}, 296-302, (1976).
+	
+	\bibitem{rb-ng} \textsc{R. Brown} and \textsc{N.D. Gilbert}, \textrm{\
+		Algebraic models of 3--types and automorfizm structures for crossed modules}
+	, \ \emph{Proc. London Math. Soc.} \ (3) \textbf{59}, 51-73, (1989).
+	
+	\bibitem{bettina} \textsc{Besche H.U., Eick B. and O'Brien E.A.} A
+	millennium project: constructing Small Groups, \emph{\ Internat. J. Algebra
+		Comput.}, 12, 623 - 644 (2002).
+	
+	%\bibitem{bullejos} \textsc{M.Bullejos, J.G. Cabello} and \textsc{E. Faro},
+	%\textrm{On the equivariant 2-type of a G-space}, \emph{J. Pure Applied
+	%Algebra,}\ \textbf{129}, 215-245, (1998).
+	
+	%\bibitem{cc} \textsc{P. Carrasco} and \textsc{A.M. Cegarra}, \textrm{%
+	%Group-theoretic algebraic models for homotopy types}, \ \emph{J. Pure
+	%Applied Algebra,} \ \textbf{75}, 195-235, (1991).
+	
+	%\bibitem{Conduce} \textsc{D. Conduch\'{e} }, \textrm{Modules crois{\'{e}}s g{%
+	%\'{e}}n{\'{e}}ralis{\'{e}}s de longueur 2,} \emph{J. Pure and Applied
+	%Algebra, } \textbf{34}, 155-178, (1984).
+	
+	%\bibitem{Con1} \textsc{D. Conduch\'{e} }, \textrm{Simplicial Crossed Modules
+	%and Mapping Cones}, \emph{Georgian Mathematical Journal}, \textbf{10}, No.
+	%4, 623-636, (2003).
+	
+	\bibitem{Sten} \textsc{G.J. Ellis } and \textsc{R. Steiner}, \textrm{Higher
+		dimensional crossed modules and the homotopy groups of (n+1)-ads.}, \ \emph{%
+		\ J. Pure and Applied Algebra}, \textbf{46}, 117-136, (1987).
+	
+	\bibitem{Ellis} \textsc{G.J. Ellis }, \textrm{Crossed Squares and
+		Combinatorial Homotopy}, \ \emph{Math. Z.}, \textbf{461}, 93-110, (1993).
+	
+	\bibitem{Loday} \textsc{J.L. Loday}, \textrm{Spaces with finitely many
+		non-trivial homotopy groups }, \ \emph{J. Pure and Applied Algebra, }
+	\textbf{24}, 179-202, (1982).
+	
+	\bibitem{porter1} \textsc{Porter T.} The Crossed Menagerie: an introduction
+	to crossed gadgetry and cohomology in algebra and topology. \emph{Lecture
+		Notes}, (2010).
+	
+	\bibitem{m-w} \textsc{S. Mac Lane} and \textsc{J.H.C. Whitehead}, \textrm{On
+		the 3-type of a complex }, \emph{Proc. Nat. Acad. Sci. U.S.A.,} Vol. \textbf{%
+		\ 37}, 41-48, (1950).
+	
+	\bibitem{Mutlu} \textsc{A. Mutlu} and \textsc{T. Porter}, \textrm{\
+		Applications of Peiffer pairings in the Moore complex of a simplicial group}
+	, \emph{Theory and Applications of Categories, } Vol.4, No.\textbf{7}
+	148-173, (1998).
+	
+	\bibitem{mutpor} \textsc{A. Mutlu} and \textsc{T. Porter}, \textrm{Crossed
+		squares and 2-crossed modules}, \emph{Preprint}, (2003).
+	
+	\bibitem{Porter} \textsc{T. Porter}, \textrm{n-type of simplicial groups and
+		crossed n-cubes}, \emph{Topology ,} \textbf{32}, 5-24, (1993).
+	
+	\bibitem{walery} \textsc{D. Guin-Walery} and \textsc{J.L. Loday}, \textrm{\
+		Obsruction {\'{a}} l'excision en K-theories alg{\'{e}}brique, } \emph{In:
+		Friedlander, E.M.,Stein, M.R.(eds.) Evanston conf. on algebraic K-Theory
+		1980.} (Lect. Notes Math., vol.854, pp 179-216) Berlin Heidelberg New York:
+	Springer (1981).
+	
+	\bibitem{wayted} \textsc{J.H.C. Whitehead}, \textrm{Combinatorial homotopy
+		II }, \emph{Bull. Amer. Math. Soc.} \textbf{55}, 453-496, (1949).
+	
+	\bibitem{wensley_notes} \textsc{Wensley C.D.} Notes on higher dimensional
+	groups and related topics, \emph{Development Version}, (2017).
+	
+	\bibitem{alp3} \textsc{Wensley C.D., Alp M., Odabas A.} and \textsc{Uslu E.O }
+	Crossed Modules and Cat$^{1}$-groups in \textsf{GAP}, \emph{Version 2.73
+		Manual for the \textsf{XMod} share package for \textsf{GAP}4 }, (2019).
+\end{thebibliography}
+
+
+
+
+
+
+
+\end{document}

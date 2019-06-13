@@ -63,7 +63,7 @@
 \author[a]{A. Odaba\c{s}}
 \author[b]{C.~D. Wensley}
 \affil[a]{\small{Department of Mathematics and Computer Science, Osmangazi University, Eskisehir, Turkey}}
-\affil[b]{\small{School of Computer Science, Bangor University, Bangor, UK}}
+\affil[b]{\small{School of Computer Science and Electronic Engineering, Bangor University, North Wales, UK}}
 
 \date{}
 
@@ -121,35 +121,36 @@ $$
 \qquad
 \forall c\in C,~ g\in G.
 $$
-Standard constructions for crossed modules include the following. 
 
+Standard constructions for crossed modules include the following. 
 \begin{enumerate}
-	\item 
-	A \emph{conjugation crossed module} \index{conjugation crossed module} 
-	is an inclusion of a normal subgroup $C \unlhd G$, 
-	where $G$ acts on $C$ by conjugation.
-	\item 
-	An \emph{automorphism crossed module} \index{automorphism crossed module} 
-	has as range a subgroup $G$ of the automorphism group $\mbox{Aut}(C)$ of $C$ 
-	which contains the inner automorphism group $\mbox{Inn}(C)$ of $C$. 
-	The boundary maps $c \in C$ to the inner automorphism of $C$ by $c$.
-	\item 
-	A \emph{zero boundary crossed module} \index{$R$-module} 
-	has a $G$-module as source and $\partial = 0$.
-	\item 
-	Any homomorphism $\partial : C \to G$, with $C$ abelian 
-	and $\im ~\partial$ in the centre of $G$, 
-	provides a crossed module with $G$ acting trivially on $C$.
-	\item 
-	A \emph{central extension crossed module} \index{central extension crossed module} 
-	has as boundary a surjection $\partial : C \to G$ with central kernel, 
-	where $g \in G$ acts on $C$ by conjugation with $\partial^{-1}c$.
-	\item 
-	The \emph{direct product} of \index{direct product!of crossed modules} 
-	$\calX_1 = (\partial_1 : C_1 \to G_1)$ and $\calX_2 = (\partial_2 : C_2 \to G_2)$ 
-	is $\calX_1 \times \calX_2 
-	= (\partial_1 \times \partial_2 : C_1 \times C_2 \to G_1 \times G_2)$ 
-	with $G_1, G_2$ acting trivially on $C_1,\ C_2$ respectively.
+\item 
+A \emph{conjugation crossed module} \index{conjugation crossed module} 
+is an inclusion of a normal subgroup $C \unlhd G$, 
+where $G$ acts on $C$ by conjugation.
+\item 
+An \emph{automorphism crossed module} \index{automorphism crossed module} 
+has as range a subgroup $G$ of the automorphism group $\mbox{Aut}(C)$ of $C$ 
+which contains the inner automorphism group $\mbox{Inn}(C)$ of $C$. 
+The boundary maps $c \in C$ to the inner automorphism of $C$ by $c$.
+\item 
+A \emph{zero boundary crossed module} \index{$R$-module} 
+has a $G$-module as source and $\partial = 0$.
+\item 
+Any homomorphism $\partial : C \to G$, with $C$ abelian 
+and $\im ~\partial$ in the centre of $G$, 
+provides a crossed module with $G$ acting trivially on $C$.
+\item 
+A \emph{central extension crossed module} 
+\index{central extension crossed module} 
+has as boundary a surjection $\partial : C \to G$ with central kernel, 
+where $g \in G$ acts on $C$ by conjugation with $\partial^{-1}c$.
+\item 
+The \emph{direct product} of \index{direct product!of crossed modules} 
+$\calX_1 = (\partial_1 : C_1 \to G_1)$ and $\calX_2 = (\partial_2 : C_2 \to G_2)$ 
+is $\calX_1 \times \calX_2 
+= (\partial_1 \times \partial_2 : C_1 \times C_2 \to G_1 \times G_2)$ 
+with $G_1, G_2$ acting trivially on $C_1,\ C_2$ respectively.
 \end{enumerate}
 
 Loday reformulated the notion of crossed module as a cat$^{1}$-group. 
@@ -181,125 +182,137 @@ for $c\in C$, $g\in G$, then $(G^{\prime},s,t)$ is a cat$^{1}$-group.
 \section{Crossed Squares and Cat$^{2}$-Groups}
 
 The notion of a crossed square is due to Guin-Walery and Loday \cite{walery}. 
-A \emph{crossed square of groups} is a commutative square of groups 
-\[
-\xymatrix@R=40pt@C=40pt
-{ L \ar[d]_{\lambda} \ar[r]^{\kappa} 
-	& M \ar[d]^{\mu} \\ 
-	N \ar[r]_{\nu} 
-	& P } 
-\]
+A \emph{crossed square of groups} $\calS$ is a commutative square of groups 
+\begin{equation} \label{xsq-diag}
+\xymatrix@R=20pt@C=20pt
+{     &  L \ar[dd]_{\lambda} \ar[rr]^{\kappa} \ar[ddrr]^{\pi} 
+         &  & M \ar[dd]^{\mu} 
+               &  &  &  L \ar[dd]_{\kappa} \ar[rr]^{\lambda} \ar[ddrr]^{\pi} 
+                        &  &  N \ar[dd]^{\nu} \\
+\calS \quad = 
+      &  &  &  &  &  \tilde{\calS} \quad =  \\  
+      &  N \ar[rr]_{\nu} 
+         &  & P & &  &  M \ar[rr]_{\mu} 
+                        &  &  P } 
+\end{equation}
 \noindent together with left actions of $P$ on $L,M,N$ 
-and a function $h : M\times N\rightarrow L$. 
+and a \emph{crossed pairing} map ${\ \bt\ } : M \times N \rightarrow L$. 
 Let $M$ act on $N,L$ via $P$ and let $N$ act on $M,L$ via $P$. 
-{\bf [Previous sentence changed.]}  
-The structure must satisfy the following axioms 
-for all $l \in L,~ m,m^{\prime} \in M,~ n,n^{\prime} \in N$ and $p \in P$. 
+The diagram illustrates a \emph{oriented crossed square} since a choice 
+of where to place $M$ and $N$ has been made. 
+The \emph{transpose} $\tilde{\calS}$ of $\calS$ is obtained by making the alternative choice. 
+Since crossed pairing identities are similar to those for commutators, 
+the crossed pairing for $\tilde{\calS}$ is $\btt$ 
+where $(n \btt m) = (m \bt n)^{-1}$. 
+Transposition gives an equivalence relation on the set of 
+oriented crossed squares, and a crossed square is an equivalence class. 
 
+The structure of a crossed square must satisfy the following axioms 
+for all $l \in L,~ m,m^{\prime} \in M,~ n,n^{\prime} \in N$ and $p \in P$. 
 \begin{enumerate}
-	\item 
-	The homomorphisms $\kappa, \lambda, \mu, \nu$ 
-	and $\mu\circ\kappa = \nu\circ\lambda$ are crossed modules, 
-	and both $\kappa, \lambda$ are $P$-equivariant, 
-	\item
-	$h(mm^{\prime},n) ~=~ h(^{m}m^{\prime},^{m}n)\,h(m,n)$, 
-	\item
-	$h(m,nn^{\prime}) ~=~ h(m,n)\,h(^{n}m,^{n}n^{\prime})$, 
-	\item 
-	$\kappa h(m,n) ~=~ m^{n}m^{-1}$, {\bf ???}
-	\item 
-	$\lambda h(m,n) ~=~ ^{m}nn^{-1}$, 
-	\item 
-	$h(\kappa l,n) ~=~ l^{n}l^{-1}$, 
-	\item
-	$h(m,\lambda l) ~=~ ^{m}ll^{-1}$, 
-	\item 
-	$h(^{p}m,^{p}n) ~=~ ^{p}h(m,n)$. 
+\item 
+The homomorphisms $\kappa, \lambda, \mu, \nu$ 
+and $\pi = \mu\circ\kappa = \nu\circ\lambda$ are crossed modules, 
+and both $\kappa, \lambda$ are $P$-equivariant, 
+\item
+$(mm^{\prime} {\ \bt\ } n) ~=~ (^{m}m^{\prime} {\ \bt\ } {^{m}n})\,(m {\ \bt\ } n)$  
+\quad and \quad 
+$(m {\ \bt\ } {nn^{\prime}}) ~=~ (m {\ \bt\ } n)\,(^{n}m {\ \bt\ } ^{n}n^{\prime})$, 
+\item 
+$\kappa(m {\ \bt\ } n) ~=~ m^{n}\ m^{-1}$ 
+\quad and \quad 
+$\lambda(m {\ \bt\ } n) ~=~ ^{m}n\ n^{-1}$, 
+\item 
+$(\kappa l {\ \bt\ } n) ~=~ l^{n}\ l^{-1}$  
+\quad and \quad 
+$(m {\ \bt\ } \lambda l) ~=~ ^{m}l\ l^{-1}$, 
+\item 
+$(^{p}m {\ \bt\ } ^{p}n) ~=~ ^{p}(m {\ \bt\ } n)$. 
 \end{enumerate} 
 
 Standard constructions for crossed squares include the following.
 \begin{enumerate}
-	\item 
-	If $M,N$ are normal subgroups of the group $P$ then the diagram of inclusions
-	\[
-	\xymatrix@R=40pt@C=40pt
-	{ M \cap N \ar[r]^(0.6){} \ar[d]_{}  
-		& N \ar[d]^{} \\
-		M \ar[r]_{}  
-		& P }
-	\] 
-	\noindent together with the actions of $P$ on $M,N$ and $M\cap N$ 
-	given by conjugation, and the function
-	\[
-	h ~:~ M\times N \rightarrow M\cap N,\quad 
-	(m,n)\mapsto [m,n] \,=\, m^{-1}n^{-1}mn
-	\] 
-	is a crossed square. 
-	We call this an \emph{inclusion crossed square}.
-	\item 
-	The diagram
-	\[
-	\xymatrix@R=40pt@C=40pt
-	{ M \ar[r]^{\alpha} \ar[d]_{\alpha} 
-		& \Inn\,M \ar[d]^{\iota} \\
-		\Inn\,M \ar[r]_{\iota} 
-		& \Aut\,M }
-	\] 
-	\noindent is a crossed square, 
-	where $\alpha $ maps $m\in M$ to the inner automorphism%
-	\[
-	\beta_{m} : M \rightarrow M,\quad 
-	m^{\prime}\mapsto m^{-1}m^{\prime}m, 
-	\]
-	and where $\iota $ is the inclusion of $\Inn\,M$ in $\Aut\,M$; 
-	the actions are standard; and the crossed pairing is
-	\[
-	h ~:~ \Inn\,M \times \Inn\,M \rightarrow M,\quad 
-	(\beta_{m},\beta_{m^{\prime}}) \;\mapsto\; [m,m^{\prime}]~.
-	\]
-	\item 
-	If $P$ is a group and $M,N$ are ordinary $P$-modules, 
-	and if $A$ is an arbitrary abelian group on which $P$ is assumed to act trivially, 
-	then there is a crossed square
-	\[
-	\xymatrix@R=40pt@C=40pt
-	{ A \ar[r]^{0} \ar[d]_{0}  
-		& N \ar[d]^{0} \\
-		M \ar[r]_{0} 
-		& P }
-	\]
-	\item 
-	Given two crossed modules, $(\mu : M \rightarrow P)$ and $(\nu : N \rightarrow P)$, 
-	there is a universal crossed square defining a tensor product of the crossed modules, 
-	\[
-	\xymatrix@R=40pt@C=40pt
-	{ M \otimes N \ar[d]_{\lambda} \ar[r]^{\kappa} 
-		& M \ar[d]^{\mu} \\ 
-		N \ar[r]_{\nu} 
-		& P } 
-	\]
-\end{enumerate}
-
-A crossed square
+\item 
+If $M,N$ are normal subgroups of the group $P$ then the diagram of inclusions
 \[
 \xymatrix@R=40pt@C=40pt
-{ L \ar[d]_{\lambda} \ar[r]^{\kappa} 
+{ M \cap N \ar[r]^(0.6){} \ar[d]_{}  
+	& N \ar[d]^{} \\
+	M \ar[r]_{}  
+	& P }
+\] 
+\noindent together with the actions of $P$ on $M,N$ and $M\cap N$ 
+given by conjugation, and the commutator map 
+\[
+[~,~] ~:~ M\times N \rightarrow M\cap N,\quad 
+(m,n)\mapsto [m,n] \,=\, mnm^{-1}n^{-1}, 
+\] 
+is a crossed square. 
+We call this an \emph{inclusion crossed square}.
+\item 
+The diagram
+\[
+\xymatrix@R=40pt@C=40pt
+{ M \ar[r]^{\alpha} \ar[d]_{\alpha} 
+	& \Inn\,M \ar[d]^{\iota} \\
+	\Inn\,M \ar[r]_{\iota} 
+	& \Aut\,M }
+\] 
+\noindent is a crossed square, 
+where $\alpha $ maps $m\in M$ to the inner automorphism%
+\[
+\beta_{m} : M \rightarrow M,\quad 
+m^{\prime}\mapsto m^{-1}m^{\prime}m, 
+\]
+and where $\iota $ is the inclusion of $\Inn\,M$ in $\Aut\,M$; 
+the actions are standard; and the crossed pairing is
+\[
+\bt ~:~ \Inn\,M \times \Inn\,M \rightarrow M,\quad 
+(\beta_{m},\beta_{m^{\prime}}) \;\mapsto\; [m,m^{\prime}]~.
+\]
+\item 
+If $P$ is a group and $M,N$ are ordinary $P$-modules, 
+and if $A$ is an arbitrary abelian group on which $P$ is assumed to act trivially, 
+then there is a crossed square
+\[
+\xymatrix@R=40pt@C=40pt
+{ A \ar[r]^{0} \ar[d]_{0}  
+	& N \ar[d]^{0} \\
+	M \ar[r]_{0} 
+	& P }
+\]
+\item 
+Given two crossed modules, $(\mu : M \rightarrow P)$ and $(\nu : N \rightarrow P)$, 
+there is a universal crossed square defining a tensor product of the crossed modules, 
+\[
+\xymatrix@R=40pt@C=40pt
+{ M \otimes N \ar[d]_{\lambda} \ar[r]^{\kappa} 
 	& M \ar[d]^{\mu} \\ 
 	N \ar[r]_{\nu} 
 	& P } 
 \]
-\noindent can be thought of as a (horizontal or vertical) 
-crossed module of crossed modules :
+\end{enumerate}
+
+A crossed square (\ref{xsq-diag}) can be thought of as a horizontal or vertical 
+crossed module of crossed modules:
 \[
-\xymatrix@R=17pt@C=17pt
-{ L \ar[dd]_{}  
-	& & M \ar[dd]^{} \\ 
-	\ar@{}[rr]^(.15){}="a"^(.85){}="b" \ar "a";"b" 
-	& & \\ 
-	N & & P } 
+\xymatrix@R=20pt@C=20pt
+{ L \ar[dd]_{\lambda}  
+	&  &  M \ar[dd]^{\mu} 
+	      &  &  L \ar[rr]^{\kappa}
+	            &  {} \ar[dd]^{(\lambda,\mu)} 
+	               &  M \\ 
+\quad \ar[rr]^{(\kappa,\nu)} 
+    &  &  &  &  &  & \quad \\
+  N &  &  P 
+	      &  &  N \ar[rr]_{\nu} 
+	            &  {} 
+	               &  P 
+} 
 \]
-\noindent $(\kappa,\nu)$ gives such a crossed module with domain 
-$\lambda : L \rightarrow N$ and codomain $\mu : M \rightarrow P$, and so on. 
+\noindent 
+where $(\kappa,\nu)$ is the boundary of the crossed module with 
+domain $(\lambda : L \rightarrow N)$ and codomain $(\mu : M \rightarrow P)$. 
 (See also \cite{wensley_notes} section 10.2.)
 
 There is an evident notion of morphism of crossed squares  
@@ -408,7 +421,7 @@ as we need some indication of proofs for later use.
 	There is an action of $(m,p) \in M \rtimes P$ on $(l,n) \in L \rtimes N$ 
 	given by
 	\[
-	^{(m,p)}(l,n) ~=~ (^{m}(^{p}l)h(m,^{p}n),^{p}n)\,.
+	^{(m,p)}(l,n) ~=~ (^{m}(^{p}l) (m,^{p}n) {\ \bt\ } ^{p}n)\,.
 	\] 
 	Using this action, we form its associated cat$^{1}$-group with big group 
 	$(L \rtimes N) \rtimes (M \rtimes P)$ 

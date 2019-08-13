@@ -75,10 +75,12 @@
 \noindent{\bf Key Words:} cat$^2$-group, crossed square, \textsf{GAP}
 \\ {\bf Classification:} 18D35, 18G50, .
 
+%---------------------------------------------------------------------------% 
 \section{Introduction}
 
 ...
 
+%---------------------------------------------------------------------------% 
 \section{Crossed Modules and Cat$^{1}$-Groups}
 
 The notion of crossed module, generalizing the notion of a G-module, 
@@ -179,6 +181,7 @@ and letting $s,t$ be defined by $s(c,g) = (1,g)$ and $t(c,g) = (1,(\partial c)g)
 for $c\in C$, $g\in G$, then $(G^{\prime},s,t)$ is a cat$^{1}$-group.
 
 
+%---------------------------------------------------------------------------% 
 \section{Crossed Squares and Cat$^{2}$-Groups}
 
 The notion of a crossed square is due to Guin-Walery and Loday \cite{walery}. 
@@ -429,32 +432,22 @@ as we need some indication of proofs for later use.
 \end{proof}
 
 \begin{definition}
-	A \emph{cat$^{n}$-group} is a group $G$ together with $2n$ endomorphisms 
-	$s_{i},t_{i},~ (1\leq i\leq n)$ such that 
-	{\bf [these axioms need rewriting]} 
+	A \emph{cat$^{n}$-group} is a group $G$ with $n$ cat$^{1}$-group structures  
+	$(G,s_{i},t_{i}),~ 1\leq i\leq n$, such that for all $i \ne j$ 
 	\[
-	s_{i} \circ t_{i} = t_{i}, \quad\text{and}\quad 
-	t_{i} \circ s_{i} = s_{i} \quad\mbox{for all}~i,  
-	\]
-	\[
-	\begin{array}{ccccc}
-	s_{i}s_{j}=s_{j}s_{i}, &  & t_{i}t_{j}=t_{j}t_{i}, &  & s_{i}t_{j}=t_{j}s_{i}%
-	\text{ for }i\neq j%
-	\end{array}%
-	\]%
-	and, for all $i$,%
-	\[
-	\left[ \ker s_{i},\ker t_{i}\right] =1.
+	s_{i}s_{j} = s_{j}s_{i}, \quad 
+	t_{i}t_{j} = t_{j}t_{i} \quad \mbox{and} \quad 
+	s_{i}t_{j} = t_{j}s_{i}. 
 	\]
 \end{definition}
 
-A cat$^{n}$-group is thus a group with $n$ independent cat$^{1}$-group 
-structures on it.
-
 A generalisation of crossed square to higher dimensions was given by Ellis
-and Stenier (cf. \cite{Sten}). It is called a \textquotedblleft crossed $n$%
--cube\textquotedblright . We use only this construction for $n=2.$
+and Stenier (cf. \cite{Sten}). 
+It is called a \textquotedblleft crossed $n$-cube \textquotedblright. 
+We only use this construction for $n=2$.
 
+
+%---------------------------------------------------------------------------% 
 \section{Computer Implementation}
 
 \textsf{GAP} \cite{gap} is an open-source system for discrete computational
@@ -472,14 +465,14 @@ small order by Besche, Eick and O'Brien in \cite{bettina}. The groups are
 listed up to isomorphism. The library contains the groups those of order at
 most 2000 except 1024.
 
-
+%...............................%
 \subsection{2-Dimensional Groups}
 
 A shared package \textsf{XMod}, for the \textsf{GAP} which consists
 functions for computing crossed modules, cat$^{1}$-groups and their
 morphisms was described in \cite{alp3}. The \textsf{XMod} package may be
 used to select a cat$^{1}$-group from a data file. All cat$^{1}$-structures
-on groups of size up to 70 (ordered according to the GAP 4 numbering of
+on groups of size up to 70 (ordered according to the \textsf{GAP4} numbering of
 small groups) are stored in a list in file cat1data.g.
 
 The function \textbf{Cat1Select} may be used in three ways. \textbf{%
@@ -504,22 +497,26 @@ Using small generating set [ f1, f2 ] for source of homs.
 2
 \textcolor{blue}{gap> C1 := Cat1Select(12,3,2);}
 [A4=>A4]
-\textcolor{blue}{gap> XM := XModOfCat1Group(C1);}
+\textcolor{blue}{gap> X1 := XModOfCat1Group(C1);}
 [triv->A4]
 \end{Verbatim}
 
-\subsection{3-Dimensional Groups}
+%...............................%
+\subsection{3-dimensional Groups}
 
-We have developed the new functions for \textsf{XMod} which constructs cat$%
-^2 $-groups, cat$^n$-groups and their morphisms. Functions to construct cat$%
-^{2} $-groups include \textbf{Cat2Group}, \textbf{IsCat2Group} and \textbf{%
-	PreCat2GroupByPreCat1Groups}. Attributes of a (pre)cat$^{2}$-group
-constructed in this way include \textbf{GeneratingCat1Groups}, \textbf{Size}
-and \textbf{Name}. As a generalization of these functions, we have developed
-the new functions \textbf{CatnGroup} and \textbf{HigherDimension} which
-construct higher dimensional cat$^{n}$-groups.
+We have developed the new functions for \textsf{XMod} which construct 
+(pre-)cat$^{2}$-groups, (pre-)cat$^{3}$-groups and their morphisms. 
+Functions for cat$^{2} $-groups include \textbf{Cat2Group}, 
+\textbf{IsCat2Group} and \textbf{PreCat2GroupByPreCat1Groups}. 
+Attributes of a (pre)cat$^{2}$-group constructed in this way include 
+\textbf{GeneratingCat1Groups}, \textbf{Size} and \textbf{Name}. 
 
-The following \textsf{GAP} session illustrates the use of these functions.
+Generalizing these functions, we have introduced \textbf{Cat3Group} and \textbf{HigherDimension} which construct cat$^{3}$-groups. 
+Functions for general cat$^{n}$-groups will be added as time permits. 
+An orientation of a cat$^{3}$-group on $G$ displays a cube whose six faces 
+(ordered as front; up, left, right, down,back) are cat$^{2}$-groups. 
+The following \textsf{GAP} session illustrates the use of these functions. 
+The group $G$ is positioned where the front, up and left faces meet. 
 
 \begin{Verbatim}[frame=single, fontsize=\small, commandchars=\\\{\}]
 \textcolor{blue}{gap> a := (1,2,3,4)(5,6,7,8);;}
@@ -531,82 +528,89 @@ The following \textsf{GAP} session illustrates the use of these functions.
 \textcolor{blue}{gap> C1a := PreCat1GroupByEndomorphisms( t1a, t1a );;}
 \textcolor{blue}{gap> t1b := GroupHomomorphismByImages( G, G, [a,b,c], [a,(),()] );;}
 \textcolor{blue}{gap> C1b := PreCat1GroupByEndomorphisms( t1b, t1b );;}
-\textcolor{blue}{gap> C2_1 := Cat2Group( C1a, C1b );}
+\textcolor{blue}{gap> C2ab := Cat2Group( C1a, C1b );}
 cat2-group with generating (pre-)cat1-groups:
 1 : [c4c2:c2 => Group( [ (), (), (2,6)(4,8) ] )]
 2 : [c4c2:c2 => Group( [ (1,2,3,4)(5,6,7,8), (), () ] )]
-\textcolor{blue}{gap> IsCat2Group( C2_1 );}
+\textcolor{blue}{gap> IsCat2Group( C2ab );}
 true
-\textcolor{blue}{gap> Size(C2_1);}
+\textcolor{blue}{gap> Size( C2ab );}
 [ 16, 2, 4, 1 ]
 \textcolor{blue}{gap> t1c := GroupHomomorphismByImages( G, G, [a,b,c], [a,b,c] );;}
 \textcolor{blue}{gap> C1c := PreCat1GroupByEndomorphisms( t1c, t1c );;}
-\textcolor{blue}{gap> Cn_1 := CatnGroup([C1a,C1b,C1c]);}
+\textcolor{blue}{gap> C3abc := Cat3Group( C1a, C1b, C1c );}
 cat3-group with generating (pre-)cat1-groups:
 1 : [c4c2:c2 => Group( [ (), (), (2,6)(4,8) ] )]
 2 : [c4c2:c2 => Group( [ (1,2,3,4)(5,6,7,8), (), () ] )]
 3 : [c4c2:c2 => Group( [ (1,2,3,4)(5,6,7,8), (1,5)(2,6)(3,7)(4,8),
 (2,6)(4,8) ] )]
-\textcolor{blue}{gap> IsPreCatnGroup(Cn_1);}
+\textcolor{blue}{gap> IsPreCat3Group( C3abc );}
 true
-\textcolor{blue}{gap> HigherDimension(Cn_1);}
+\textcolor{blue}{gap> HigherDimension( C3abc );}
 4
+\textcolor{blue}{gap> Front3DimensionalGroup( C3abc );} 
+cat2-group with generating (pre-)cat1-groups:
+1 : [c4c2:c2 => Group( [ (), (), (2,6)(4,8) ] )]
+2 : [c4c2:c2 => Group( [ (1,2,3,4)(5,6,7,8), (), () ] )]
 \end{Verbatim}
 
-
+%............................................%
 \subsection{Morphisms of 3-Dimensional Groups}
 
-The function \textbf{MakeHigherDimensionalGroupMorphism} which defines
-morphisms of higher dimensional groups, such as cat$^{2}$-groups and crossed
-squares. Functions to construct cat$^{2}$-group morphisms include \textbf{%
-	Cat2GroupMorphismByCat1GroupMorphisms}, \textbf{Cat2GroupMorphism} and
-\textbf{IsCat2GroupMorphism}. On the other hand, the function \textbf{%
-	AllCat2GroupMorphisms} is used to find all morphisms between two cat$^{2}$%
--groups.
+The function \textbf{MakeHigherDimensionalGroupMorphism} defines morphisms of 
+higher dimensional groups, such as cat$^{2}$-groups and crossed squares. 
+Functions for cat$^{2}$-group morphisms include 
+\textbf{Cat2GroupMorphismByCat1GroupMorphisms}, \textbf{Cat2GroupMorphism} and 
+\textbf{IsCat2GroupMorphism}. 
+The function \textbf{AllCat2GroupMorphisms} is used to find 
+all morphisms between two cat$^{2}$-groups.
 
-In the following \textsf{GAP} session, we get a cat$^{2}$-group homomorphism
-by using the implemented functions.
+In the following \textsf{GAP} session, we obtain a cat$^{2}$-group morphism
+using these functions.
 
 \begin{Verbatim}[frame=single, fontsize=\small, commandchars=\\\{\}]
-\textcolor{blue}{gap> C2_2 := Cat2Group(Cat1Group(8,2,1),Cat1Group(8,2,2));}
+\textcolor{blue}{gap> C2_82 := Cat2Group( Cat1Group(8,2,1), Cat1Group(8,2,2) );}
 cat2-group with generating (pre-)cat1-groups:
 1 : [C4 x C2 => Group( [ <identity> of ..., <identity> of ...,
 <identity> of ... ] )]
 2 : [C4 x C2 => Group( [ <identity> of ..., f2 ] )]
-\textcolor{blue}{gap> C2_3 := Cat2Group(Cat1Group(8,3,2),Cat1Group(8,3,3));}
+\textcolor{blue}{gap> C2_83 := Cat2Group( Cat1Group(8,3,2), Cat1Group(8,3,3) );}
 cat2-group with generating (pre-)cat1-groups:
 1 : [D8 => Group( [ f1, f1 ] )]
 2 : [D8=>D8]
-\textcolor{blue}{gap> u1 := GeneratingCat1Groups( C2_2 )[1];;}
-\textcolor{blue}{gap> d1 := GeneratingCat1Groups( C2_2 )[2];;}
-\textcolor{blue}{gap> u2 := GeneratingCat1Groups( C2_3 )[1];;}
-\textcolor{blue}{gap> d2 := GeneratingCat1Groups( C2_3 )[2];;}
-\textcolor{blue}{gap> G1 := Source(u1);; R1 := Range(u1);; N1 := Range(d1);;}
-\textcolor{blue}{gap> G2 := Source(u2);; R2 := Range(u2);; N2 := Range(d2);;}
-\textcolor{blue}{gap> alpha1 := AllHomomorphisms(G1,G2);;}
-\textcolor{blue}{gap> phi1 := AllHomomorphisms(R1,R2);;}
-\textcolor{blue}{gap> gamma1 := AllHomomorphisms(N1,N2);;}
-\textcolor{blue}{gap> mor1 := Make2DimensionalGroupMorphism([u1,u2,alpha1[1],phi1[1]]);;}
-\textcolor{blue}{gap> IsCat1GroupMorphism(mor1);}
+\textcolor{blue}{gap> up1 := GeneratingCat1Groups( C2_82 )[1];;}
+\textcolor{blue}{gap> lt1 := GeneratingCat1Groups( C2_82 )[2];;}
+\textcolor{blue}{gap> up2 := GeneratingCat1Groups( C2_83 )[1];;}
+\textcolor{blue}{gap> lt2 := GeneratingCat1Groups( C2_83 )[2];;}
+\textcolor{blue}{gap> G1 := Source(up1);; R1 := Range(up1);; Q1 := Range(lt1);;}
+\textcolor{blue}{gap> G2 := Source(up2);; R2 := Range(up2);; Q2 := Range(lt2);;}
+\textcolor{blue}{gap> homG := AllHomomorphisms(G1,G2);;}
+\textcolor{blue}{gap> homR := AllHomomorphisms(R1,R2);;}
+\textcolor{blue}{gap> homQ := AllHomomorphisms(Q1,Q2);;}
+\textcolor{blue}{gap> upmor := Cat1GroupMorphism( up1, up2, homG[1], homR[1] );;}
+\textcolor{blue}{gap> IsCat1GroupMorphism( upmor );}
 true
-\textcolor{blue}{gap> mor2 := Make2DimensionalGroupMorphism([d1,d2,alpha1[1],gamma1[1]]);;}
-\textcolor{blue}{gap> IsCat1GroupMorphism(mor2);}
-true
-\textcolor{blue}{gap> mm := MakeHigherDimensionalGroupMorphism(C2_2,C2_3,[mor1,mor2]);}
+\textcolor{blue}{gap> ltmor := Cat1GroupMorphism( lt1, lt2, homG[1], homQ[1] );;}
+\textcolor{blue}{gap> mor2 := PreCat2GroupMorphism( C2_82, C2_83, upmor, ltmor );}
 <mapping: cat2-group with generating (pre-)cat1-groups:
-1 : [C4 x C2 => Group( [ <identity> of ...,
-<identity> of ..., <identity> of ... ] )]
-2 : [C4 x C2 => Group( [ <identity> of ..., f2 ] )] ->
-cat2-group with generating (pre-)cat1-groups:
+1 : [C4 x C2 => Group( [ <identity> of ..., <identity> of ..., 
+  <identity> of ... ] )]
+2 : [C4 x C2 => Group( [ <identity> of ..., f2 ] )] -> cat
+2-group with generating (pre-)cat1-groups:
 1 : [D8 => Group( [ f1, f1 ] )]
 2 : [D8=>D8] >
-\textcolor{blue}{gap> IsCat2GroupMorphism(mm);}
+\textcolor{blue}{gap> IsCat2GroupMorphism( mor2 );}
 true
-\textcolor{blue}{gap> AllCat2GroupMorphisms(C2_2,C2_3);;}
-\textcolor{blue}{gap> Length(last);}
-2
+\textcolor{blue}{gap> mor8283 := AllCat2GroupMorphisms( C2_82, C2_83 );;}
+\textcolor{blue}{gap> Length( mor8283 );}
+0
 \end{Verbatim}
 
+\textcolor{red}{Length of mor8283 used to be 2, but now 3!} 
+
+\textcolor{red}{Do we omit this, correct it, or find a better example?} 
+
+%..............................%
 \subsection{Natural Equivalence}
 
 By using the natural equivalence of categories of crossed squares and cat$%
@@ -638,26 +642,28 @@ and then use the conversion functions to obtain the associated cat$^{2}$-group.
 [ d10b -> d20  ]
 \textcolor{blue}{gap> IsCrossedSquare(XS1); }
 true
-\textcolor{blue}{gap> C2_4 := Cat2GroupOfCrossedSquare(XS1); }
+\textcolor{blue}{gap> C2G1 := Cat2GroupOfCrossedSquare( XS1 ); }
 cat2-group with generating (pre-)cat1-groups:
 1 : [((d20 |X d10a) |X (d10b |X c5d))=>(d20 |X d10a)]
 2 : [((d20 |X d10a) |X (d10b |X c5d))=>(d20 |X d10b)]
-\textcolor{blue}{gap> IsCat2Group(C2_4); }
+\textcolor{blue}{gap> IsCat2Group( C2G1 ); }
 true
-\textcolor{blue}{gap> XS2 := CrossedSquareOfCat2Group( C2_1 ); }
+\textcolor{blue}{gap> Xab := CrossedSquareOfCat2Group( C2ab ); }
 crossed square with crossed modules:
 up = [Group( [ (1,5)(2,6)(3,7)(4,8) ] ) -> Group( [ ( 2, 6)( 4, 8) ] )]
 left = [Group( [ (1,5)(2,6)(3,7)(4,8) ] ) -> Group(
 [ (1,2,3,4)(5,6,7,8), (), () ] )]
 right = [Group( [ ( 2, 6)( 4, 8) ] ) -> Group( () )]
 down = [Group( [ (1,2,3,4)(5,6,7,8), (), () ] ) -> Group( () )]
-\textcolor{blue}{gap> IsCrossedSquare(XS2); }
+\textcolor{blue}{gap> IsCrossedSquare( Xab ); }
 true
-\textcolor{blue}{gap> IdGroup( XS2 ); }
+\textcolor{blue}{gap> IdGroup( Xab ); }
 [ [ 2, 1 ], [ 2, 1 ], [ 4, 1 ], [ 1, 1 ] ]
 \end{Verbatim}
 
-\section{Table of Cat$^{2}$-groups}
+
+%---------------------------------------------------------------------------% 
+\section{Table of cat$^{2}$-groups}
 
 The new the function \textbf{AllCat2Groups(G)} which constructs all cat$^{2}$%
 -groups $(G,s_1,t_1,s_2,t_2)$ over $G$. The function \textbf{%
@@ -666,40 +672,43 @@ The new the function \textbf{AllCat2Groups(G)} which constructs all cat$^{2}$%
 	AllCat2GroupsUpToIsomorphism} are used to used to classify given cat$^{2}$%
 -groups.
 
-In the following GAP session, we compute all cat$^{2}$-groups on $C_{4}
+In the following \textsf{GAP} session, we compute all cat$^{2}$-groups on $C_{4}
 \times C_{2}$ and their any isomorphism family.
 
 \begin{Verbatim}[frame=single, fontsize=\small, commandchars=\\\{\}]
-\textcolor{blue}{gap> all := AllCat2Groups(SmallGroup(8,2));;}
-\textcolor{blue}{gap> Length(all);}
-84
-\textcolor{blue}{gap> AreIsomorphicCat2Groups(all[23],all[25]);}
-false
-\textcolor{blue}{gap> AreIsomorphicCat2Groups(all[23],all[29]);}
-true
-\textcolor{blue}{gap> fam := IsomorphicCat2GroupFamily(all[23],all);;}
-[ 23, 29, 61, 67 ]
-\textcolor{blue}{gap> iso := AllCat2GroupsUpToIsomorphism(all);;}
-\textcolor{blue}{gap> Length(iso);}
-24
-\textcolor{blue}{gap> iso[16];}
+\textcolor{blue}{gap> c4c2 := SmallGroup(8,2);;}
+\textcolor{blue}{gap> all82 := AllCat2Groups( c4c2 );;}
+\textcolor{blue}{gap> Length(all82);}
+47
+\textcolor{blue}{gap> iso82 := AllCat2GroupsUpToIsomorphism( c4c2 );;}
+\textcolor{blue}{gap> Length(iso82);}
+14
+\textcolor{blue}{gap> AllCat2GroupFamilies( c4c2 );}
+[ [ 1 ], [ 2, 5, 8, 11 ], [ 3, 4, 9, 10 ], [ 6, 7, 12, 13 ], 
+  [ 14, 17, 22, 25 ], [ 15, 16, 23, 24 ], [ 18, 19, 26, 27 ], 
+  [ 20, 21, 28, 29 ], [ 30 ], [ 31, 34, 35, 38 ], [ 32, 33, 36, 37 ], 
+  [ 39, 42, 43, 46 ], [ 40, 41, 44, 45 ], [ 47 ] ]
+\textcolor{blue}{gap> iso82[3];}
 cat2-group with generating (pre-)cat1-groups:
-1 : [Group( [ (3,4,5,6), (1,2), (3,5)(4,6) ] ) =>
-Group( [ (3,4,5,6), () ] )]
-2 : [Group( [ (3,4,5,6), (1,2), (3,5)(4,6) ] ) =>
-Group( [ (3,4,5,6), (1,2), (3,5)(4,6) ] )]
+1 : [Group( [ f1, f2, f3 ] ) => Group( [ <identity> of ..., <identity> of ... 
+ ] )]
+2 : [Group( [ f1, f2, f3 ] ) => Group( [ f2, f2 ] )]
+\textcolor{blue}{gap> IsomorphismCat2Groups( all82[3], all82[10] ) = fail;}
+false
 \end{Verbatim}
 
-In the following table the groups of size at most 30 are ordered by their
-GAP number. The number of isomorphism classes of cat$^{1}$-groups given by
-\cite{alp2}. The size of the set of all cat$^{2}$-groups and the number of
-isomorphism classes of cat$^{2}$-groups on $G$ are computed by given the
-functions in the manuscript.
+In the following table the groups of size at most $30$ are ordered by their
+\textsf{GAP} number. 
+The number of isomorphism classes of cat$^{1}$-groups given by \cite{alp2}. 
+The size of the set of all cat$^{2}$-groups and the number of isomorphism classes 
+of cat$^{2}$-groups on $G$ are computed by given the functions in the manuscript.
+
+We may reduce the size of the table by noting the results for certain simple families. 
+When $G=C_{p^{k}}$ is cyclic, with $p$ prime, 
+the only endomorphisms are the identity and zero maps. 
+\textcolor{red}{(Check this!)} 
 
 \bigskip
-
-Let $G=C_{p^{k}}$ cyclic with $p$ prime. ($C_{2},C_{3},C_{4},...$) \bigskip
-
 \begin{longtable}{ccccccc}
 	\hline\hline
 	& $G$ & $|\mathrm{IE}(G)|$ & $|\mathcal{C}(G)|$ & $|\mathcal{C}/\cong |$ & $|%
@@ -707,16 +716,17 @@ Let $G=C_{p^{k}}$ cyclic with $p$ prime. ($C_{2},C_{3},C_{4},...$) \bigskip
 	& $C_{p^{k}}$ & 2 & 2 & 2 & 3 & 3 \\ \hline
 	\multicolumn{7}{l}{%
 		\begin{tabular}{ll}
-			Fam.  & $[G,I,I,I], [G,I,G,I],[G,G,G,G]$  
+			groups  & $[G,I,I,I],~ [G,I,G,I],~ [G,G,G,G]$  
 		\end{tabular}%
 	} \\ \hline
 \end{longtable}
 
 \bigskip
 
-Let $G=C_{p^{k}q^{j}}$ cyclic with $p,q$ two primes. ($%
-C_{6},C_{10},C_{12},...$) \bigskip
+When $G = C_{p^{k}q^{j}}$ is cyclic with $p,q$ distinct primes 
+we obtain the following. 
 
+\bigskip
 \begin{longtable}{ccccccc}
 	\hline\hline
 	& $G$ & $|\mathrm{IE}(G)|$ & $|\mathcal{C}(G)|$ & $|\mathcal{C}/\cong |$ & $|%
@@ -724,18 +734,21 @@ C_{6},C_{10},C_{12},...$) \bigskip
 	& $C_{p^{k}q^{j}}$ & 4 & 4 & 4 & 10 & 10 \\ \hline
 	\multicolumn{7}{l}{%
 		\begin{tabular}{ll}
-			Fam.  & $[G,I,I,I],[G,I,C_p,I],[G,I,C_q,I],[G,I,G,I],$\\
-			& $[G,C_p,C_p,C_p],[G,C_p,C_q,I],[G,C_p,G,C_p],$\\
-			& $[G,C_q,C_q,C_q],[G,C_q,G,C_q],[G,G,G,G]$%
+			groups  & $[G,I,I,I],~ [G,I,C_p,I],~ [G,I,C_q,I],~ [G,I,G,I],$\\
+					& $[G,C_p,C_p,C_p],~ [G,C_p,C_q,I],~ [G,C_p,G,C_p],$\\
+					& $[G,C_q,C_q,C_q],~ [G,C_q,G,C_q],~ [G,G,G,G]$%
 		\end{tabular}%
 	} \\ \hline
 \end{longtable}
 
 \bigskip
 
-Let $G=C_{2p}\times C_{2}$ with $p>2$ and $p$ prime. ($C_{6}\times
-C_{2},C_{10}\times C_{2},C_{14}\times C_{2}...$) \bigskip
+Let $G=C_{2p}\times C_{2}$ with $p>2$ and $p$ prime 
+(e.g. $C_{6} \times C_{2}, C_{10} \times C_{2}, C_{14} \times C_{2}, \ldots$). 
 
+\textcolor{red}{[Do we want to include the lengthy groups list for this case?]} 
+
+\bigskip
 \begin{longtable}{ccccccc}
 	\hline\hline
 	& $G$ & $|\mathrm{IE}(G)|$ & $|\mathcal{C}(G)|$ & $|\mathcal{C}/\cong |$ & $|%
@@ -743,20 +756,22 @@ C_{2},C_{10}\times C_{2},C_{14}\times C_{2}...$) \bigskip
 	& $C_{2p}\times C_{2}$ & 16 & 28 & 8 & 136 & 32 \\ \hline
 	\multicolumn{7}{l}{%
 		\begin{tabular}{ll}
-			Fam. & $[G,I,I,I],[G,I,C_2,I],[G,I,C_2,I],[G,C_2,C_2,C_2],[G,C_2,C_2,I],$ \\ 
-			 & $[G,I,C_2 \times C_2,I],[G,C_2,C_2 \times C_2,C_2],[G,C_2,C_2 \times C_2,C_2],$ \\ 
-			 & $[G,C_2 \times C_2,C_2 \times C_2,C_2 \times C_2],[G,I,C_p,I],[G,C_2,C_p,I],$ \\ 
-			 & $[G,C_2,C_p,I],[G,C_2 \times C_2,C_p,I],[G,C_p,C_p,C_p],[G,I,C_{2p},I],$ \\ 
-			 & $[G,I,C_{2p},I],[G,C_2,C_{2p},C_2],[G,C_2,C_{2p},I],[G,C_2 \times C_2,C_{2p},C_2],$ \\ 
-			 & $[G,C_2 \times C_2,C_{2p},C_2],[G,C_p,C_{2p},C_p],[G,C_p,C_{2p},C_p],$ \\ 
-			 & $[G,C_{2p},C_{2p},C_{2p}],[G,C_{2p},C_{2p},C_p],[G,C_2 \times C_2,C_{2p} \times C_2,C_2 \times C_2],$ \\ 
-			 & $[G,C_2,C_{2p} \times C_2,C_2],[G,C_2,C_{2p} \times C_2,C_2],[G,C_p,C_{2p} \times C_2,C_p],$ \\ 
-		     & $[G,C_{2p},C_{2p} \times C_2,C_{2p}],[G,C_{2p},C_{2p} \times C_2,C_{2p}],[G,G,G,G]$ 
+			groups 
+& $[G,I,I,I],~ [G,I,C_2,I],~ [G,I,C_2,I],~ [G,C_2,C_2,C_2],~ [G,C_2,C_2,I],$ \\ 
+& $[G,I,C_2 \times C_2,I],~ [G,C_2,C_2 \times C_2,C_2],~ [G,C_2,C_2 \times C_2,C_2],$ \\ 
+& $[G,C_2 \times C_2,C_2 \times C_2,C_2 \times C_2],~ [G,I,C_p,I],~ [G,C_2,C_p,I],$ \\ 
+& $[G,C_2,C_p,I],~ [G,C_2 \times C_2,C_p,I],~ [G,C_p,C_p,C_p],~ [G,I,C_{2p},I],$ \\ 
+& $[G,I,C_{2p},I],~ [G,C_2,C_{2p},C_2],~ [G,C_2,C_{2p},I],~ [G,C_2 \times C_2,C_{2p},C_2],$ \\ 
+& $[G,C_2 \times C_2,C_{2p},C_2],~ [G,C_p,C_{2p},C_p],~ [G,C_p,C_{2p},C_p],$ \\ 
+& $[G,C_{2p},C_{2p},C_{2p}],~ [G,C_{2p},C_{2p},C_p],~ [G,C_2 \times C_2,C_{2p} \times C_2,C_2 \times C_2],$ \\ 
+& $[G,C_2,C_{2p} \times C_2,C_2],~ [G,C_2,C_{2p} \times C_2,C_2],~ [G,C_p,C_{2p} \times C_2,C_p],$ \\ 
+& $[G,C_{2p},C_{2p} \times C_2,C_{2p}],~ [G,C_{2p},C_{2p} \times C_2,C_{2p}],~ [G,G,G,G]$ 
 		\end{tabular}%
 	} \\ \hline
 \end{longtable}
 
-
+The following table contains results for those $G$ which do not belong 
+to one of these three families. 
 %{\small \
 \begin{longtable}{ccccccc}
 	\hline\hline
@@ -828,6 +843,7 @@ C_{2},C_{10}\times C_{2},C_{14}\times C_{2}...$) \bigskip
 %}
 
 
+%---------------------------------------------------------------------------% 
 \section*{Acknowledgement}
 
 The first and second authors were supported by Eskisehir Osmangazi
@@ -946,8 +962,9 @@ University Scientific Research Projects (Grant No: 2017/19033).
 	groups and related topics, \emph{Development Version}, (2017).
 	
 	\bibitem{alp3} \textsc{Wensley C.D., Alp M., Odabas A.} and \textsc{Uslu E.O }
-	Crossed Modules and Cat$^{1}$-groups in \textsf{GAP}, \emph{Version 2.73
-		Manual for the \textsf{XMod} share package for \textsf{GAP}4 }, (2019).
+	Crossed Modules and Cat$^{1}$-groups in \textsf{GAP}, 
+	    \emph{Manual for the \textsf{XMod} share package for \textsf{GAP4}, 
+	    version 2.74,} (2019).
 \end{thebibliography}
 
 

@@ -673,7 +673,9 @@ The new the function \textbf{AllCat2Groups(G)} which constructs all cat$^{2}$%
 -groups.
 
 In the following \textsf{GAP} session, we compute all cat$^{2}$-groups on $C_{4}
-\times C_{2}$ and their any isomorphism family.
+\times C_{2}$ and their isomorphism families. 
+The tenth class consists of cat$^2$-group numbers $[31,34,35,38]$, 
+so \texttt{iso82[10]=all82[31]}. 
 
 \begin{Verbatim}[frame=single, fontsize=\small, commandchars=\\\{\}]
 \textcolor{blue}{gap> c4c2 := SmallGroup(8,2);;}
@@ -688,157 +690,245 @@ In the following \textsf{GAP} session, we compute all cat$^{2}$-groups on $C_{4}
   [ 14, 17, 22, 25 ], [ 15, 16, 23, 24 ], [ 18, 19, 26, 27 ], 
   [ 20, 21, 28, 29 ], [ 30 ], [ 31, 34, 35, 38 ], [ 32, 33, 36, 37 ], 
   [ 39, 42, 43, 46 ], [ 40, 41, 44, 45 ], [ 47 ] ]
-\textcolor{blue}{gap> iso82[3];}
+\textcolor{blue}{gap> iso82[10];}
 cat2-group with generating (pre-)cat1-groups:
-1 : [Group( [ f1, f2, f3 ] ) => Group( [ <identity> of ..., <identity> of ... 
- ] )]
-2 : [Group( [ f1, f2, f3 ] ) => Group( [ f2, f2 ] )]
-\textcolor{blue}{gap> IsomorphismCat2Groups( all82[3], all82[10] ) = fail;}
+1 : [Group( [ f1, f2, f3 ] ) => Group( [ f2, f2 ] )]
+2 : [Group( [ f1, f2, f3 ] ) => Group( [ f2, f1 ] )]
+\textcolor{blue}{gap> IsomorphismCat2Groups( all82[31], all82[34] ) = fail;}
 false
 \end{Verbatim}
 
 In the following table the groups of size at most $30$ are ordered by their
 \textsf{GAP} number. 
-The number of isomorphism classes of cat$^{1}$-groups given by \cite{alp2}. 
+For each group we list the number $|IE(G)|$ of idempotent endomorphisms; 
+the number $|\mathcal{C}^1(G)|$ of cat$^1$-groups on $G$, 
+followed by the number of isomorphism classes of these; 
+and then the number $|\mathcal{C}^2(G)|$ of cat$^2$-groups on $G$, 
+and the number of these isomorphism classes. 
+The number of isomorphism classes $\mathcal{C}^1(G)$ of cat$^{1}$-groups 
+is given in \cite{alp2}. 
 The size of the set of all cat$^{2}$-groups and the number of isomorphism classes 
 of cat$^{2}$-groups on $G$ are computed by given the functions in the manuscript.
 
 We may reduce the size of the table by noting the results for certain simple families. 
 When $G=C_{p^{k}}$ is cyclic, with $p$ prime, 
-the only endomorphisms are the identity and zero maps. 
-\textcolor{red}{(Check this!)} 
+the only idempotent endomorphisms are the identity and zero maps. 
+All the cat$^1$-groups have equal tail and head maps, 
+and all isomorphism classes are singletons. 
+The groups row in the table below lists, for each cat$^2$-group, its four groups. 
 
 \bigskip
 \begin{longtable}{ccccccc}
 	\hline\hline
-	& $G$ & $|\mathrm{IE}(G)|$ & $|\mathcal{C}(G)|$ & $|\mathcal{C}/\cong |$ & $|%
-	\mathcal{C}^{2}(G)|$ & $|\mathcal{C}^{2}/\cong |$ \\ \hline
-	& $C_{p^{k}}$ & 2 & 2 & 2 & 3 & 3 \\ \hline
+	& $G$ 
+	    & $|\mathrm{IE}(G)|$ 
+	        & $|\mathcal{C}^1(G)|$ 
+	            & $|\mathcal{C}^1(G)/\cong |$ 
+	                & $|\mathcal{C}^{2}(G)|$ 
+	                    & $|\mathcal{C}^{2}(G)/\cong |$ \\ 
+    \hline
+	& $C_{p^{k}}$ 
+	    & 2 
+	        & 2 
+	            & 2 
+	                & 3 
+	                    & 3 \\ 
+	\hline
 	\multicolumn{7}{l}{%
 		\begin{tabular}{ll}
 			groups  & $[G,I,I,I],~ [G,I,G,I],~ [G,G,G,G]$  
 		\end{tabular}%
-	} \\ \hline
+	} \\ 
+	\hline
 \end{longtable}
 
 \bigskip
 
-When $G = C_{p^{k}q^{j}}$ is cyclic with $p,q$ distinct primes 
-we obtain the following. 
+When $G$ is cyclic and its order is the product of at most four distinct primes,
+we obtain the following, 
+where $2 \times [G,I,C_x,I]$ denotes $\{[G,I,C_p,I],[G,I,C_q,I]\}$. 
 
 \bigskip
 \begin{longtable}{ccccccc}
 	\hline\hline
-	& $G$ & $|\mathrm{IE}(G)|$ & $|\mathcal{C}(G)|$ & $|\mathcal{C}/\cong |$ & $|%
-	\mathcal{C}^{2}(G)|$ & $|\mathcal{C}^{2}/\cong |$ \\ \hline
-	& $C_{p^{k}q^{j}}$ & 4 & 4 & 4 & 10 & 10 \\ \hline
+	& $G$ 
+	    & $|\mathrm{IE}(G)|$ 
+	        & $|\mathcal{C}^1(G)|$ 
+	            & $|\mathcal{C}^1(G)/\cong |$ 
+	                & $|\mathcal{C}^{2}(G)|$ 
+	                    & $|\mathcal{C}^{2}(G)/\cong |$ \\ 
+	\hline
+	& $C_{p^{k}q^{j}}$ 
+	    & 4 
+	        & 4 
+	            & 4 
+	                & 10 
+	                    & 10 \\ 
+	\hline
 	\multicolumn{7}{l}{%
 		\begin{tabular}{ll}
-			groups  & $[G,I,I,I],~ [G,I,C_p,I],~ [G,I,C_q,I],~ [G,I,G,I],$\\
-					& $[G,C_p,C_p,C_p],~ [G,C_p,C_q,I],~ [G,C_p,G,C_p],$\\
-					& $[G,C_q,C_q,C_q],~ [G,C_q,G,C_q],~ [G,G,G,G]$%
+			groups & $[G,I,I,I],~ [G,I,G,I],~ [G,G,G,G],~ 2 \times [G,I,C_x,I],$ \\
+				   & $2 \times [G,C_x,G,C_x],~ 2 \times [G,C_x,C_x,C_x],~ 
+				     [G,C_p,C_q,I]$%
 		\end{tabular}%
-	} \\ \hline
+	} \\ 
+	\hline
+	& $C_{p^{k}q^{j}r^{i}}$ 
+	    & 8 
+	        & 8 
+	            & 8 
+	                & 36 
+	                    & 36 \\ 
+	\hline
+	\multicolumn{7}{l}{%
+		\begin{tabular}{ll}
+			groups & $[G,I,I,I],~ [G,I,G,I],~ [G,G,G,G],~ 3 \times [G,I,C_x,I],$ \\
+				   & $3 \times [G,C_x,G,C_x],~ 3 \times [G,C_x,C_x,C_x],~ 
+				     3 \times [G,C_x,C_y,I],$ \\
+				   & $3 \times [G,I,C_{xy},I],~ 3 \times [G,C_{xy},G,C_{xy}],~ 
+				     3 \times [G,C_{xy},C_{xy},C_{xy}],$ \\ 
+				   & $6 \times [G,C_x,C_{xy},C_x],~ 3 \times [G,C_z,C_{xy},I],~ 
+				     3 \times [G,C_{xz},C_{yz},C_z]$%
+		\end{tabular}%
+	} \\ 
+	\hline
+	& $C_{p^{k}q^{j}r^{i}s^{h}}$ 
+	    & 16 
+	        & 16 
+	            & 16 
+	                & 136 
+	                    & 136 \\ 
+	\hline
 \end{longtable}
 
 \bigskip
 
-Let $G=C_{2p}\times C_{2}$ with $p>2$ and $p$ prime 
+When $G=C_{2p}\times C_{2}$ with $p>2$ and $p$ prime 
 (e.g. $C_{6} \times C_{2}, C_{10} \times C_{2}, C_{14} \times C_{2}, \ldots$). 
 
-\textcolor{red}{[Do we want to include the lengthy groups list for this case?]} 
+\textcolor{red}
+{[We should probably not include the lengthy groups list for this case, 
+because, for example, there is more than one idempotent endomorphism 
+with image $C_2$, so it is not clear what $[G,I,C_2,I],[G,I,C_2,I]$ means. 
+But, for now, just add the missing 32nd entry \texttt{[G,I,G,I]}.]} 
 
 \bigskip
 \begin{longtable}{ccccccc}
 	\hline\hline
-	& $G$ & $|\mathrm{IE}(G)|$ & $|\mathcal{C}(G)|$ & $|\mathcal{C}/\cong |$ & $|%
-	\mathcal{C}^{2}(G)|$ & $|\mathcal{C}^{2}/\cong |$ \\ \hline
-	& $C_{2p}\times C_{2}$ & 16 & 28 & 8 & 136 & 32 \\ \hline
+	& $G$ 
+	    & $|\mathrm{IE}(G)|$ 
+	        & $|\mathcal{C}^1(G)|$ 
+	            & $|\mathcal{C}^1(G)/\cong |$ 
+	                & $|\mathcal{C}^{2}(G)|$ 
+	                    & $|\mathcal{C}^{2}(G)/\cong |$ \\ 
+	\hline
+	& $C_{2p}\times C_{2}$ 
+	    & 16 
+	        & 28 
+	            & 8 
+	                & 136 
+	                    & 32 \\ 
+	\hline
 	\multicolumn{7}{l}{%
 		\begin{tabular}{ll}
-			groups 
-& $[G,I,I,I],~ [G,I,C_2,I],~ [G,I,C_2,I],~ [G,C_2,C_2,C_2],~ [G,C_2,C_2,I],$ \\ 
-& $[G,I,C_2 \times C_2,I],~ [G,C_2,C_2 \times C_2,C_2],~ [G,C_2,C_2 \times C_2,C_2],$ \\ 
-& $[G,C_2 \times C_2,C_2 \times C_2,C_2 \times C_2],~ [G,I,C_p,I],~ [G,C_2,C_p,I],$ \\ 
-& $[G,C_2,C_p,I],~ [G,C_2 \times C_2,C_p,I],~ [G,C_p,C_p,C_p],~ [G,I,C_{2p},I],$ \\ 
-& $[G,I,C_{2p},I],~ [G,C_2,C_{2p},C_2],~ [G,C_2,C_{2p},I],~ [G,C_2 \times C_2,C_{2p},C_2],$ \\ 
-& $[G,C_2 \times C_2,C_{2p},C_2],~ [G,C_p,C_{2p},C_p],~ [G,C_p,C_{2p},C_p],$ \\ 
-& $[G,C_{2p},C_{2p},C_{2p}],~ [G,C_{2p},C_{2p},C_p],~ [G,C_2 \times C_2,C_{2p} \times C_2,C_2 \times C_2],$ \\ 
-& $[G,C_2,C_{2p} \times C_2,C_2],~ [G,C_2,C_{2p} \times C_2,C_2],~ [G,C_p,C_{2p} \times C_2,C_p],$ \\ 
-& $[G,C_{2p},C_{2p} \times C_2,C_{2p}],~ [G,C_{2p},C_{2p} \times C_2,C_{2p}],~ [G,G,G,G]$ 
+			groups & $[G,I,I,I],~ [G,I,C_2,I],~ [G,I,C_2,I],~ [G,C_2,C_2,C_2],~ 
+			          [G,C_2,C_2,I],$ \\ 
+                   & $[G,I,C_2 \times C_2,I],~ [G,C_2,C_2 \times C_2,C_2],~ 
+                      [G,C_2,C_2 \times C_2,C_2],$ \\ 
+                   & $[G,C_2 \times C_2,C_2 \times C_2,C_2 \times C_2],~ 
+                      [G,I,C_p,I],~ [G,C_2,C_p,I],$ \\ 
+                   & $[G,C_2,C_p,I],~ [G,C_2 \times C_2,C_p,I],~ [G,C_p,C_p,C_p],~ 
+                      [G,I,C_{2p},I],$ \\ 
+                   & $[G,I,C_{2p},I],~ [G,C_2,C_{2p},C_2],~ [G,C_2,C_{2p},I],~ 
+                      [G,C_2 \times C_2,C_{2p},C_2],$ \\ 
+                   & $[G,C_2 \times C_2,C_{2p},C_2],~ [G,C_p,C_{2p},C_p],~ 
+                      [G,C_p,C_{2p},C_p],$ \\ 
+                   & $[G,C_{2p},C_{2p},C_{2p}],~ [G,C_{2p},C_{2p},C_p],~ 
+                      [G,C_2 \times C_2,C_{2p} \times C_2,C_2 \times C_2],$ \\ 
+                   & $[G,C_2,C_{2p} \times C_2,C_2],~ 
+                      [G,C_2,C_{2p} \times C_2,C_2],~ 
+                      [G,C_p,C_{2p} \times C_2,C_p],$ \\ 
+                   & $[G,C_{2p},C_{2p} \times C_2,C_{2p}],~ 
+                      [G,C_{2p},C_{2p} \times C_2,C_{2p}],~ [G,I,G,I],~ [G,G,G,G]$ 
 		\end{tabular}%
-	} \\ \hline
+	} \\ 
+	\hline
 \end{longtable}
 
 The following table contains results for those $G$ which do not belong 
-to one of these three families. 
+to one of these families. 
 %{\small \
-\begin{longtable}{ccccccc}
+\begin{longtable}{ccrrrrr}
 	\hline\hline
-	{\textsf{GAP}}\# & $G$ & $|\mathrm{IE}(G)|$ & $|\mathcal{C}(G)|$ & $|%
-	\mathcal{C}/\cong |$ & $|\mathcal{C}^{2}(G)|$ & $|\mathcal{C}^{2}/\cong |$
-	\\ \hline
+	{\textsf{GAP}}\# 
+	    & $G$ 
+	        & $|\mathrm{IE}(G)|$ 
+	            & $|\mathcal{C}^1(G)|$ 
+	                & $|\mathcal{C}^1(G)/\cong |$ 
+	                    & $|\mathcal{C}^{2}(G)|$ 
+	                        & $|\mathcal{C}^{2}(G)/\cong |$  \\ 
+	\hline
 	1/1 & I & 1 & 1 & 1 & 1 & 1 \\ 
 	4/2 & K4 & 8 & 14 & 4 & 36 & 9 \\ 
 	6/1 & S3 & 5 & 4 & 2 & 7 & 3 \\ 
-	8/2 & C4 $\times $ C2 & 10 & 18 & 6 & 47 & 14 \\ 
+	8/2 & C4 $\times$ C2 & 10 & 18 & 6 & 47 & 14 \\ 
 	8/3 & D8 & 10 & 9 & 3 & 21 & 6 \\ 
 	8/4 & Q8 & 2 & 1 & 1 & 1 & 1 \\ 
-	8/5 & C2 $\times $ C2 $\times $ C2 & 58 & 226 & 6 & 1711 & 23 \\ 
-	9/2 & C3 $\times $ C3 & 14 & 38 & 4 & 93 & 9 \\ 
+	8/5 & C2 $\times$ C2 $\times$ C2 & 58 & 226 & 6 & 1,711 & 23 \\ 
+	9/2 & C3 $\times$ C3 & 14 & 38 & 4 & 93 & 9 \\ 
 	10/1 & D10 & 7 & 6 & 2 & 11 & 3 \\ 
-	12/1 & C3 $\ltimes $ C4 & 5 & 4 & 2 & 7 & 3 \\ 
+	12/1 & C3 $\ltimes$ C4 & 5 & 4 & 2 & 7 & 3 \\ 
 	12/3 & A4 & 6 & 5 & 2 & 9 & 3 \\ 
 	12/4 & D12 & 21 & 12 & 4 & 41 & 10 \\ 
 	14/1 & D14 & 9 & 8 & 2 & 15 & 3 \\ 
-	16/2 & C4 $\times $ C4 & 26 & 98 & 5 & 231 & 11 \\ 
-	16/3 & (C4 $\times $ C2) $\ltimes $ C2 & 18 & 25 & 4 & 57 & 7 \\ 
-	16/4 & C4 $\ltimes $ C4 & 10 & 17 & 3 & 25 & 4 \\ 
-	16/5 & C8 $\times $ C2 & 10 & 18 & 6 & 47 & 14 \\ 
-	16/6 & C8 $\ltimes $ C2 & 6 & 5 & 2 & 9 & 3 \\ 
+	16/2 & C4 $\times$ C4 & 26 & 98 & 5 & 231 & 11 \\ 
+	16/3 & (C4 $\times$ C2) $\ltimes$ C2 & 18 & 25 & 4 & 57 & 7 \\ 
+	16/4 & C4 $\ltimes$ C4 & 10 & 17 & 3 & 25 & 4 \\ 
+	16/5 & C8 $\times$ C2 & 10 & 18 & 6 & 47 & 14 \\ 
+	16/6 & C8 $\ltimes$ C2 & 6 & 5 & 2 & 9 & 3 \\ 
 	16/7 & D16 & 18 & 9 & 2 & 17 & 3 \\ 
 	16/8 & QD16 & 10 & 5 & 2 & 9 & 3 \\ 
 	16/9 & Q16 & 2 & 1 & 1 & 1 & 1 \\ 
-	16/10 & C4 $\times $ C2 $\times $ C2 & 82 & 322 & 12 & 2875 & 53 \\ 
-	16/11 & C2 $\times $ D8 & 82 & 97 & 9 & 649 & 29 \\ 
-	16/12 & C2 $\times $ Q8 & 18 & 17 & 3 & 25 & 4 \\ 
-	16/13 & (C4 $\times $ C2) $\ltimes $ C2 & 26 & 13 & 2 & 37 & 4 \\ 
-	16/14 & C2 $\times $ C2 $\times $ C2 $\times $ C2 & 382 & 4162 & 9 & 298483  & 53  \\ 
+	16/10 & C4 $\times$ C2 $\times$ C2 & 82 & 322 & 12 & 2,875 & 53 \\ 
+	16/11 & C2 $\times$ D8 & 82 & 97 & 9 & 649 & 29 \\ 
+	16/12 & C2 $\times$ Q8 & 18 & 17 & 3 & 25 & 4 \\ 
+	16/13 & (C4 $\times$ C2) $\ltimes$ C2 & 26 & 13 & 2 & 37 & 4 \\ 
+	16/14 & C2 $\times$ C2 $\times$ C2 $\times$ C2 
+	          & 382 & 4,162 & 9 & 298,483 & 53  \\ 
 	18/1 & D18 & 11 & 10 & 2 & 19 & 4 \\ 
-	18/3 & C3 $\times $ S3 & 12 & 8 & 4 & 24 & 10 \\ 
-	18/4 & (C3 $\times $ C3) $\ltimes $ C2 & 47 & 118 & 4 & 541 & 9 \\ 
-	18/5 & C6 $\times $ C3 & 28 & 76 & 8 & 358 & 32 \\ 
+	18/3 & C3 $\times$ S3 & 12 & 8 & 4 & 24 & 10 \\ 
+	18/4 & (C3 $\times$ C3) $\ltimes$ C2 & 47 & 118 & 4 & 541 & 9 \\ 
+	18/5 & C6 $\times$ C3 & 28 & 76 & 8 & 358 & 32 \\ 
 	20/1 & Q20 & 7 & 6 & 2 & 11 & 3 \\ 
-	20/3 & C4 $\ltimes $ C5 & 7 & 6 & 2 & 11 & 3 \\ 
+	20/3 & C4 $\ltimes$ C5 & 7 & 6 & 2 & 11 & 3 \\ 
 	20/4 & D20 & 31 & 18 & 4 & 65 & 10 \\ 
-	21/1 & C3 $\ltimes $ C7 & 9 & 8 & 2 & 15 & 3 \\ 
+	21/1 & C3 $\ltimes$ C7 & 9 & 8 & 2 & 15 & 3 \\ 
 	22/1 & D22 & 13 & 12 & 2 & 23 & 3 \\ 
-	24/1 & C3$\ltimes $C8 & 5 & 4 & 2 & 7 & 3 \\ 
+	24/1 & C3$\ltimes$C8 & 5 & 4 & 2 & 7 & 3 \\ 
 	24/3 & SL(2,3) & 6 & 1 & 1 & 1 & 1 \\ 
 	24/4 & Q24 & 5 & 4 & 2 & 7 & 3 \\ 
-	24/5 & S3 $\times $ C4 & 27 & 12 & 4 & 41 & 10 \\ 
+	24/5 & S3 $\times$ C4 & 27 & 12 & 4 & 41 & 10 \\ 
 	24/6 & D24 & 33 & 20 & 4 & 75 & 10 \\ 
-	24/7 & Q12 $\times $ C2 & 25 & 36 & 6 & 115 & 14 \\ 
-	24/8 & D8 $\ltimes $C3 & 23 & 12 & 4 & 41 & 10 \\ 
-	24/9 & C12 $\times $ C2 & 20 & 36 & 12 & 178 & 52 \\ 
-	24/10 & D8 $\times $ C3 & 20 & 18 & 6 & 75 & 20 \\ 
-	24/11 & Q8 $\times $ C3 & 4 & 2 & 2 & 3 & 3 \\ 
+	24/7 & Q12 $\times$ C2 & 25 & 36 & 6 & 115 & 14 \\ 
+	24/8 & D8 $\ltimes$ C3 & 23 & 12 & 4 & 41 & 10 \\ 
+	24/9 & C12 $\times$ C2 & 20 & 36 & 12 & 178 & 52 \\ 
+	24/10 & D8 $\times$ C3 & 20 & 18 & 6 & 75 & 20 \\ 
+	24/11 & Q8 $\times$ C3 & 4 & 2 & 2 & 3 & 3 \\ 
 	24/12 & S4 & 12 & 5 & 2 & 9 & 3 \\ 
-	24/13 & A4 $\times $ C2 & 15 & 10 & 4 & 31 & 10 \\ 
-	24/14 & S3 $\times $ K4 & 157 & 116 & 8 & 999 & 32 \\ 
-	24/15 & C6 $\ltimes $ K4 & 116 & 452 & 12 & 6786 & 84 \\ 
-	25/2 & C5 $\times $ C5 & 32 & 152 & 4 & 348 & 9 \\ 
+	24/13 & A4 $\times$ C2 & 15 & 10 & 4 & 31 & 10 \\ 
+	24/14 & S3 $\times$ K4 & 157 & 116 & 8 & 999 & 32 \\ 
+	24/15 & C6 $\ltimes$ K4 & 116 & 452 & 12 & 6,786 & 84 \\ 
+	25/2 & C5 $\times$ C5 & 32 & 152 & 4 & 348 & 9 \\ 
 	26/1 & D26 & 15 & 14 & 2 & 27 & 3 \\ 
-	27/2 & C9 $\times $ C3 & 20 & 56 & 6 & 138 & 14 \\ 
-	27/3 & (C3 $\times $ C3) $\ltimes $ C3 & 38 & 37 & 2 & 127 & 4 \\ 
-	27/4 & C9 $\ltimes $C3 & 11 & 10 & 2 & 19 & 3 \\ 
-	27/5 & C3 $\times $ C3 $\times $ C3 & 236 & 2108 & 6 & 24222  & 16 \\ 
+	27/2 & C9 $\times$ C3 & 20 & 56 & 6 & 138 & 14 \\ 
+	27/3 & (C3 $\times$ C3) $\ltimes$ C3 & 38 & 37 & 2 & 127 & 4 \\ 
+	27/4 & C9 $\ltimes$C3 & 11 & 10 & 2 & 19 & 3 \\ 
+	27/5 & C3 $\times$ C3 $\times$ C3 & 236 & 2,108 & 6 & 24,222  & 16 \\ 
 	28/1 & Q28 & 9 & 8 & 2 & 15 & 3 \\ 
 	28/3 & D28 & 41 & 24 & 4 & 89 & 10 \\ 
-	30/1 & D6 $\times $ C5 & 10 & 8 & 4 & 24 & 10 \\ 
-	30/2 & D10 $\times $ C3 & 14 & 12 & 4 & 38 & 10 \\ 
-	30/3 & D30 & 25 & 24 & 4 & 92 & 10 \\ 
-	30/4 & C30 & 8 & 8 & 8 & 36 & 36 \\ \hline
+	30/1 & D6 $\times$ C5 & 10 & 8 & 4 & 24 & 10 \\ 
+	30/2 & D10 $\times$ C3 & 14 & 12 & 4 & 38 & 10 \\ 
+	30/3 & D30 & 25 & 24 & 4 & 92 & 10 \\ \hline
 \end{longtable}
 %}
 

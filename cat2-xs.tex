@@ -87,98 +87,112 @@ The notion of crossed module, generalizing the notion of a G-module,
 was introduced by Whitehead \cite{wayted} in the course of his studies on the
 algebraic structure of the second relative homotopy group.
 
-A \emph{crossed module} consists of a group homomorphism $\partial
-:C\rightarrow G$, endowed with a left action $G$ on $C$ 
-(written by $(g,c)\rightarrow {}^{g}c$ for $g\in G$ and $c\in C$) 
-satisfying the
-following conditions:
+
+\vspace*{4mm}
+\textcolor{red}
+{[It is confusing having a crossed module $C \to G$ 
+and a cat$^1$-group $G \Rightarrow R$. 
+So changing all the $C \to G$ to $S \to R$, as in XMod. 
+But now $s \in S$ so best not to use $s,t$ as source and target maps 
+in the cat$^1$-group, hence changing to tail and head maps $t,h$. 
+(I've resisted the temptation to change left actions into right actions!) 
+If you are not happy with this, the commit can be ditched.]
+} 
+\vspace*{4mm}
+
+A \emph{crossed module} consists of a group homomorphism 
+$\partial : S \rightarrow R$, endowed with a left action $R$ on $S$ 
+(written by $(r,s) \rightarrow {}^{r}s$ for $r \in R$ and $s \in S$) 
+satisfying the following conditions:
 
 \begin{center}
 	\begin{tabular}{rclll}
-		$\partial (^{g}c)$ 
+	$\partial (^{r}s)$ 
 		& $=$ 
-		& $g(\partial c)g^{-1}$ 
-		&   & $\forall c\in C,g\in G; $ \\
-		$^{(\partial c_{2})}c_{1}$ 
+			& $r(\partial s)r^{-1}$ 
+				&   & $\forall~ s \in S,~ r \in R; $ \\
+	$^{(\partial s_{2})}s_{1}$ 
 		& $=$ 
-		& ${c}_{2}c_{1}c_{2}^{-1}$ 
-		&   & $\forall c_{1},c_{2}\in C$. 
+			& $s_{2}s_{1}s_{2}^{-1}$ 
+				&   & $\forall~ s_{1},s_{2} \in S$. 
 	\end{tabular}
 \end{center}
 
 The first condition is called the \emph{pre-crossed module property} 
 and the second one the \emph{Peiffer identity}. 
-We will denote such a crossed module by $\calX=(\partial:C\rightarrow G)$.
+We will denote such a crossed module by $\calX = (\partial : S \rightarrow R)$.
 
 A \emph{morphism of crossed modules} 
-$(\alpha ,\beta ):\calX_{1}\rightarrow \calX_{2}$, 
-where $\calX_{1} = (\partial_{1} : C_{1} \rightarrow G_{1})$ 
-and   $\calX_{2} = (\partial_{2} : C_{2} \rightarrow G_{2})$, 
-consists of two group homomorphisms $\alpha : C_{1}\rightarrow C_{2}$
-and $\beta : G_{1}\rightarrow G_{2}$ such that 
+$(\alpha ,\beta ) : \calX_{1} \rightarrow \calX_{2}$, 
+where $\calX_{1} = (\partial_{1} : S_{1} \rightarrow R_{1})$ 
+and   $\calX_{2} = (\partial_{2} : S_{2} \rightarrow R_{2})$, 
+consists of two group homomorphisms $\alpha : S_{1} \rightarrow S_{2}$
+and $\beta : R_{1} \rightarrow R_{2}$ such that 
 $$ 
 \partial_{2}\circ\alpha ~=~ \beta\circ\partial_{1}, 
 \quad \mbox{and} \quad 
-\alpha(^{g}c) ~=~ ^{(\beta g)}\alpha c 
+\alpha(^{r}s) ~=~ ^{(\beta r)}\alpha s 
 \qquad
-\forall c\in C,~ g\in G.
+\forall s \in S,~ r \in R.
 $$
 
 Standard constructions for crossed modules include the following. 
 \begin{enumerate}
 \item 
 A \emph{conjugation crossed module} \index{conjugation crossed module} 
-is an inclusion of a normal subgroup $C \unlhd G$, 
-where $G$ acts on $C$ by conjugation.
+is an inclusion of a normal subgroup $N \unlhd R$, 
+where $R$ acts on $N$ by conjugation.
 \item 
 An \emph{automorphism crossed module} \index{automorphism crossed module} 
-has as range a subgroup $G$ of the automorphism group $\mbox{Aut}(C)$ of $C$ 
-which contains the inner automorphism group $\mbox{Inn}(C)$ of $C$. 
-The boundary maps $c \in C$ to the inner automorphism of $C$ by $c$.
+has as range a subgroup $R$ of the automorphism group $\Aut(S)$ of $S$ 
+which contains the inner automorphism group $\Inn(S)$ of $S$. 
+The boundary maps $s \in S$ to the inner automorphism of $S$ by $s$.
 \item 
 A \emph{zero boundary crossed module} \index{$R$-module} 
-has a $G$-module as source and $\partial = 0$.
+has a $R$-module as source and $\partial = 0$.
 \item 
-Any homomorphism $\partial : C \to G$, with $C$ abelian 
-and $\im ~\partial$ in the centre of $G$, 
-provides a crossed module with $G$ acting trivially on $C$.
+Any homomorphism $\partial : S \to R$, with $S$ abelian 
+and $\im ~\partial$ in the centre of $R$, 
+provides a crossed module with $R$ acting trivially on $S$.
 \item 
 A \emph{central extension crossed module} 
 \index{central extension crossed module} 
-has as boundary a surjection $\partial : C \to G$ with central kernel, 
-where $g \in G$ acts on $C$ by conjugation with $\partial^{-1}c$.
+has as boundary a surjection $\partial : S \to R$ with central kernel, 
+where $r \in R$ acts on $S$ by conjugation with $\partial^{-1}r$.
 \item 
 The \emph{direct product} of \index{direct product!of crossed modules} 
-$\calX_1 = (\partial_1 : C_1 \to G_1)$ and $\calX_2 = (\partial_2 : C_2 \to G_2)$ 
+$\calX_1 = (\partial_1 : S_1 \to R_1)$ and $\calX_2 = (\partial_2 : S_2 \to R_2)$ 
 is $\calX_1 \times \calX_2 
-= (\partial_1 \times \partial_2 : C_1 \times C_2 \to G_1 \times G_2)$ 
-with $G_1, G_2$ acting trivially on $C_1,\ C_2$ respectively.
+= (\partial_1 \times \partial_2 : S_1 \times S_2 \to R_1 \times R_2)$ 
+with $R_1, R_2$ acting trivially on $S_2,\ S_1$ respectively.
 \end{enumerate}
 
 Loday reformulated the notion of crossed module as a cat$^{1}$-group. 
-Recall from \cite{Loday} that a \emph{cat$^{1}$-group} is a triple $(G,s,t)$ consisting of a group $G$ with two endomorphisms having a common image: 
-the source map $s$, and the target map $t$, satisfying the following axioms. 
+Recall from \cite{Loday} that a \emph{cat$^{1}$-group} is a triple $(G,t,h)$ consisting of a group $G$ with two endomorphisms: 
+the \emph{tail map} $st$ and the \emph{head map} $h$, 
+having a common image $R$ and satisfying the following axioms. 
 $$
-s \circ t = t,\quad 
-t \circ s = s \quad \mbox{and}\quad 
-[\ker s,\ker t] = 1. 
+t \circ h = h, \quad  h \circ t = t, 
+\quad \mbox{and}\quad  [\ker t,\ker h] = 1. 
 $$
 A \emph{morphism of cat}$^{1}$\emph{-groups} 
-$(G_{1},s_1,t_1) \rightarrow (G_{2},s_2,t_2)$ 
+$(G_{1},t_1,h_1) \rightarrow (G_{2},t_2,h_2)$ 
 is a group homomorphism $f : G_{1} \rightarrow G_{2}$ such that 
 $$
-f \circ s_1 ~=~ s_2 \circ f  
+f \circ t_1 ~=~ t_2 \circ f  
 \quad\mbox{and}\quad 
-f \circ t_1 ~=~ t_2 \circ f.
+f \circ h_1 ~=~ h_2 \circ f.
 $$
 Crossed modules and cat$^{1}$-groups are two-dimensional generalisations 
 of a group. 
 It was shown that in \cite[Lemma 2.2]{Loday} that, 
-setting $C = \ker s,~ G = \im s$ and $\partial =t|_{C}$, 
-then the conjugation action makes $\partial :C\rightarrow G$ into a crossed module. Conversely if $\partial : C \rightarrow G$ is a crossed module, 
-then setting $G^{\prime} = C\rtimes G$
-and letting $s,t$ be defined by $s(c,g) = (1,g)$ and $t(c,g) = (1,(\partial c)g)$
-for $c\in C$, $g\in G$, then $(G^{\prime},s,t)$ is a cat$^{1}$-group.
+setting $S = \ker t,~ R = \im t$ and $\partial = h|_{S}$, 
+then the conjugation action makes $(\partial : S \rightarrow R)$ 
+into a crossed module. 
+Conversely, if $(\partial : S \rightarrow R)$ is a crossed module, 
+then setting $G = S \rtimes R$ and letting $t,h$ be defined by 
+$t(s,r) = (1,r)$ and $h(s,r) = (1,(\partial s)r)$ for $s \in S$, $r \in R$, 
+then $(G,t,h)$ is a cat$^{1}$-group.
 
 
 %---------------------------------------------------------------------------% 
@@ -331,46 +345,37 @@ When $n=1$ this is the notion of cat$^1$-group given earlier.
 When $n=2$ we obtain a cat$^{2}$-group. 
 Again we have a group $G$, but this time with two independent cat$^{1}$-group 
 structures on it. 
-A \emph{cat$^{2}$-group} is a $5$-tuple, $(G,s_1,t_1,s_2,t_2)$, 
-where $(G,s_{i},t_{i}),~ i=1,2$ are cat$^{1}$-groups, and
+A \emph{cat$^{2}$-group} is a $5$-tuple, $(G,t_1,h_1,t_2,h_2)$, 
+where $(G,t_{i},h_{i}),~ i=1,2$ are cat$^{1}$-groups, and
 \[
-s_{i}s_{j} ~=~ s_{j}s_{i}, \quad 
-t_{i}t_{j} ~=~ t_{j}t_{i}, \quad 
-s_{i}t_{j} ~=~ t_{j}s_{i}
-\quad\mbox{for}\quad i,j = 1,2,~ i\neq j. 
+t_{1}t_{2} ~=~ t_{2}t_{1}, \quad 
+h_{1}h_{2} ~=~ h_{2}h_{1}, \quad 
+t_{1}h_{2} ~=~ h_{2}t_{1}, \quad
+t_{2}h_{1} ~=~ h_{1}t_{2}. 
 \]
-A morphism of cat$^{2}$-groups is a triple $(\alpha ,\beta ,\gamma )$,
+A morphism of cat$^{2}$-groups is a triple $(\alpha ,\beta ,\gamma)$,
 as shown in the diagram diagram
 \[
 \xymatrix@R=40pt@C=40pt 
-{ R_1 \ar@/_2pc/[d]_{e_1} \ar[r]^{\beta} 
-	& R'_1 \ar@/^2pc/[d]^{e'_1} \\
-	G \ar@<0.5ex>[u]^{s_1} \ar@<-0.5ex>[u]_{t_1} \ar@<0.5ex>[d]^{t_2} 
-	\ar@<-0.5ex>[d]_{s_2} \ar[r]^{\alpha} 
-	& G' \ar@<0.5ex>[u]^{s'_1} \ar@<-0.5ex>[u]_{t'_1} \ar@<0.5ex>[d]^{t'_2} 
-	\ar@<-0.5ex>[d]_{s'_2} \\
-	R_2 \ar@/^2pc/[u]^{e_2} \ar[r]^{\gamma} 
-	& R'_2 \ar@/_2pc/[u]_{e'_2} }
+{ R_1 \ar[d]_{\beta} 
+	& G \ar[d]_{\alpha} \ar@<-0.4ex>[l]_{t_1,h_1} \ar@<+0.4ex>[l]  
+	                    \ar@<+0.5ex>[r]^{t_2,h_2} \ar@<-0.4ex>[r] 
+		& R_2 \ar[d]^{\gamma} \\
+  R'_1 
+	& G' \ar@<+0.4ex>[l]^{t'_1,h'_1} \ar@<-0.4ex>[l] 
+	     \ar@<-0.4ex>[r]_{t'_2,h'_2} \ar@<+0.4ex>[r] 
+		& R'_2 
+}
 \]
 \noindent where 
-$R_{1},R_{2} \leq G$,~ $R_{1}^{\prime}, R_{2}^{\prime} \leq G^{\prime},~ 
-\alpha : G \to G^{\prime},~ \beta : R_1 \to R^{\prime}_1$ 
-and $\gamma : R_2 \to R^{\prime}_2$ are homomorphisms satisfying
-\begin{eqnarray*}
-	&&
-	\begin{tabular}{llllll}
-		$%
-		\text{(i)}$ & $\beta s_1=s_1^{\prime}\alpha ,$ &  & $\beta
-		t_1=t_1^{\prime}\alpha ,$ &  & $e_{1}^{\prime}\beta =\alpha e_{1}$%
-	\end{tabular}
-	\\
-	&&
-	\begin{tabular}{llllll}
-		$\text{(ii)}$ & $\gamma s_2=s_2^{\prime}\alpha ,$ &  & $\gamma
-		t_2=t_2^{\prime}\alpha ,$ &  & $e_{2}^{\prime}\gamma =\alpha e_{2}$%
-	\end{tabular}%
-\end{eqnarray*}
-
+$\alpha : G \to G^{\prime},~ \beta = \alpha|_{R_1}$ 
+and $\gamma = \alpha|_{R_2}$ are homomorphisms satisfying: 
+$$	
+\beta \circ t_1 = t_1^{\prime} \circ \alpha, \qquad 
+\beta \circ h_1 = h_1^{\prime} \circ \alpha, \qquad 
+\gamma \circ t_2 = s_2^{\prime} \circ \alpha, \qquad 
+\gamma \circ h_2 = h_2^{\prime} \circ \alpha. 
+$$
 We thus obtain a category \textbf{Cat}$^{2}$\textbf{-Grp}, 
 the category of cat$^{2}$-groups. 
 The following proposition was given by Loday \cite{Loday}. 
@@ -378,67 +383,69 @@ We only present the sketch proof (see also \cite{mutpor}) of this result
 as we need some indication of proofs for later use.
 
 \begin{proposition}
-	\label{loday} \emph{(\cite{Loday})} 
-	There is an equivalence of categories between the category of cat$^{2}$-groups 
-	and that of crossed squares.
+\label{loday} \emph{(\cite{Loday})} 
+There is an equivalence of categories between the category of cat$^{2}$-groups 
+and that of crossed squares.
 \end{proposition}
 \begin{proof}
-	The cat$^{1}$-group $(G,s_1,t_1)$ determines a crossed module 
-	$(\partial : C \rightarrow B)$ with $C = \ker s,~ B = \im s$ and $\partial =t|_{C}$ 
-	but, as the two cat$^{1}$-group structures are independent, 
-	$(G,s_2,t_2)$ restricts to give cat$^{1}$-group structures on $C$ 
-	and $B$ makes $\partial $ a morphism of cat$^{1}$-groups. 
-	{\bf[Rewrite the previous sentence.]} 
-	We thus get a morphism of crossed modules
-	\[
-	\xymatrix@R=40pt@C=40pt
-	{ \ker s_1 \cap \ker s_2 \ar[d] \ar[r] 
-		& \im s_1 \cap \ker s_2 \ar[d] \\ 
-		\ker s_1 \cap \im s_2 \ar[r] 
-		& \im s_1 \cap \im s_2 } 
-	\]
-	\noindent where each morphism is a crossed module for natural action, 
-	i.e. conjugation in $G$. 
-	It remains to produce an $h$-map, but it is given by the commutator within $G$ 
-	since if $x \in \im s_1 \cap \ker s_2$ 
-	and $y\in \ker s_1 \cap \im s_2$ then $[x,y] \in \ker s_1 \cap \ker s_2$. 
-	It is easy to check the crossed square axioms.
+The cat$^{1}$-group $(G,t_1,h_1)$ determines a crossed module 
+$(\partial : C \rightarrow B)$ with $C = \ker t,~ B = \im t$ 
+and $\partial =h|_{C}$ 
+but, as the two cat$^{1}$-group structures are independent, 
+$(G,t_2,h_2)$ restricts to give cat$^{1}$-group structures on $C$ 
+and $B$ makes $\partial $ a morphism of cat$^{1}$-groups. 
+{\bf[Rewrite the previous sentence.]} 
+We thus get a morphism of crossed modules
+\[
+\xymatrix@R=40pt@C=40pt
+{ \ker t_1 \cap \ker t_2 \ar[d] \ar[r] 
+  	  & \im t_1 \cap \ker t_2 \ar[d] \\ 
+  \ker t_1 \cap \im t_2 \ar[r] 
+	  & \im t_1 \cap \im t_2 } 
+\]
+\noindent where each morphism is a crossed module for natural action, 
+i.e. conjugation in $G$. 
+It remains to produce a crossed pairing, 
+but it is given by the commutator within $G$ 
+since if $x \in \im t_1 \cap \ker t_2$ 
+and $y\in \ker t_1 \cap \im t_2$ then $[x,y] \in \ker t_1 \cap \ker t_2$. 
+It is easy to check the crossed square axioms.
 	
-	Conversely, if
-	\[
-	\xymatrix@R=40pt@C=40pt
-	{ L \ar[d] \ar[r] 
-		& M \ar[d] \\ 
-		N \ar[r] 
-		& P }  
-	\]
-	\noindent is a crossed square, 
-	then we can think of it as a morphism of crossed modules $(L,N) \rightarrow (M,P)$.
+Conversely, if
+\[
+\xymatrix@R=40pt@C=40pt
+{ L \ar[d] \ar[r] 
+	& M \ar[d] \\ 
+	N \ar[r] 
+	& P }  
+\]
+\noindent is a crossed square, 
+then we can think of it as a morphism of crossed modules $(L,N) \rightarrow (M,P)$.
 	
-	Using the equivalence between crossed modules and cat$^{1}$-groups this
-	gives a morphism
-	\[
-	\partial : (L \rtimes N,s,t) \longrightarrow (M \rtimes P, s^{\prime}, t^{\prime})
-	\]
-	of cat$^{1}$-groups. 
-	There is an action of $(m,p) \in M \rtimes P$ on $(l,n) \in L \rtimes N$ 
-	given by
-	\[
-	^{(m,p)}(l,n) ~=~ (^{m}(^{p}l) (m,^{p}n) {\ \bt\ } ^{p}n)\,.
-	\] 
-	Using this action, we form its associated cat$^{1}$-group with big group 
-	$(L \rtimes N) \rtimes (M \rtimes P)$ 
-	and induced endomorphisms $s_1,t_1,s_2,t_2$.
+Using the equivalence between crossed modules and cat$^{1}$-groups this
+gives a morphism
+\[
+\partial : (L \rtimes N,t,h) \longrightarrow (M \rtimes P, t^{\prime}, h^{\prime})
+\]
+of cat$^{1}$-groups. 
+There is an action of $(m,p) \in M \rtimes P$ on $(l,n) \in L \rtimes N$ 
+given by
+\[
+^{(m,p)}(l,n) ~=~ (^{m}(^{p}l) (m,^{p}n) {\ \bt\ } ^{p}n)\,.
+\] 
+Using this action, we form its associated cat$^{1}$-group with big group 
+$(L \rtimes N) \rtimes (M \rtimes P)$ 
+and induced endomorphisms $t_1,h_1,t_2,h_2$.
 \end{proof}
 
 \begin{definition}
-	A \emph{cat$^{n}$-group} is a group $G$ with $n$ cat$^{1}$-group structures  
-	$(G,s_{i},t_{i}),~ 1\leq i\leq n$, such that for all $i \ne j$ 
-	\[
-	s_{i}s_{j} = s_{j}s_{i}, \quad 
-	t_{i}t_{j} = t_{j}t_{i} \quad \mbox{and} \quad 
-	s_{i}t_{j} = t_{j}s_{i}. 
-	\]
+A \emph{cat$^{n}$-group} is a group $G$ with $n$ cat$^{1}$-group structures  
+$(G,t_{i},h_{i}),~ 1\leq i\leq n$, such that for all $i \ne j$ 
+\[
+t_{i}t_{j} = t_{j}t_{i}, \quad 
+h_{i}h_{j} = h_{j}h_{i} \quad \mbox{and} \quad 
+t_{i}h_{j} = h_{j}t_{i}. 
+\]
 \end{definition}
 
 A generalisation of crossed square to higher dimensions was given by Ellis
@@ -700,12 +707,12 @@ false
 
 In the following table the groups of size at most $30$ are ordered by their
 \textsf{GAP} number. 
-For each group we list the number $|IE(G)|$ of idempotent endomorphisms; 
-the number $|\mathcal{C}^1(G)|$ of cat$^1$-groups on $G$, 
+For each group $G$ we list the number $|IE(G)|$ of idempotent endomorphisms; 
+the number $|\calC^1(G)|$ of cat$^1$-groups on $G$, 
 followed by the number of isomorphism classes of these; 
-and then the number $|\mathcal{C}^2(G)|$ of cat$^2$-groups on $G$, 
+and then the number $|\calC^2(G)|$ of cat$^2$-groups on $G$, 
 and the number of these isomorphism classes. 
-The number of isomorphism classes $\mathcal{C}^1(G)$ of cat$^{1}$-groups 
+The number of isomorphism classes $\calC^1(G)$ of cat$^{1}$-groups 
 is given in \cite{alp2}. 
 The size of the set of all cat$^{2}$-groups and the number of isomorphism classes 
 of cat$^{2}$-groups on $G$ are computed by given the functions in the manuscript.
@@ -725,10 +732,10 @@ The groups row in the table below lists, for each cat$^2$-group, its four groups
 	\hline\hline
 	& $G$ 
 	    & $|\mathrm{IE}(G)|$ 
-	        & $|\mathcal{C}^1(G)|$ 
-	            & $|\mathcal{C}^1(G)/\cong |$ 
-	                & $|\mathcal{C}^{2}(G)|$ 
-	                    & $|\mathcal{C}^{2}(G)/\cong |$ \\ 
+	        & $|\calC^1(G)|$ 
+	            & $|\calC^1(G)/\cong |$ 
+	                & $|\calC^{2}(G)|$ 
+	                    & $|\calC^{2}(G)/\cong |$ \\ 
     \hline
 	& $C_{p^{k}}$ 
 	    & 2 
@@ -756,10 +763,10 @@ where $2 \times [G,I,C_x,I]$ denotes $\{[G,I,C_p,I],[G,I,C_q,I]\}$.
 	\hline\hline
 	& $G$ 
 	    & $|\mathrm{IE}(G)|$ 
-	        & $|\mathcal{C}^1(G)|$ 
-	            & $|\mathcal{C}^1(G)/\cong |$ 
-	                & $|\mathcal{C}^{2}(G)|$ 
-	                    & $|\mathcal{C}^{2}(G)/\cong |$ \\ 
+	        & $|\calC^1(G)|$ 
+	            & $|\calC^1(G)/\cong |$ 
+	                & $|\calC^{2}(G)|$ 
+	                    & $|\calC^{2}(G)/\cong |$ \\ 
 	\hline
 	& $C_{p^{k}q^{j}}$ 
 	    & 4 
@@ -824,10 +831,10 @@ But, for now, just add the missing 32nd entry \texttt{[G,I,G,I]}.]}
 	\hline\hline
 	& $G$ 
 	    & $|\mathrm{IE}(G)|$ 
-	        & $|\mathcal{C}^1(G)|$ 
-	            & $|\mathcal{C}^1(G)/\cong |$ 
-	                & $|\mathcal{C}^{2}(G)|$ 
-	                    & $|\mathcal{C}^{2}(G)/\cong |$ \\ 
+	        & $|\calC^1(G)|$ 
+	            & $|\calC^1(G)/\cong |$ 
+	                & $|\calC^{2}(G)|$ 
+	                    & $|\calC^{2}(G)/\cong |$ \\ 
 	\hline
 	& $C_{2p}\times C_{2}$ 
 	    & 16 
@@ -870,10 +877,10 @@ to one of these families.
 	{\textsf{GAP}}\# 
 	    & $G$ 
 	        & $|\mathrm{IE}(G)|$ 
-	            & $|\mathcal{C}^1(G)|$ 
-	                & $|\mathcal{C}^1(G)/\cong |$ 
-	                    & $|\mathcal{C}^{2}(G)|$ 
-	                        & $|\mathcal{C}^{2}(G)/\cong |$  \\ 
+	            & $|\calC^1(G)|$ 
+	                & $|\calC^1(G)/\cong |$ 
+	                    & $|\calC^{2}(G)|$ 
+	                        & $|\calC^{2}(G)/\cong |$  \\ 
 	\hline
 	1/1 & I & 1 & 1 & 1 & 1 & 1 \\ 
 	4/2 & K4 & 8 & 14 & 4 & 36 & 9 \\ 

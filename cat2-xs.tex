@@ -72,7 +72,7 @@
 \begin{abstract}
 ...\end{abstract}
 
-\noindent{\bf Key Words:} cat$^2$-group, crossed square, \textsf{GAP}
+\noindent{\bf Key Words:} cat$^2$-group, crossed square, \GAP\, \XMod\ 
 \\ {\bf Classification:} 18D35, 18G50, .
 
 %---------------------------------------------------------------------------% 
@@ -130,13 +130,13 @@ where $\calX_{1} = (\partial_{1} : S_{1} \rightarrow R_{1})$
 and   $\calX_{2} = (\partial_{2} : S_{2} \rightarrow R_{2})$, 
 consists of two group homomorphisms $\alpha : S_{1} \rightarrow S_{2}$
 and $\beta : R_{1} \rightarrow R_{2}$ such that 
-$$ 
+\[ 
 \partial_{2}\circ\alpha ~=~ \beta\circ\partial_{1}, 
 \quad \mbox{and} \quad 
 \alpha(^{r}s) ~=~ ^{(\beta r)}\alpha s 
 \qquad
 \forall s \in S,~ r \in R.
-$$
+\] 
 
 Standard constructions for crossed modules include the following. 
 \begin{enumerate}
@@ -154,7 +154,7 @@ A \emph{zero boundary crossed module} \index{$R$-module}
 has a $R$-module as source and $\partial = 0$.
 \item 
 Any homomorphism $\partial : S \to R$, with $S$ abelian 
-and $\im ~\partial$ in the centre of $R$, 
+and $\im\partial$ in the centre of $R$, 
 provides a crossed module with $R$ acting trivially on $S$.
 \item 
 A \emph{central extension crossed module} 
@@ -171,23 +171,23 @@ with $R_1, R_2$ acting trivially on $S_2,\ S_1$ respectively.
 
 Loday reformulated the notion of crossed module as a cat$^{1}$-group. 
 Recall from \cite{Loday} that a \emph{cat$^{1}$-group} is a triple $(G,t,h)$ consisting of a group $G$ with two endomorphisms: 
-the \emph{tail map} $st$ and the \emph{head map} $h$, 
+the \emph{tail map} $t$ and the \emph{head map} $h$, 
 having a common image $R$ and satisfying the following axioms. 
-$$
+\begin{equation} \label{cat1-axioms} 
 t \circ h = h, \quad  h \circ t = t, 
 \quad \mbox{and}\quad  [\ker t,\ker h] = 1. 
-$$
+\end{equation} 
 A \emph{morphism of cat}$^{1}$\emph{-groups} 
 $(G_{1},t_1,h_1) \rightarrow (G_{2},t_2,h_2)$ 
 is a group homomorphism $f : G_{1} \rightarrow G_{2}$ such that 
-$$
+\[ 
 f \circ t_1 ~=~ t_2 \circ f  
 \quad\mbox{and}\quad 
 f \circ h_1 ~=~ h_2 \circ f.
-$$
+\] 
 Crossed modules and cat$^{1}$-groups are two-dimensional generalisations 
 of a group. 
-It was shown that in \cite[Lemma 2.2]{Loday} that, 
+It was shown in \cite[Lemma 2.2]{Loday} that, 
 setting $S = \ker t,~ R = \im t$ and $\partial = h|_{S}$, 
 then the conjugation action makes $(\partial : S \rightarrow R)$ 
 into a crossed module. 
@@ -226,7 +226,7 @@ where $(n \btt m) = (m \bt n)^{-1}$.
 Transposition gives an equivalence relation on the set of 
 oriented crossed squares, and a crossed square is an equivalence class. 
 
-The structure of a crossed square must satisfy the following axioms 
+The structure of an oriented crossed square must satisfy the following axioms 
 for all $l \in L,~ m,m^{\prime} \in M,~ n,n^{\prime} \in N$ and $p \in P$. 
 \begin{enumerate}
 \item 
@@ -246,7 +246,7 @@ $(\kappa l {\ \bt\ } n) ~=~ l^{n}\ l^{-1}$
 \quad and \quad 
 $(m {\ \bt\ } \lambda l) ~=~ ^{m}l\ l^{-1}$, 
 \item 
-$(^{p}m {\ \bt\ } ^{p}n) ~=~ ^{p}(m {\ \bt\ } n)$. 
+$^{p}(m {\ \bt\ } n) ~=~ (^{p}m {\ \bt\ } ^{p}n)$. 
 \end{enumerate} 
 
 Standard constructions for crossed squares include the following.
@@ -372,12 +372,12 @@ as shown in the diagram diagram
 \noindent where 
 $\alpha : G \to G^{\prime},~ \beta = \alpha|_{R_1}$ 
 and $\gamma = \alpha|_{R_2}$ are homomorphisms satisfying: 
-$$	
+\[ 
 \beta \circ t_1 = t_1^{\prime} \circ \alpha, \qquad 
 \beta \circ h_1 = h_1^{\prime} \circ \alpha, \qquad 
 \gamma \circ t_2 = s_2^{\prime} \circ \alpha, \qquad 
 \gamma \circ h_2 = h_2^{\prime} \circ \alpha. 
-$$
+\] 
 We thus obtain a category \textbf{Cat}$^{2}$\textbf{-Grp}, 
 the category of cat$^{2}$-groups. 
 The following proposition was given by Loday \cite{Loday}. 
@@ -390,40 +390,32 @@ There is an equivalence of categories between the category of cat$^{2}$-groups
 and that of crossed squares.
 \end{proposition}
 \begin{proof}
-The cat$^{1}$-group $(G,t_1,h_1)$ determines a crossed module 
-$(\partial : C \rightarrow B)$ with $C = \ker t,~ B = \im t$ 
-and $\partial =h|_{C}$ 
-but, as the two cat$^{1}$-group structures are independent, 
-$(G,t_2,h_2)$ restricts to give cat$^{1}$-group structures on $C$ 
-and $B$ makes $\partial $ a morphism of cat$^{1}$-groups. 
-{\bf[Rewrite the previous sentence.]} 
-We thus get a morphism of crossed modules
+The cat$^{2}$-group $(G,t_1,h_1,t_2,h_2)$ determines a diagram of homomorphisms 
 \[
-\xymatrix@R=40pt@C=40pt
-{ \ker t_1 \cap \ker t_2 \ar[d] \ar[r] 
-  	  & \im t_1 \cap \ker t_2 \ar[d] \\ 
-  \ker t_1 \cap \im t_2 \ar[r] 
+\xymatrix@R=50pt@C=50pt
+{ \ker t_1 \cap \ker t_2 \ar[d]_{(\id,\partial_2)} \ar[r]^{(\partial_1,\id)} 
+  	  & \im t_1 \cap \ker t_2 \ar[d]^{(\id,\partial_2)} \\ 
+  \ker t_1 \cap \im t_2 \ar[r]_{(\partial_1,\id)}  
 	  & \im t_1 \cap \im t_2 } 
 \]
-\noindent where each morphism is a crossed module for natural action, 
-i.e. conjugation in $G$. 
-It remains to produce a crossed pairing, 
-but it is given by the commutator within $G$ 
-since if $x \in \im t_1 \cap \ker t_2$ 
-and $y\in \ker t_1 \cap \im t_2$ then $[x,y] \in \ker t_1 \cap \ker t_2$. 
-It is easy to check the crossed square axioms.
+\noindent where each morphism is a crossed module for the natural action, 
+conjugation in $G$. 
+The required crossed pairing is given by the commutator in $G$ since, 
+if $x \in \im t_1 \cap \ker t_2$ and $y \in \ker t_1 \cap \im t_2$ 
+then $[x,y] \in \ker t_1 \cap \ker t_2$. 
+It is routine to check the crossed square axioms.
 	
 Conversely, if
 \[
 \xymatrix@R=40pt@C=40pt
-{ L \ar[d] \ar[r] 
-	& M \ar[d] \\ 
-	N \ar[r] 
-	& P }  
+{ L \ar[d]_{\lambda} \ar[r]^{\kappa}  
+	  & M \ar[d]^{\mu} \\ 
+  N \ar[r]_{\nu} 
+	  & P }  
 \]
 \noindent is a crossed square, 
-then we can think of it as a morphism of crossed modules $(L,N) \rightarrow (M,P)$.
-	
+then we can think of it as a morphism of crossed modules 
+$(\kappa,\nu) : (\lambda : L \to N) \rightarrow (\mu : M  \to P)$.
 Using the equivalence between crossed modules and cat$^{1}$-groups this
 gives a morphism
 \[
@@ -433,11 +425,11 @@ of cat$^{1}$-groups.
 There is an action of $(m,p) \in M \rtimes P$ on $(l,n) \in L \rtimes N$ 
 given by
 \[
-^{(m,p)}(l,n) ~=~ (^{m}(^{p}l) (m,^{p}n) {\ \bt\ } ^{p}n)\,.
+^{(m,p)}(l,n) ~=~ (^{m}(^{p}l) (m \bt\ ^{p}n),\ ^{p}n)\,.
 \] 
-Using this action, we form its associated cat$^{1}$-group with big group 
+Using this action, we form its associated cat$^{2}$-group with source  
 $(L \rtimes N) \rtimes (M \rtimes P)$ 
-and induced endomorphisms $t_1,h_1,t_2,h_2$.
+and induced endomorphisms $t_1,h_1,t_2,h_2$. 
 \end{proof}
 
 \begin{definition}
@@ -459,38 +451,39 @@ We only use this construction for $n=2$.
 %---------------------------------------------------------------------------% 
 \section{Computer Implementation}
 
-\textsf{GAP} \cite{gap} is an open-source system for discrete computational
+\GAP\ \cite{gap} is an open-source system for discrete computational
 algebra. The system consists of a library of implementations of mathematical
 structures: groups, vector spaces, modules, algebras, graphs, codes,
-designs, etc.; plus databases of groups of small order, character tables,
-etc. The system has world wide usage in the area of education and scientific
-research. \textsf{GAP} is free software and user contributions to the system
-are supported. These contributions are organized in a form of \textsf{GAP}
-packages and are distributed together with the system. Contributors can
+designs, etc.; plus databases of groups of small order, character tables, etc. 
+The system has world wide usage in the area of education and scientific research. 
+\GAP\ is free software and user contributions to the system are supported. 
+These contributions are organized in a form of \GAP\ packages 
+and are distributed together with the system.  Contributors can
 submit additional packages for inclusion after a reviewing process.
 
-The Small Groups library provides access to descriptions of the groups of
-small order by Besche, Eick and O'Brien in \cite{bettina}. The groups are
-listed up to isomorphism. The library contains the groups those of order at
-most 2000 except 1024.
+The Small Groups library by Besche, Eick and O'Brien in \cite{bettina} 
+provides access to descriptions of the groups of small order. 
+The groups are listed up to isomorphism. 
+The library contains all groups of order at most 2000 except 1024.
 
 %...............................%
 \subsection{2-Dimensional Groups}
 
-A shared package \textsf{XMod}, for the \textsf{GAP} which consists
-functions for computing crossed modules, cat$^{1}$-groups and their
-morphisms was described in \cite{alp3}. The \textsf{XMod} package may be
-used to select a cat$^{1}$-group from a data file. All cat$^{1}$-structures
-on groups of size up to 70 (ordered according to the \textsf{GAP4} numbering of
-small groups) are stored in a list in file cat1data.g.
+The \XMod\ package for \GAP\ contains functions for computing 
+crossed modules, cat$^{1}$-groups and their morphisms, 
+and was first described in \cite{alp3}. 
+This package may be used to select a cat$^{1}$-group from a data file. 
+All cat$^{1}$-structures on groups of size up to 70 
+(ordered according to the \GAP\ numbering of small groups) 
+are stored in a list in the file \texttt{cat1data.g}.
 
-The function \textbf{Cat1Select} may be used in three ways. \textbf{%
-	Cat1Select( size )} returns the names of the groups with this size, while
-\textbf{Cat1Select( size, gpnum )} prints a list of cat1-structures for this
-chosen group. \textbf{Cat1Select( size, gpnum, num )} returns the chosen
-cat1-group.
+The function \textbf{Cat1Select} may be used in three ways. 
+\textbf{Cat1Select( size )} returns the names of the groups with this size, 
+while \textbf{Cat1Select( size, gpnum )} prints a list of cat$^1$1-structures 
+for this chosen group. 
+\textbf{Cat1Select( size, gpnum, num )} returns the chosen cat$^1$1-group.
 
-The following \textsf{GAP} session illustrates the use of these functions.
+The following \GAP\ session illustrates the use of these functions.
 
 \begin{Verbatim}[frame=single, fontsize=\small, commandchars=\\\{\}]
 \textcolor{blue}{gap> Cat1Select(12);}
@@ -510,21 +503,50 @@ Using small generating set [ f1, f2 ] for source of homs.
 [triv->A4]
 \end{Verbatim}
 
+A more general notion of cat$^1$-group is implemented in \XMod\, 
+where the tail and head maps are no longer required to be endomorphisms on $G$. 
+Instead it is required that $tG=hG=R$, and an \emph{embedding} $e : R \to G$ 
+is added.  
+The axioms in (\ref{cat1-axioms}) then become:  
+\[ 
+t \circ e \circ h = h, \quad  h \circ e \circ t = t, 
+\quad \mbox{and}\quad  [\ker t,\ker h] = 1. 
+\] 
+We denote such a cat$^1$-group by $(e;t,h : G \to R)$. 
+
+
 %...............................%
 \subsection{3-dimensional Groups}
 
-We have developed the new functions for \textsf{XMod} which construct 
-(pre-)cat$^{2}$-groups, (pre-)cat$^{3}$-groups and their morphisms. 
-Functions for cat$^{2} $-groups include \textbf{Cat2Group}, 
-\textbf{IsCat2Group} and \textbf{PreCat2GroupByPreCat1Groups}. 
+We have developed new functions for \XMod\ which construct 
+(pre-)cat$^{2}$-groups, (pre-)cat$^{3}$-groups, and their morphisms. 
+Functions for (pre-)cat$^{2} $-groups include \textbf{PreCat2Group},
+\textbf{Cat2Group}, \textbf{IsPreCat2Group}, \textbf{IsCat2Group} 
+and \textbf{PreCat2GroupByPreCat1Groups}. 
 Attributes of a (pre)cat$^{2}$-group constructed in this way include 
 \textbf{GeneratingCat1Groups}, \textbf{Size} and \textbf{Name}. 
+
+As with cat$^1$-groups, we use a more general notion for cat$^2$-groups. 
+An \emph{oriented cat$^2$-group} has the form 
+\[
+\xymatrix@R=40pt@C=60pt
+{ G \ar[d]_{t_2,h_2} \ar[r]^{t_1,h_1}  
+	  & R_1 \ar[d]^{t_2*e_2*t_1*e_1} \\ 
+  R_2 \ar[r]_{t_1*e_1*t_2*e_2} 
+	  & R_{12} }  
+\]
+where $R_1, R_2$ need not be subgroups of $G$, 
+but $R_{12}$ is taken to be the common image of 
+$t_1*e_1*t_2*h_2$ and $t_2*e_2*t_1*e_1$, a subgroup of $G$. 
+\textcolor{red}
+{[need to add $e_1,e_2$ to the diagram]} 
+
 
 Generalizing these functions, we have introduced \textbf{Cat3Group} and \textbf{HigherDimension} which construct cat$^{3}$-groups. 
 Functions for general cat$^{n}$-groups will be added as time permits. 
 An orientation of a cat$^{3}$-group on $G$ displays a cube whose six faces 
 (ordered as front; up, left, right, down,back) are cat$^{2}$-groups. 
-The following \textsf{GAP} session illustrates the use of these functions. 
+The following \GAP\ session illustrates the use of these functions. 
 The group $G$ is positioned where the front, up and left faces meet. 
 
 \begin{Verbatim}[frame=single, fontsize=\small, commandchars=\\\{\}]
@@ -574,7 +596,7 @@ Functions for cat$^{2}$-group morphisms include
 The function \textbf{AllCat2GroupMorphisms} is used to find 
 all morphisms between two cat$^{2}$-groups.
 
-In the following \textsf{GAP} session, we obtain a cat$^{2}$-group morphism
+In the following \GAP\ session, we obtain a cat$^{2}$-group morphism
 using these functions.
 
 \begin{Verbatim}[frame=single, fontsize=\small, commandchars=\\\{\}]
@@ -628,7 +650,7 @@ By using the natural equivalence of categories of crossed squares and cat$%
 constructs crossed squares and cat$^{2}$-groups from the given cat$^{2}$%
 -groups and crossed squares, respectively.
 
-The following \textsf{GAP} session illustrates the use of these functions.
+The following \GAP\ session illustrates the use of these functions.
 The dihedral group $D_{20}$ has two normal subgroups $D_{10}$ 
 whose intersection is the cyclic $C_5$.  
 We construct the crossed square of normal subgroups, 
@@ -681,7 +703,7 @@ The new the function \textbf{AllCat2Groups(G)} which constructs all cat$^{2}$%
 	AllCat2GroupsUpToIsomorphism} are used to used to classify given cat$^{2}$%
 -groups.
 
-In the following \textsf{GAP} session, we compute all cat$^{2}$-groups on $C_{4}
+In the following \GAP\ session, we compute all cat$^{2}$-groups on $C_{4}
 \times C_{2}$ and their isomorphism families. 
 The tenth class consists of cat$^2$-group numbers $[31,34,35,38]$, 
 so \texttt{iso82[10]=all82[31]}. 
@@ -708,7 +730,7 @@ false
 \end{Verbatim}
 
 In the following table the groups of size at most $30$ are ordered by their
-\textsf{GAP} number. 
+\GAP\ number. 
 For each group $G$ we list the number $|IE(G)|$ of idempotent endomorphisms; 
 the number $|\calC^1(G)|$ of cat$^1$-groups on $G$, 
 followed by the number of isomorphism classes of these; 
@@ -876,7 +898,7 @@ to one of these families.
 %{\small \
 \begin{longtable}{ccrrrrr}
 	\hline\hline
-	{\textsf{GAP}}\# 
+	{\GAP\ }\# 
 	    & $G$ 
 	        & $|\mathrm{IE}(G)|$ 
 	            & $|\calC^1(G)|$ 
@@ -888,7 +910,7 @@ to one of these families.
 	4/2 & K4 & 8 & 14 & 4 & 36 & 9 \\ 
 	6/1 & S3 & 5 & 4 & 2 & 7 & 3 \\ 
 	8/2 & C4 $\times$ C2 & 10 & 18 & 6 & 47 & 14 \\ 
-	8/3 & D8 & 10 & 9 & 3 & 21 & 6 \\ 
+	8/3 & D8 & 10 & 9 & 3 & 17 & 5 \\ 
 	8/4 & Q8 & 2 & 1 & 1 & 1 & 1 \\ 
 	8/5 & C2 $\times$ C2 $\times$ C2 & 58 & 226 & 6 & 1,711 & 23 \\ 
 	9/2 & C3 $\times$ C3 & 14 & 38 & 4 & 93 & 9 \\ 
@@ -898,7 +920,7 @@ to one of these families.
 	12/4 & D12 & 21 & 12 & 4 & 41 & 10 \\ 
 	14/1 & D14 & 9 & 8 & 2 & 15 & 3 \\ 
 	16/2 & C4 $\times$ C4 & 26 & 98 & 5 & 231 & 11 \\ 
-	16/3 & (C4 $\times$ C2) $\ltimes$ C2 & 18 & 25 & 4 & 57 & 7 \\ 
+	16/3 & (C4 $\times$ C2) $\ltimes$ C2 & 18 & 25 & 4 & 41 & 6 \\ 
 	16/4 & C4 $\ltimes$ C4 & 10 & 17 & 3 & 25 & 4 \\ 
 	16/5 & C8 $\times$ C2 & 10 & 18 & 6 & 47 & 14 \\ 
 	16/6 & C8 $\ltimes$ C2 & 6 & 5 & 2 & 9 & 3 \\ 
@@ -906,9 +928,9 @@ to one of these families.
 	16/8 & QD16 & 10 & 5 & 2 & 9 & 3 \\ 
 	16/9 & Q16 & 2 & 1 & 1 & 1 & 1 \\ 
 	16/10 & C4 $\times$ C2 $\times$ C2 & 82 & 322 & 12 & 2,875 & 53 \\ 
-	16/11 & C2 $\times$ D8 & 82 & 97 & 9 & 649 & 29 \\ 
+	16/11 & C2 $\times$ D8 & 82 & 97 & 9 & 473 & 24 \\ 
 	16/12 & C2 $\times$ Q8 & 18 & 17 & 3 & 25 & 4 \\ 
-	16/13 & (C4 $\times$ C2) $\ltimes$ C2 & 26 & 13 & 2 & 37 & 4 \\ 
+	16/13 & (C4 $\times$ C2) $\ltimes$ C2 & 26 & 13 & 2 & 25 & 3 \\ 
 	16/14 & C2 $\times$ C2 $\times$ C2 $\times$ C2 
 	          & 382 & 4,162 & 9 & 298,483 & 53  \\ 
 	18/1 & D18 & 11 & 10 & 2 & 19 & 4 \\ 
@@ -928,7 +950,7 @@ to one of these families.
 	24/7 & Q12 $\times$ C2 & 25 & 36 & 6 & 115 & 14 \\ 
 	24/8 & D8 $\ltimes$ C3 & 23 & 12 & 4 & 41 & 10 \\ 
 	24/9 & C12 $\times$ C2 & 20 & 36 & 12 & 178 & 52 \\ 
-	24/10 & D8 $\times$ C3 & 20 & 18 & 6 & 75 & 20 \\ 
+	24/10 & D8 $\times$ C3 & 20 & 18 & 6 & 59 & 17 \\ 
 	24/11 & Q8 $\times$ C3 & 4 & 2 & 2 & 3 & 3 \\ 
 	24/12 & S4 & 12 & 5 & 2 & 9 & 3 \\ 
 	24/13 & A4 $\times$ C2 & 15 & 10 & 4 & 31 & 10 \\ 
@@ -937,7 +959,7 @@ to one of these families.
 	25/2 & C5 $\times$ C5 & 32 & 152 & 4 & 348 & 9 \\ 
 	26/1 & D26 & 15 & 14 & 2 & 27 & 3 \\ 
 	27/2 & C9 $\times$ C3 & 20 & 56 & 6 & 138 & 14 \\ 
-	27/3 & (C3 $\times$ C3) $\ltimes$ C3 & 38 & 37 & 2 & 127 & 4 \\ 
+	27/3 & (C3 $\times$ C3) $\ltimes$ C3 & 38 & 37 & 2 & 73 & 3 \\ 
 	27/4 & C9 $\ltimes$C3 & 11 & 10 & 2 & 19 & 3 \\ 
 	27/5 & C3 $\times$ C3 $\times$ C3 & 236 & 2,108 & 6 & 24,222  & 16 \\ 
 	28/1 & Q28 & 9 & 8 & 2 & 15 & 3 \\ 
@@ -967,8 +989,8 @@ University Scientific Research Projects (Grant No: 2017/19033).
 	1-27, (2006).
 	
 	\bibitem{odabas1} \textsc{Arvasi Z. and Odabas A.} Crossed Modules and Cat$%
-	^1 $-algebras in \textsf{GAP}, \emph{Version 1.12 Manual for the \textsf{%
-			XModAlg} share package for \textsf{GAP}4 }, (2015).
+	^1 $-algebras in \GAP\, \emph{Version 1.12 Manual for the \textsf{%
+			XModAlg} share package for \GAP\ 4 }, (2015).
 	
 	\bibitem{odabas2} \textsc{Arvasi Z. and Odabas A.} Computing 2-dimensional
 	algebras: Crossed modules and Cat1-algebras, \emph{J. Algebra Appl.}, 15,
@@ -1068,8 +1090,8 @@ University Scientific Research Projects (Grant No: 2017/19033).
 	groups and related topics, \emph{Development Version}, (2017).
 	
 	\bibitem{alp3} \textsc{Wensley C.D., Alp M., Odabas A.} and \textsc{Uslu E.O }
-	Crossed Modules and Cat$^{1}$-groups in \textsf{GAP}, 
-	    \emph{Manual for the \textsf{XMod} share package for \textsf{GAP4}, 
+	Crossed Modules and Cat$^{1}$-groups in \GAP\, 
+	    \emph{Manual for the \XMod\ package for \textsf{GAP4}, 
 	    version 2.74,} (2019).
 \end{thebibliography}
 

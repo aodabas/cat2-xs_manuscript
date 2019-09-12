@@ -70,7 +70,17 @@
 \maketitle
 
 \begin{abstract}
-...\end{abstract}
+The category \catXSq\ of crossed squares is equivalent to 
+the category \catCatt\ of cat$^2$-groups. 
+Functions for computing with these structures have been developed in 
+the package \XMod\ written using the \GAP\ computational discrete algebra 
+programming language.
+This paper includes details of the algorithms used. 
+It contains tables listing the $1,086$ \textcolor{red}{(?)} 
+isomorphism classes of cat$^2$-groups on groups of order at most $30$. 
+
+
+\end{abstract}
 
 \noindent{\bf Key Words:} cat$^2$-group, crossed square, \GAP\, \XMod\ 
 \\ {\bf Classification:} 18D35, 18G50, .
@@ -78,7 +88,48 @@
 %---------------------------------------------------------------------------% 
 \section{Introduction}
 
-...
+\textcolor{red}
+{[This is just a first attempt.]} 
+
+This paper is concerned with the latest contribution to the general programme 
+of "computational higher-dimensional group theory" which forms part of the 
+"higher-dimensional group theory" programme described, for example, 
+by Brown in \cite{brown1}. 
+
+The $2$-dimensional part of these programmes is concerned with group objects 
+in the categories of groups or groupoids, and these objects may equivalently 
+be considered as crossed modules or cat$^1$-groups. 
+Section 2 contains a summary of the definitions of these objects, 
+with some examples. 
+
+The first computation part of this programme was described in 
+Alp and Wensley \cite{alp2}. 
+The output was the package \XMod\ \cite{xmod} for \GAP\ \cite{gap} which, 
+at the time, contained functions for constructing crossed modules and cat$^1$-groups of groups, and their morphisms, and conversions from one to another. 
+It also contained functions for computing the monoid of derivations of a 
+crossed module, and the equivalend monoid of sections of a cat$^1$-group. 
+The next development of \XMod\ combined with the \GAP\ package \groupoids\ 
+\cite{groupoids} to compute crossed modules of groupoids. 
+Later still, a \GAP package \XModAlg\ \cite{xmodalg} was written to compute 
+cat$^1$-algebras and crossed modules of algebras. 
+
+The $3$-dimensional part of the higher-dimensional group theory programme 
+is concerned with objects in the category \catXSq\ of crossed squares 
+and the equivalent cat$^2$-groups category \catCatt. 
+The mathematical basis is described in section 3, 
+and some computational details are included in section 4. 
+In section 5 we enumerate the $1,086$ \textcolor{red}{(?)} isomorphism classes 
+of cat$^2$-group structures on the $92$ groups of order at most $30$. 
+
+The impetus for the study of higher-dimensional groups 
+comes from algebraic topology -- in the $2$-dimensional case 
+by describing the homotopy double groupoid of a based pair of spaces. 
+The \XMod\ package follows a purely algebraic approach, 
+and does not compute any specifically topological results. 
+The interested reader may wish to look at the \GAP\ package
+\HAP\ \cite{hap} which also computes with cat$^1$-groups. 
+
+
 
 %---------------------------------------------------------------------------% 
 \section{Crossed Modules and Cat$^{1}$-Groups}
@@ -469,7 +520,7 @@ The library contains all groups of order at most 2000 except 1024.
 
 The \XMod\ package for \GAP\ contains functions for computing 
 crossed modules, cat$^{1}$-groups and their morphisms, 
-and was first described in \cite{alp3}. 
+and was first described in \cite{xmod}. 
 This package may be used to select a cat$^{1}$-group from a data file. 
 All cat$^{1}$-structures on groups of size up to 70 
 (ordered according to the \GAP\ numbering of small groups) 
@@ -953,7 +1004,7 @@ to one of these families.
 	24/12 & S4 & 12 & 5 & 2 & 9 & 3 \\ 
 	24/13 & A4 $\times$ C2 & 15 & 10 & 4 & 31 & 10 \\ 
 	24/14 & S3 $\times$ K4 & 157 & 116 & 8 & 999 & 32 \\ 
-	24/15 & C6 $\ltimes$ K4 & 116 & 452 & 12 & 6,786 & 84 \\ 
+	24/15 & C6 $\ltimes$ K4 & 116 & 452 & 12 & 6,786 & 88 \\ 
 	25/2 & C5 $\times$ C5 & 32 & 152 & 4 & 348 & 9 \\ 
 	26/1 & D26 & 15 & 14 & 2 & 27 & 3 \\ 
 	27/2 & C9 $\times$ C3 & 20 & 56 & 6 & 138 & 14 \\ 
@@ -975,122 +1026,156 @@ to one of these families.
 The first and second authors were supported by Eskisehir Osmangazi
 University Scientific Research Projects (Grant No: 2017/19033).
 
+
+\vspace*{10mm}
+\noindent
+\textcolor{red}
+{[What is the correct bibliography convention? 
+  Are not the \emph{titles} emphasised, and not the Journal name?]} 
+
 \begin{thebibliography}{99}
-	\bibitem{alp2} \textsc{Alp M. and Wensley C.D. } Enumeration of cat$^{1}$-groups 
-	of low order, \emph{Int. J. Algebra Comput.}, 10, 407-424, (2000).
+	\bibitem{alp2} \textsc{Alp M. and Wensley C.D.}, 
+	Enumeration of cat$^{1}$-groups of low order, 
+	\emph{Int. J. Algebra Comput.}, 10, 407-424, (2000).
 	
-	\bibitem{Artin} \textsc{M. Artin} and \textsc{B. Mazur}, \textrm{On the Van
-		Kampen theorem, }\emph{Topology,} \textbf{5}, 179-189, (1966).
+	\bibitem{Artin} \textsc{M. Artin} and \textsc{B. Mazur}, 
+	\textrm{On the Van Kampen theorem, } 
+	\emph{Topology,} \textbf{5}, 179-189, (1966).
 	
-	\bibitem{arvasi2} \textsc{Arvasi Z. and Ulualan E.} On Algebraic Models for
-	Homotopy 3-types, \emph{Journal of Homotopy and Related Structures}, 1,
-	1-27, (2006).
+	\bibitem{arvasi2} \textsc{Arvasi Z. and Ulualan E.}, 
+	On Algebraic Models for Homotopy 3-types, 
+	\emph{Journal of Homotopy and Related Structures}, 1, 1-27, (2006).
 	
-	\bibitem{odabas1} \textsc{Arvasi Z. and Odabas A.} Crossed Modules and Cat$%
-	^1 $-algebras in \GAP\, \emph{Version 1.12 Manual for the \textsf{%
-			XModAlg} share package for \GAP\ 4 }, (2015).
+	\bibitem{xmodalg} \textsc{Arvasi Z. and Odabas A.},  
+	Crossed Modules and Cat$^1$-algebras, 
+	{(manual for the \textsf{XModAlg} share package for \GAP, version 1.12, 
+	(2015).)} 
 	
-	\bibitem{odabas2} \textsc{Arvasi Z. and Odabas A.} Computing 2-dimensional
-	algebras: Crossed modules and Cat1-algebras, \emph{J. Algebra Appl.}, 15,
-	1650185 (2016).
+	\bibitem{odabas} \textsc{Arvasi Z. and Odabas A.}, 
+	Computing 2-dimensional algebras: Crossed modules and Cat1-algebras, 
+	\emph{J. Algebra Appl.}, 15, 1650185 (2016).
 	
 	\bibitem{gap} \textsc{The GAP Group},
-	GAP -- Groups, Algorithms, and Programming, Version 4.10.1; (2019). (https://www.gap-system.org).
+	GAP -- Groups, Algorithms, and Programming, Version 4.10.2; (2019). 
+	(https://www.gap-system.org).
 	
 	
+	%\bibitem{baus1} \textsc{H.J. Baues}, 
+	%\textrm{Algebraic homotopy, } 
+	%\emph{Cambridge Studies in Advanced Mathematics, } 
+	%\textbf{15}, (1998), 450 pages.
 	
-	%\bibitem{baus1} \textsc{H.J. Baues}, \textrm{Algebraic homotopy, } \emph{%
-	%Cambridge Studies in Advanced Mathematics, }\textbf{15}, (1998), 450 pages.
+	%\bibitem{baus2} \textsc{H.J. Baues}, 
+	%\textrm{Combinatorial homotopy and 4-dimenional complexes,} 
+	%\emph{Walter de Gruyter, }\textbf{15}, (1991).
 	
-	%\bibitem{baus2} \textsc{H.J. Baues}, \textrm{Combinatorial homotopy and
-	%4-dimenional complexes,} \emph{Walter de Gruyter, }\textbf{15}, (1991).
+	%\bibitem{berger} \textsc{C. Berger}, 
+	%\textrm{Double Loop spaces, braided monoidal categories 
+	%and algebraic 3-types of spaces, } 
+	%\emph{Contemporary Mathematics,} \textbf{227}, 46-66, (1999).
 	
-	%\bibitem{berger} \textsc{C. Berger}, \textrm{Double Loop spaces, braided
-	%monoidal categories and algebraic 3-types of spaces, }\emph{Contemporary
-	%Mathematics,} \textbf{227}, 46-66, (1999).
+	\bibitem{Brown} \textsc{R. Brown} and \textsc{J.-L. Loday}, 
+	\textrm{Van Kampen theorems for diagram of spaces,} 
+	\emph{Topology,} \textbf{26}, 311-335, (1987).
 	
-	\bibitem{Brown} \textsc{R. Brown} and \textsc{J.-L. Loday}, \textrm{Van
-		Kampen theorems for diagram of spaces, } \emph{Topology,} \textbf{26},
-	311-335, (1987).
+	\bibitem{brown1} \textsc{Brown R.}, 
+	Higher Dimensional Group Theory, Low Dimensional Topology, 
+	\emph{London Math. Soc. Lecture Note Series}, 48, 215-238, (1982).
 	
-	\bibitem{brown1} \textsc{Brown R.} Higher Dimensional Group Theory, Low
-	Dimensional Topology, \emph{London Math. Soc. Lecture Note Series}, 48,
-	215-238, (1982).
+	%\bibitem{Spencer} \textsc{R. Brown} and \textsc{C.B. Spencer}, 
+	%\textrm{G-groupoids, crossed modules and the fundamental groupoid 
+	%of topological group,} 
+	%\emph{Proc. Kon. Ned. Akad.} \textbf{79}, 296-302, (1976).
 	
-	%\bibitem{Spencer} \textsc{R. Brown} and \textsc{C.B. Spencer}, \textrm{%
-	%G-groupoids, crossed modules and the fundamental groupoid of topological
-	%group, } \emph{Proc. Kon. Ned. Akad.} \textbf{79}, 296-302, (1976).
+	\bibitem{rb-ng} \textsc{R. Brown} and \textsc{N.D. Gilbert}, 
+	\textrm{Algebraic models of 3--types and automorphism structures 
+	for crossed modules}, 
+	\emph{Proc. London Math. Soc.} \ (3) \textbf{59}, 51-73, (1989).
 	
-	\bibitem{rb-ng} \textsc{R. Brown} and \textsc{N.D. Gilbert}, \textrm{\
-		Algebraic models of 3--types and automorfizm structures for crossed modules}
-	, \ \emph{Proc. London Math. Soc.} \ (3) \textbf{59}, 51-73, (1989).
-	
-	\bibitem{bettina} \textsc{Besche H.U., Eick B. and O'Brien E.A.} A
-	millennium project: constructing Small Groups, \emph{\ Internat. J. Algebra
-		Comput.}, 12, 623 - 644 (2002).
+	\bibitem{bettina} \textsc{Besche H.U., Eick B. and O'Brien E.A.}, 
+	A millennium project: constructing Small Groups, 
+	\emph{\ Internat. J. Algebra Comput.}, 12, 623 - 644 (2002).
 	
 	%\bibitem{bullejos} \textsc{M.Bullejos, J.G. Cabello} and \textsc{E. Faro},
-	%\textrm{On the equivariant 2-type of a G-space}, \emph{J. Pure Applied
-	%Algebra,}\ \textbf{129}, 215-245, (1998).
+	%\textrm{On the equivariant 2-type of a G-space}, 
+	%\emph{J. Pure Applied Algebra,}\ \textbf{129}, 215-245, (1998).
 	
-	%\bibitem{cc} \textsc{P. Carrasco} and \textsc{A.M. Cegarra}, \textrm{%
-	%Group-theoretic algebraic models for homotopy types}, \ \emph{J. Pure
-	%Applied Algebra,} \ \textbf{75}, 195-235, (1991).
+	%\bibitem{cc} \textsc{P. Carrasco} and \textsc{A.M. Cegarra}, 
+	%\textrm{Group-theoretic algebraic models for homotopy types}, \ 
+	%\emph{J. Pure Applied Algebra,} \ \textbf{75}, 195-235, (1991).
 	
-	%\bibitem{Conduce} \textsc{D. Conduch\'{e} }, \textrm{Modules crois{\'{e}}s g{%
-	%\'{e}}n{\'{e}}ralis{\'{e}}s de longueur 2,} \emph{J. Pure and Applied
-	%Algebra, } \textbf{34}, 155-178, (1984).
+	%\bibitem{Conduce} \textsc{D. Conduch\'{e} }, 
+	%\textrm{Modules crois{\'{e}}s g{\'{e}}n{\'{e}}ralis{\'{e}}s de longueur 2,} 
+	%\emph{J. Pure and Applied Algebra, } \textbf{34}, 155-178, (1984).
 	
-	%\bibitem{Con1} \textsc{D. Conduch\'{e} }, \textrm{Simplicial Crossed Modules
-	%and Mapping Cones}, \emph{Georgian Mathematical Journal}, \textbf{10}, No.
-	%4, 623-636, (2003).
+	%\bibitem{Con1} \textsc{D. Conduch\'{e} }, 
+	%\textrm{Simplicial Crossed Modules and Mapping Cones}, 
+	%\emph{Georgian Mathematical Journal}, \textbf{10}, No.4, 623-636, (2003).
 	
-	\bibitem{Sten} \textsc{G.J. Ellis } and \textsc{R. Steiner}, \textrm{Higher
-		dimensional crossed modules and the homotopy groups of (n+1)-ads.}, \ \emph{%
-		\ J. Pure and Applied Algebra}, \textbf{46}, 117-136, (1987).
+	\bibitem{Sten} \textsc{G.J. Ellis } and \textsc{R. Steiner}, 
+	\textrm{Higher dimensional crossed modules and the homotopy groups 
+	of (n+1)-ads.}, \ 
+	\emph{\ J. Pure and Applied Algebra}, \textbf{46}, 117-136, (1987).
 	
-	\bibitem{Ellis} \textsc{G.J. Ellis }, \textrm{Crossed Squares and
-		Combinatorial Homotopy}, \ \emph{Math. Z.}, \textbf{461}, 93-110, (1993).
+	\bibitem{hap} \textsc{G.J. Ellis }, 
+	\textrm{Homological Algebra Programming}, \ 
+	{(manual for the \HAP\ package for \textsf{GAP}, version 1.19, (2019))}. 
+
+	\bibitem{Ellis} \textsc{G.J. Ellis }, 
+	\textrm{Crossed Squares and Combinatorial Homotopy}, \ 
+	\emph{Math. Z.}, \textbf{461}, 93-110, (1993).
 	
-	\bibitem{Loday} \textsc{J.L. Loday}, \textrm{Spaces with finitely many
-		non-trivial homotopy groups }, \ \emph{J. Pure and Applied Algebra, }
-	\textbf{24}, 179-202, (1982).
+	\bibitem{Loday} \textsc{J.L. Loday}, 
+	\textrm{Spaces with finitely many non-trivial homotopy groups }, \ 
+	\emph{J. Pure and Applied Algebra}, \textbf{24}, 179-202, (1982).
 	
-	\bibitem{porter1} \textsc{Porter T.} The Crossed Menagerie: an introduction
-	to crossed gadgetry and cohomology in algebra and topology. \emph{Lecture
-		Notes}, (2010).
+	\bibitem{groupoids} \textsc{Moore E.J.} and \textsc{Wensley C.D.}, 
+	Calculations with finite groupoids and their homomorphisms 
+	{(manual for the \groupoids\ package for \textsf{GAP}, version 1.68,  
+	(2019))}. 
+
+	\bibitem{porter1} \textsc{Porter T.}, 
+	The Crossed Menagerie: an introduction to crossed gadgetry and cohomology 
+	in algebra and topology. 
+	\emph{Lecture Notes}, (2010).
 	
-	\bibitem{m-w} \textsc{S. Mac Lane} and \textsc{J.H.C. Whitehead}, \textrm{On
-		the 3-type of a complex }, \emph{Proc. Nat. Acad. Sci. U.S.A.,} Vol. \textbf{%
-		\ 37}, 41-48, (1950).
+	\bibitem{m-w} \textsc{S. Mac Lane} and \textsc{J.H.C. Whitehead}, 
+	\textrm{On the 3-type of a complex }, 
+	\emph{Proc. Nat. Acad. Sci. U.S.A.,} Vol. \textbf{\ 37}, 41-48, (1950).
 	
-	\bibitem{Mutlu} \textsc{A. Mutlu} and \textsc{T. Porter}, \textrm{\
-		Applications of Peiffer pairings in the Moore complex of a simplicial group}
-	, \emph{Theory and Applications of Categories, } Vol.4, No.\textbf{7}
-	148-173, (1998).
+	\bibitem{Mutlu} \textsc{A. Mutlu} and \textsc{T. Porter}, 
+	\textrm{Applications of Peiffer pairings in the Moore complex 
+	of a simplicial group}, 
+	\emph{Theory and Applications of Categories},  
+	Vol.4, No.\textbf{7} 148-173, (1998).
 	
-	\bibitem{mutpor} \textsc{A. Mutlu} and \textsc{T. Porter}, \textrm{Crossed
-		squares and 2-crossed modules}, \emph{Preprint}, (2003).
+	\bibitem{mutpor} \textsc{A. Mutlu} and \textsc{T. Porter}, 
+	\textrm{Crossed squares and 2-crossed modules}, 
+	\emph{Preprint}, (2003).
 	
-	\bibitem{Porter} \textsc{T. Porter}, \textrm{n-type of simplicial groups and
-		crossed n-cubes}, \emph{Topology ,} \textbf{32}, 5-24, (1993).
+	\bibitem{Porter} \textsc{T. Porter}, 
+	\textrm{n-type of simplicial groups and crossed n-cubes}, 
+	\emph{Topology ,} \textbf{32}, 5-24, (1993).
 	
-	\bibitem{walery} \textsc{D. Guin-Walery} and \textsc{J.L. Loday}, \textrm{\
-		Obsruction {\'{a}} l'excision en K-theories alg{\'{e}}brique, } \emph{In:
-		Friedlander, E.M.,Stein, M.R.(eds.) Evanston conf. on algebraic K-Theory
-		1980.} (Lect. Notes Math., vol.854, pp 179-216) Berlin Heidelberg New York:
-	Springer (1981).
+	\bibitem{walery} \textsc{D. Guin-Walery} and \textsc{J.L. Loday}, 
+	\textrm{Obstruction {\'{a}} l'excision en K-theories alg{\'{e}}brique, } \ 
+	\emph{In: Friedlander, E.M.,Stein, M.R.(eds.) 
+	Evanston conf. on algebraic K-Theory 1980.} 
+	(Lect. Notes Math., vol.854, pp 179-216) Berlin Heidelberg New York:Springer 
+	(1981).
 	
-	\bibitem{wayted} \textsc{J.H.C. Whitehead}, \textrm{Combinatorial homotopy
-		II }, \emph{Bull. Amer. Math. Soc.} \textbf{55}, 453-496, (1949).
+	\bibitem{wayted} \textsc{J.H.C. Whitehead}, 
+	\textrm{Combinatorial homotopy II }, 
+	\emph{Bull. Amer. Math. Soc.} \textbf{55}, 453-496, (1949).
 	
-	\bibitem{wensley_notes} \textsc{Wensley C.D.} Notes on higher dimensional
-	groups and related topics, \emph{Development Version}, (2017).
+	\bibitem{wensley_notes} \textsc{Wensley C.D.},  
+	Notes on higher dimensional groups and related topics, 
+	\emph{Development Version}, (2017).
 	
-	\bibitem{alp3} \textsc{Wensley C.D., Alp M., Odabas A.} and \textsc{Uslu E.O }
-	Crossed Modules and Cat$^{1}$-groups in \GAP\, 
-	    \emph{Manual for the \XMod\ package for \textsf{GAP4}, 
-	    version 2.74,} (2019).
+	\bibitem{xmod} \textsc{Wensley C.D., Alp M., Odabas A.} and \textsc{Uslu E.O},  
+	\ Crossed modules and cat$^{1}$-groups, 
+	{(manual for the \XMod\ package for \textsf{GAP}, version 2.74 (2019))}. 
+	
 \end{thebibliography}
 
 

@@ -167,20 +167,6 @@ The notion of crossed module, generalizing the notion of a G-module,
 was introduced by Whitehead \cite{whitehead-II} in the course of his studies 
 on the algebraic structure of the second relative homotopy group.
 
-\vspace*{4mm}
-\textcolor{red}
-{[It is confusing having a crossed module $C \to G$ 
-and a cat$^1$-group $G \Rightarrow R$. 
-So changing all the $C \to G$ to $S \to R$, as in XMod. 
-But now $s \in S$ so best not to use $s,t$ as source and target maps 
-in the cat$^1$-group, hence changing to tail and head maps $t,h$. 
-(I've resisted the temptation to change left actions into right actions!) 
-If you are not happy with this, the commit can be ditched.]
-} 
-\textcolor{blue}
-{[okay however you like]} 
-\vspace*{4mm}
-
 A \emph{crossed module} consists of a group homomorphism 
 $\partial : S \rightarrow R$, endowed with a left action $R$ on $S$ 
 (written by $(r,s) \rightarrow {}^{r}s$ for $r \in R$ and $s \in S$) 
@@ -628,19 +614,17 @@ Attributes of a (pre)cat$^{2}$-group constructed in this way include
 
 As with cat$^1$-groups, we use a more general notion for cat$^2$-groups. 
 An \emph{oriented cat$^2$-group} has the form 
-\textcolor{red}
-{(labels on the diagonal arrows need correcting)} 
 \[
 \xymatrix@R=60pt@C=60pt 
 { G \ar@<+0.5ex>[r]^{t_1,h_1} \ar@<+0.1ex>[r] 
     \ar@<-0.5ex>[d]_{t_2,h_2} \ar@<-0.1ex>[d] 
-    \ar@<+0.5ex>[rd]^(.55){t_1t_2} \ar@<+0.1ex>[rd]^(.40){h_1h_2} 
+    \ar@<+0.5ex>[rd]^(0.4){t_1 \circ t_2,} \ar@<+0.1ex>[rd]^(0.5){h_1 \circ h_2} 
 	& R_1 \ar@<+0.5ex>[d]^{t_2,h_2} \ar@<+0.1ex>[d] 
-	      \ar@<+0.4ex>[l]^{e_1} \\
+	      \ar@<+0.4ex>[l]^(0.3){e_1} \\
   R_2 \ar@<+0.5ex>[r]^{t_1,h_1} \ar@<+0.1ex>[r] 
-      \ar@<-0.4ex>[u]_{e_2} 
-	& R_{12} \ar@<+0.4ex>[l]^{e_1} \ar@<+0.4ex>[u]^{e_2} 
-	         \ar@<+0.4ex>[ul]^{e_2} 
+      \ar@<-0.4ex>[u]_(0.6){e_2} 
+	& R_{12} \ar@<+0.4ex>[l]^{e_1} \ar@<+0.4ex>[u]^(0.4){e_2} 
+	         \ar@<+0.4ex>[ul]^(0.45){e_1 \circ e_2} 
 }
 \]
 where $R_1, R_2$ need not be subgroups of $G$, 

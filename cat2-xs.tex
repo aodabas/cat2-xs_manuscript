@@ -76,7 +76,7 @@ Functions for computing with these structures have been developed in
 the package \XMod\ written using the \GAP\ computational discrete algebra 
 programming language.
 This paper includes details of the algorithms used. 
-It contains tables listing the $1,065$ \textcolor{red}{(?)} 
+It contains tables listing the $993$ \textcolor{red}{(?)} 
 isomorphism classes of cat$^2$-groups on groups of order at most $30$. 
 
 
@@ -89,26 +89,21 @@ isomorphism classes of cat$^2$-groups on groups of order at most $30$.
 \section{Introduction}
 
 \textcolor{red}
-{This is just a first attempt. 
-At present the following papers, contained in the bibliography, 
-are not yet cited. 
-As they have been added to the bibliography, 
-there may have been some intention to refer to them. 
-We need to consider each in turn.} 
+{Here is a second attempt at the introduction. 
+Some more of the papers in the bibliography have been referenced,  
+but the following are still not cited. 
+Maybe some of these can be omitted? 
+I've added some comments of a topological nature on page 2, 
+but am not at all sure they are correct, whether they should be included, etc. 
+I'm getting tired of working on this introduction, 
+so would welcome some feedback or other contributions. 
+Some further corrections have been made throughout the text.} 
 \textcolor{red}
 {\begin{itemize}
 \item
 Artin and Mazur \cite{artin-mazur}, 
 \item 
-Arvasi and Odabas \cite{arvasi-odabas}, 
-\item 
-Arvasi and Ulualan \cite{arvasi-ulualan}, 
-\item 
-Brown and Gilbert \cite{brown-gilbert}, 
-\item 
 Brown and Loday \cite{brown-loday}, 
-\item
-Ellis \cite{Ellis}, 
 \item 
 Mac Lane and Whitehead \cite{maclane-whitehead}, 
 \item 
@@ -120,7 +115,7 @@ Porter (Topology) \cite{porter-topology}.
 \end{itemize}
 } 
 
-This paper is concerned with the latest contribution to the general programme 
+This paper is concerned with the latest developments in the general programme 
 of "computational higher-dimensional group theory" which forms part of the 
 "higher-dimensional group theory" programme described, for example, 
 by Brown in \cite{brown-lms}. 
@@ -131,31 +126,72 @@ be considered as crossed modules or cat$^1$-groups.
 Section 2 contains a summary of the definitions of these objects, 
 with some examples. 
 
-The first computation part of this programme was described in 
+The initial computational part of this programme was described in 
 Alp and Wensley \cite{alp-wensley-ijac}. 
-The output was the package \XMod\ \cite{xmod} for \GAP\ \cite{gap} which, 
-at the time, contained functions for constructing crossed modules and cat$^1$-groups of groups, and their morphisms, and conversions from one to another. 
+The output from this work was the package \XMod\ \cite{xmod} 
+for \GAP\ \cite{gap} which, at the time, 
+contained functions for constructing crossed modules and cat$^1$-groups of groups, and their morphisms, and conversions from one to another. 
 It also contained functions for computing the monoid of derivations of a 
-crossed module, and the equivalend monoid of sections of a cat$^1$-group. 
-The next development of \XMod\ combined with the \GAP\ package \groupoids\ 
+crossed module, and the equivalent monoid of sections of a cat$^1$-group. 
+The next development of \XMod\ used the package \groupoids\ 
 \cite{groupoids} to compute crossed modules of groupoids. 
-Later still, a \GAP\ package \XModAlg\ \cite{xmodalg} was written to compute 
-cat$^1$-algebras and crossed modules of algebras. 
+Later still, a \GAP\ package \XModAlg\ \cite{xmodalg} 
+was written to compute cat$^1$-algebras and crossed modules of algebras, 
+as described in \cite{arvasi-odabas}. 
 
 The $3$-dimensional part of the higher-dimensional group theory programme 
 is concerned with objects in the category \catXSq\ of crossed squares 
 and the equivalent cat$^2$-groups category \catCatt. 
 The mathematical basis is described in section 3, 
 and some computational details are included in section 4. 
-In section 5 we enumerate the $1,065$ \textcolor{red}{(?)} isomorphism classes 
-of cat$^2$-group structures on the $92$ groups of order at most $30$. 
+In section 5 we enumerate the $993$ 
+\textcolor{red}{(was $1.065$ - please check!)} isomorphism 
+classes of cat$^2$-group structures on the $92$ groups of order at most $30$. 
+
+There are many other ways of viewing crossed squares and cat$^2$-groups. 
+Conduch\'{e} in \cite{conduche} defined the equivalent notion of 
+$2$-crossed module.
+Brown and Gilbert in \cite{brown-gilbert} introduced braided, 
+regular crossed modules as an alternative algebraic model of homotopy $3$-types. 
+They also proved that these structures are equivalent to simplicial groups 
+with Moore complex of length $2$. 
+In \cite{arvasi-ulualan} Arvasi and Ulualan explore the algebraic relationship 
+between these structures and also the quadratic modules of Baues \cite{baues}, 
+and the homotopy equivalences between them. 
 
 The impetus for the study of higher-dimensional groups 
-comes from algebraic topology -- in the $2$-dimensional case 
-by describing the homotopy double groupoid of a based pair of spaces. 
+comes from algebraic topology. 
+% -- in the $2$-dimensional case by describing 
+% the homotopy double groupoid of a based pair of spaces. 
+Crossed modules are algebraic models of connected (weak homotopy) $2$-types, 
+while crossed squares model connected $3$-types. 
+The principal topological example of a crossed module arises from 
+a pointed pair of spaces $ A \subseteq X$ where the boundary map is 
+$\partial : \pi_2(X,A) \to \pi_1(A)$. 
+Similarly, given a triad of pointed spaces $A \subseteq X,\ B \subseteq X$ 
+we obtain a crossed square as shown on the left below. 
+A simple case, when $X$ is a $2$-sphere and $A,B$ are the 
+upper and lower hemispheres, results in the square on the right. 
+Here $F$ is a free group on one generator $x$, 
+the boundaries are the trivial and identity homomorphisms, 
+and the crossed pairing is given by 
+$h : F \times F \to F,\ (x^i,x^j) \mapsto x^{ij}$  
+(see Ellis \cite{ellis}). 
+\begin{equation*} 
+\xymatrix@R=20pt@C=20pt
+{     &  \pi_3(X;A,B) \ar[dd] \ar[rr] \ar[ddrr] 
+         &  & \pi_2(B, A \cap B) \ar[dd] 
+               &  &  &  F \ar[dd]_{0} \ar[rr]^{0} \ar[ddrr]^{0} 
+                        &  &  F \ar[dd]^{{\rm id}} \\
+      &  &  &  &  &    \\  
+      &  \pi_2(A,A \cap B) \ar[rr] 
+         &  & \pi_1(A \cap B) & &  &  F \ar[rr]_{{\rm id}} 
+                        &  &  F } 
+\end{equation*}
+
 The \XMod\ package follows a purely algebraic approach, 
 and does not compute any specifically topological results. 
-The interested reader may wish to look at the \GAP\ package
+The interested reader may wish to investigate the \GAP\ package
 \HAP\ \cite{hap} which also computes with cat$^1$-groups. 
 
 
@@ -239,12 +275,11 @@ Recall from \cite{Loday} that a \emph{cat$^{1}$-group} is a triple $(G,t,h)$ con
 the \emph{tail map} $t$ and the \emph{head map} $h$, 
 having a common image $R$ and satisfying the following axioms. 
 \begin{equation} \label{cat1-axioms} 
-t \circ t = t, \quad  
-h \circ h = h, \quad  
 t \circ h = h, \quad  
 h \circ t = t, 
 \quad \mbox{and}\quad  [\ker t,\ker h] = 1. 
 \end{equation} 
+It follows immediately that $t \circ t = t$ and $h \circ h = h$. 
 A \emph{morphism of cat}$^{1}$\emph{-groups} 
 $(G_{1},t_1,h_1) \rightarrow (G_{2},t_2,h_2)$ 
 is a group homomorphism $f : G_{1} \rightarrow G_{2}$ such that 
@@ -464,8 +499,8 @@ and $\rho_2 = \gamma|_{R_2}$ are homomorphisms satisfying:
 We thus obtain a category \textbf{Cat}$^{2}$\textbf{-Grp}, 
 the category of cat$^{2}$-groups. 
 The following proposition was given by Loday \cite{Loday}. 
-We only present the sketch proof (see also \cite{mutlu-porter-2003}) 
-of this result as we need some indication of proofs for later use.
+We present a sketch proof of this result (see also \cite{mutlu-porter-2003}) 
+as some of the ideas used will be needed later.
 
 \begin{proposition}
 \label{loday} \emph{(\cite{Loday})} 
@@ -549,17 +584,31 @@ provides access to descriptions of the groups of small order.
 The groups are listed up to isomorphism. 
 The library contains all groups of order at most 2000 except 1024.
 
+
 %...............................%
 \subsection{2-Dimensional Groups}
 
 The \XMod\ package for \GAP\ contains functions for computing 
 crossed modules, cat$^{1}$-groups and their morphisms, 
 and was first described in \cite{xmod}. 
+A more general notion of cat$^1$-group is implemented in \XMod, 
+where the tail and head maps are no longer required to be endomorphisms on $G$. 
+Instead it is required that $t$ and $h$ have a common image $R$, 
+and an \emph{embedding} $e : R \to G$ is added.  
+The axioms in (\ref{cat1-axioms}) then become:  
+\[ 
+t \circ e \circ h = h, \quad  
+h \circ e \circ t = t, 
+\quad \mbox{and}\quad  [\ker t,\ker h] = 1, 
+\] 
+and again it follows that $t \circ e \circ t = t$ and $h \circ e \circ h = h$. 
+We denote such a cat$^1$-group by $(e;t,h : G \to R)$. 
+
+
 This package may be used to select a cat$^{1}$-group from a data file. 
 All cat$^{1}$-structures on groups of size up to 70 
 (ordered according to the \GAP\ numbering of small groups) 
 are stored in a list in the file \texttt{cat1data.g}.
-
 The function \textbf{Cat1Select} may be used in three ways. 
 \textbf{Cat1Select( size )} returns the names of the groups with this size, 
 while \textbf{Cat1Select( size, gpnum )} prints a list of cat$^1$1-structures 
@@ -586,20 +635,6 @@ Using small generating set [ f1, f2 ] for source of homs.
 [triv->A4]
 \end{Verbatim}
 
-A more general notion of cat$^1$-group is implemented in \XMod, 
-where the tail and head maps are no longer required to be endomorphisms on $G$. 
-Instead it is required that $tG=hG=R$, and an \emph{embedding} $e : R \to G$ 
-is added.  
-The axioms in (\ref{cat1-axioms}) then become:  
-\[ 
-t \circ e \circ t = t, \quad  
-h \circ e \circ h = h, \quad  
-t \circ e \circ h = h, \quad  
-h \circ e \circ t = t, 
-\quad \mbox{and}\quad  [\ker t,\ker h] = 1. 
-\] 
-We denote such a cat$^1$-group by $(e;t,h : G \to R)$. 
-
 
 %...............................%
 \subsection{3-dimensional Groups}
@@ -615,27 +650,31 @@ Attributes of a (pre)cat$^{2}$-group constructed in this way include
 As with cat$^1$-groups, we use a more general notion for cat$^2$-groups. 
 An \emph{oriented cat$^2$-group} has the form 
 \[
-\xymatrix@R=60pt@C=60pt 
+\xymatrix@R=80pt@C=100pt 
 { G \ar@<+0.5ex>[r]^{t_1,h_1} \ar@<+0.1ex>[r] 
     \ar@<-0.5ex>[d]_{t_2,h_2} \ar@<-0.1ex>[d] 
-    \ar@<+0.5ex>[rd]^(0.4){t_1 \circ t_2,} \ar@<+0.1ex>[rd]^(0.5){h_1 \circ h_2} 
-	& R_1 \ar@<+0.5ex>[d]^{t_2,h_2} \ar@<+0.1ex>[d] 
-	      \ar@<+0.4ex>[l]^(0.3){e_1} \\
-  R_2 \ar@<+0.5ex>[r]^{t_1,h_1} \ar@<+0.1ex>[r] 
-      \ar@<-0.4ex>[u]_(0.6){e_2} 
-	& R_{12} \ar@<+0.4ex>[l]^{e_1} \ar@<+0.4ex>[u]^(0.4){e_2} 
-	         \ar@<+0.4ex>[ul]^(0.45){e_1 \circ e_2} 
+    \ar@<+0.5ex>[rd]^(0.35){e_2 \circ t_2 \circ e_1 \circ t_1,} 
+    \ar@<+0.1ex>[rd]^(0.45){\ e_2 \circ h_2 \circ e_1 \circ h_1} 
+	& R_1 \ar@<+0.5ex>[d]^(0.45){e_2 \circ t_2 \circ e_1} 
+	      \ar@<+0.5ex>[d]^(0.55){e_2 \circ h_2 \circ e_1} 
+	      \ar@<+0.1ex>[d] 
+	      \ar@<+0.4ex>[l]^{e_1} \\
+  R_2 \ar@<+0.5ex>[r]^{e_1 \circ t_1 \circ e_2,~ e_1 \circ h_1 \circ e_2} 
+      \ar@<+0.1ex>[r] 
+      \ar@<-0.4ex>[u]_{e_2} 
+	& R_{12} \ar@<+0.4ex>[l]^{t_1} \ar@<+0.4ex>[u]^{t_2} 
+	         \ar@<+0.4ex>[ul]^{{\rm inc}} 
 }
 \]
 where $R_1, R_2$ need not be subgroups of $G$, 
 but $R_{12}$ is taken to be the common image of 
-$t_1*e_1*t_2*h_2$ and $t_2*e_2*t_1*e_1$, a subgroup of $G$. 
+$t_1*e_1*t_2*e_2$ and $t_2*e_2*t_1*e_1$, a subgroup of $G$. 
 
 
 Generalizing these functions, we have introduced \textbf{Cat3Group} and \textbf{HigherDimension} which construct cat$^{3}$-groups. 
 Functions for general cat$^{n}$-groups will be added as time permits. 
 An orientation of a cat$^{3}$-group on $G$ displays a cube whose six faces 
-(ordered as front; up, left, right, down,back) are cat$^{2}$-groups. 
+(ordered as front; up, left, right, down, back) are cat$^{2}$-groups. 
 The following \GAP\ session illustrates the use of these functions. 
 The group $G$ is positioned where the front, up and left faces meet. 
 
@@ -728,25 +767,23 @@ true
 2
 \end{Verbatim}
 
-%\textcolor{red}{Length of mor8283 used to be 2, but now 3!} 
-
-%\textcolor{red}{Do we omit this, correct it, or find a better example?} 
-
 
 %..............................%
 \subsection{Natural Equivalence}
 
-By using the natural equivalence of categories of crossed squares and cat$%
-^{2}$-groups, the package includes the functions \textbf{%
-	CrossedSquareByCat2Group} and \textbf{Cat2GroupByCrossedSquare} which
-constructs crossed squares and cat$^{2}$-groups from the given cat$^{2}$%
--groups and crossed squares, respectively.
+By using the natural equivalence of categories of crossed squares 
+and cat$^{2}$-groups, the package includes the functions 
+\textbf{CrossedSquareByCat2Group} and \textbf{Cat2GroupByCrossedSquare} 
+which construct crossed squares and cat$^{2}$-groups 
+from the given cat$^{2}$-groups and crossed squares, respectively.
 
 The following \GAP\ session illustrates the use of these functions.
 The dihedral group $D_{20}$ has two normal subgroups $D_{10}$ 
 whose intersection is the cyclic $C_5$.  
 We construct the crossed square of normal subgroups, 
-and then use the conversion functions to obtain the associated cat$^{2}$-group.
+and then use the conversion functions to obtain the associated cat$^{2}$-group. 
+We then obtain the crossed square $Xab$ associated to the cat$^2$-group $Cab$ 
+obtained earlier. 
 
 \begin{Verbatim}[frame=single, fontsize=\small, commandchars=\\\{\}]
 \textcolor{blue}{gap> d20 := DihedralGroup( IsPermGroup, 20 );;}
@@ -788,18 +825,20 @@ true
 %---------------------------------------------------------------------------% 
 \section{Table of cat$^{2}$-groups}
 
-The function \textbf{AllCat2Groups(G)} constructs all cat$^{2}$-groups 
-$(G,t_1,h_1,t_2,h_2)$ over $G$. 
+The function \textbf{AllCat2Groups(G)} constructs a list $L_G$ 
+of all $n_G$ cat$^{2}$-groups $(G,t_1,h_1,t_2,h_2)$ over $G$. 
 The function \textbf{AreIsomorphicCat2Groups} is used for checking whether 
-or not two cat$^{2}$-groups are isomorphic. 
-The functions \textbf{IsomorphicCat2GroupFamily} 
-and \textbf{AllCat2GroupsUpToIsomorphism} 
-are used to used to classify given cat$^{2}$-groups.
+or not two cat$^{2}$-groups are isomorphic, 
+and \textbf{AllCat2GroupsUpToIsomorphism} returns a list of representatives 
+of the isomorphism classes. 
+The function \textbf{AllCat2GroupFamilies} returns a list of the positions 
+$[1 \ldots n_G]$ partitioned according to these classes. 
 
-In the following \GAP\ session, we compute all cat$^{2}$-groups on $C_{4}
-\times C_{2}$ and their isomorphism families. 
-The tenth class consists of cat$^2$-group numbers $[31,34,35,38]$, 
-so \texttt{iso82[10]=all82[31]}. 
+In the following \GAP\ session, we compute all $47$ cat$^{2}$-groups on 
+$C_{4} \times C_{2}$; representatives of the $14$ isomorphism classes; 
+and the list of lists of positions in the families. 
+So the tenth class consists of cat$^2$-group numbers $[31,34,35,38]$, 
+and \texttt{iso82[10]=all82[31]}. 
 
 \begin{Verbatim}[frame=single, fontsize=\small, commandchars=\\\{\}]
 \textcolor{blue}{gap> c4c2 := SmallGroup(8,2);;}
@@ -826,13 +865,11 @@ In the following tables the groups of size at most $30$ are ordered by their
 \GAP\ number. 
 For each group $G$ we list the number $|IE(G)|$ of idempotent endomorphisms; 
 the number $|\calC^1(G)|$ of cat$^1$-groups on $G$, 
-followed by the number of isomorphism classes of these; 
+followed by the number of their isomorphism classes; 
 and then the number $|\calC^2(G)|$ of cat$^2$-groups on $G$, 
-and the number of these isomorphism classes. 
+and the number of their isomorphism classes. 
 The number of isomorphism classes $\calC^1(G)$ of cat$^{1}$-groups 
 is given in \cite{alp-wensley-ijac}. 
-The size of the set of all cat$^{2}$-groups and the number of isomorphism classes 
-of cat$^{2}$-groups on $G$ are computed by given the functions in the manuscript.
 
 We may reduce the size of the table by noting the results for cyclic groups. 
 When $G=C_{p^{k}}$ is cyclic, with $p$ prime, 
@@ -844,9 +881,11 @@ and its order is the product of $m$ distinct primes $p_i$
 having multiplicities $k_i$, 
 there are $2^m$ idempotent endomorphisms and cat$^1$-groups.  
 We thus obtain the following results up to $m=4$. 
-The rows headed 'groups' list, for each cat$^2$-group, its four groups 
-$[G,R_1,R_2,R_{12}]$ where, for example, $2 \times [G,I,C_x,I]$ 
-denotes $\{[G,I,C_{p_1},I],[G,I,C_{p_2},I]\}$. 
+The rows headed ``groups'' list, for each cat$^2$-group, its four groups 
+$[G,R_1,R_2,R_{12}]$ where, for example, $2 \times [G,I,C_{p^k},I]$ 
+denotes $\{[G,I,C_{p_1^{k_1}},I],[G,I,C_{p_2^{k_2}},I]\}$. \\ 
+\textcolor{red}{(the previous line and the groups entries in the tables 
+have changed -- for the better?)}
 
 \bigskip
 \begin{longtable}{ccccccc}
@@ -866,9 +905,9 @@ denotes $\{[G,I,C_{p_1},I],[G,I,C_{p_2},I]\}$.
 	                    & 3 \\ 
 	\hline
 	\multicolumn{7}{l}{%
-		\begin{tabular}{ll}
-			groups  & $[G,I,I,I],~ [G,I,G,I],~ [G,G,G,G]$  
-		\end{tabular}%
+	  \begin{tabular}{ll}
+		groups  & $[G,I,I,I],~ [G,I,G,I],~ [G,G,G,G]$  
+	  \end{tabular}%
 	} \\ 
 	\hline\hline 
 	& $C_{p_1^{k_1}p_2^{k_2}}$ 
@@ -878,12 +917,13 @@ denotes $\{[G,I,C_{p_1},I],[G,I,C_{p_2},I]\}$.
 	                & 10 
 	                    & 10 \\ 
 	\hline
-	\multicolumn{7}{l}{%
-		\begin{tabular}{ll}
-			groups & $[G,I,I,I],~ [G,I,G,I],~ [G,G,G,G],~ 2 \times [G,I,C_x,I],$ \\
-				   & $2 \times [G,C_x,G,C_x],~ 2 \times [G,C_x,C_x,C_x],~ 
-				     [G,C_{p_1},C_{p_2},I]$%
-		\end{tabular}%
+	\multicolumn{7}{l}{ 
+	  \begin{tabular}{ll}
+		groups & $[G,I,I,I],~ [G,I,G,I],~ [G,G,G,G],~ 2 \times [G,I,C_{p^k},I],$ \\
+			   & $2 \times [G,C_{p^k},G,C_{p^k}],~ 
+			      2 \times [G,C_{p^k},C_{p^k},C_{p^k}],~ 
+				 [G,C_{p_1^{k_1}},C_{p_2^{k_2}},I]$ 
+	  \end{tabular} 
 	} \\ 
 	\hline\hline 
 	& $C_{p_1^{k_1}p_2^{k_2}p_3^{k_3}}$ 
@@ -893,16 +933,19 @@ denotes $\{[G,I,C_{p_1},I],[G,I,C_{p_2},I]\}$.
 	                & 36 
 	                    & 36 \\ 
 	\hline
-	\multicolumn{7}{l}{%
-		\begin{tabular}{ll}
-			groups & $[G,I,I,I],~ [G,I,G,I],~ [G,G,G,G],~ 3 \times [G,I,C_x,I],$ \\
-				   & $3 \times [G,C_x,G,C_x],~ 3 \times [G,C_x,C_x,C_x],~ 
-				     3 \times [G,C_x,C_y,I],$ \\
-				   & $3 \times [G,I,C_{xy},I],~ 3 \times [G,C_{xy},G,C_{xy}],~ 
-				     3 \times [G,C_{xy},C_{xy},C_{xy}],$ \\ 
-				   & $6 \times [G,C_x,C_{xy},C_x],~ 3 \times [G,C_z,C_{xy},I],~ 
-				     3 \times [G,C_{xz},C_{yz},C_z]$%
-		\end{tabular}%
+	\multicolumn{7}{l}{ 
+	  \begin{tabular}{ll}
+		groups & $[G,I,I,I],~ [G,I,G,I],~ [G,G,G,G],~ 3 \times [G,I,C_{p^k},I],$ \\
+			   & $3 \times [G,C_{p^k},G,C_{p^k}],~ 
+			      3 \times [G,C_{p^k},C_{p^k},C_{p^k}],~ 
+				  3 \times [G,C_{p^k},C_{q^j},I],$ \\
+			   & $3 \times [G,I,C_{p^kq^j},I],~ 
+			      3 \times [G,C_{p^kq^j},G,C_{p^kq^j}],~ 
+				  3 \times [G,C_{p^kq^j},C_{p^kq^j},C_{p^kq^j}],$ \\ 
+			   & $6 \times [G,C_{p^k},C_{p^kq^j},C_{p^k}],~ 
+			      3 \times [G,C_{r^i},C_{p^kq^j},I],~ 
+				  3 \times [G,C_{p^kq^j},C_{p^kr^i},C_{p^k}]$ 
+		\end{tabular} 
 	} \\ 
 	\hline\hline 
 	& $C_{p_1^{k_1}p_2^{k_2}p_3^{k_3}p_4^{k_4}}$ 
@@ -915,7 +958,7 @@ denotes $\{[G,I,C_{p_1},I],[G,I,C_{p_2},I]\}$.
 \end{longtable}
 
 \noindent 
-When $m=1$ there are $16$ groups of order at most $30$; 
+When $m=1$ there are $16$ cyclic groups of order at most $30$; 
 when $m=2$ there are $12$ such groups; 
 and when $m=3$ there is just the small group $30/4 = C_{30}$. 
 
@@ -976,7 +1019,7 @@ and when $m=3$ there is just the small group $30/4 = C_{30}$.
 %	\hline\hline 
 %\end{longtable}
 
-The following table contains results for those $G$ are not cyclic. 
+The following table contains the results for those $G$ which are not cyclic. 
 %{\small \
 \begin{longtable}{ccrrrrr}
 	\hline 
@@ -1064,6 +1107,12 @@ University Scientific Research Projects (Grant No: 2017/19033).
 
 
 \begin{thebibliography}{99}
+
+	\bibitem{xmod} \textsc{Alp, M.}, \textsc{Odabas, A.}, 
+	               \textsc{Uslu, E.O} and \textsc{Wensley, C.D.},   
+	\emph{Crossed modules and cat$^{1}$-groups}, 
+	{(manual for the \XMod\ package for \textsf{GAP}, version 2.74 (2019))}. 
+	
 	\bibitem{alp-wensley-ijac} \textsc{Alp, M.} and \textsc{Wensley, C.D.}, 
 	\emph{Enumeration of cat$^{1}$-groups of low order}, 
 	Int. J. Algebra Comput., 10, 407-424 (2000).
@@ -1090,9 +1139,9 @@ University Scientific Research Projects (Grant No: 2017/19033).
 	%\emph{Cambridge Studies in Advanced Mathematics, } 
 	%\textbf{15}, (1998), 450 pages.
 	
-	%\bibitem{baus2} \textsc{H.J. Baues}, 
-	%\textrm{Combinatorial homotopy and 4-dimenional complexes,} 
-	%\emph{Walter de Gruyter, }\textbf{15}, (1991).
+	\bibitem{baues} \textsc{H.J. Baues}, 
+	\textrm{Combinatorial homotopy and 4-dimensional complexes,} 
+	\emph{Walter de Gruyter,} \textbf{15}, (1991).
 	
 	%\bibitem{berger} \textsc{C. Berger}, 
 	%\textrm{Double Loop spaces, braided monoidal categories 
@@ -1131,17 +1180,17 @@ University Scientific Research Projects (Grant No: 2017/19033).
 	%\textrm{Group-theoretic algebraic models for homotopy types}, \ 
 	%\emph{J. Pure Applied Algebra,} \ \textbf{75}, 195-235, (1991).
 	
-	%\bibitem{Conduce} \textsc{D. Conduch\'{e} }, 
-	%\textrm{Modules crois{\'{e}}s g{\'{e}}n{\'{e}}ralis{\'{e}}s de longueur 2,} 
-	%\emph{J. Pure and Applied Algebra, } \textbf{34}, 155-178, (1984).
+	\bibitem{conduche} \textsc{Conduch\'{e}, D.}, 
+	\textrm{Modules crois{\'{e}}s g{\'{e}}n{\'{e}}ralis{\'{e}}s de longueur 2,} 
+	\emph{J. Pure Appl. Algebra, } \textbf{34}, 155-178, (1984).
 	
 	%\bibitem{Con1} \textsc{D. Conduch\'{e} }, 
 	%\textrm{Simplicial Crossed Modules and Mapping Cones}, 
 	%\emph{Georgian Mathematical Journal}, \textbf{10}, No.4, 623-636, (2003).
 	
-	\bibitem{Ellis} \textsc{Ellis, G.J.}, 
+	\bibitem{ellis} \textsc{Ellis, G.J.}, 
 	\emph{Crossed Squares and Combinatorial Homotopy}, 
-	Math. Z., \textbf{461}, 93-110 (1993).
+	Math. Z., \textbf{214}, 93-110 (1993).
 	
 	\bibitem{hap} \textsc{Ellis, G.J.}, 
 	\emph{Homological Algebra Programming}, 
@@ -1157,10 +1206,10 @@ University Scientific Research Projects (Grant No: 2017/19033).
 	(https://www.gap-system.org).
 	
 	\bibitem{walery-loday} \textsc{Guin-Walery, D.} and \textsc{Loday, J.-L.}, 
-	\emph{Obstruction {\'{a}} l'excision en K-theories alg{\'{e}}brique}, \ 
+	\emph{Obstructions \`a l'excision en K-th\'eorie alg\'ebrique}, \ 
 	in: Friedlander, E.M. and Stein, M.R. (eds.) 
 	Evanston conference on algebraic K-Theory, 1980.  
-	(Lect. Notes Math., vol.854, 179-216) 
+	(Lecture Notes in Math., vol.854, 179-216) 
 	Berlin Heidelberg New York : Springer (1981).
 	
 	\bibitem{Loday} \textsc{Loday, J.-L.}, 
@@ -1199,11 +1248,6 @@ University Scientific Research Projects (Grant No: 2017/19033).
 	\bibitem{wensley-notes} \textsc{Wensley C.D.},  
 	\emph{Notes on higher dimensional groups and related topics}, 
 	development version (2017).
-	
-	\bibitem{xmod} \textsc{Wensley, C.D.}, \textsc{Alp, M.}, 
-	               \textsc{Odabas, A.} and \textsc{Uslu, E.O},  
-	\emph{Crossed modules and cat$^{1}$-groups}, 
-	{(manual for the \XMod\ package for \textsf{GAP}, version 2.74 (2019))}. 
 	
 	\bibitem{whitehead-II} \textsc{J.H.C. Whitehead}, 
 	\emph{Combinatorial homotopy II }, 

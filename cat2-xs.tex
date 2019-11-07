@@ -82,7 +82,7 @@ It contains tables listing the $993$ isomorphism classes of cat$^2$-groups on gr
 \end{abstract}
 
 \noindent{\bf Key Words:} cat$^2$-group, crossed square, \GAP, \XMod\ 
-\\ {\bf Classification:} 18D35, 18G50, .
+\\ {\bf Classification:} 18D35, 18G50.
 
 %---------------------------------------------------------------------------% 
 \section{Introduction}
@@ -131,7 +131,7 @@ between these structures and also the quadratic modules of Baues \cite{baues},
 and the homotopy equivalences between them. 
 
 The impetus for the study of higher-dimensional groups 
-comes from algebraic topology. 
+comes from algebraic topology \cite{brown-indag}. 
 % -- in the $2$-dimensional case by describing 
 % the homotopy double groupoid of a based pair of spaces. 
 Crossed modules are algebraic models of connected (weak homotopy) $2$-types, 
@@ -262,13 +262,13 @@ f \circ h_1 ~=~ h_2 \circ f.
 Crossed modules and cat$^{1}$-groups are equivalent two-dimensional 
 generalisations of a group. 
 It was shown in \cite[Lemma 2.2]{Loday} that, 
-setting $S = \ker t,~ R = \im t$ and $\partial = h|_{S}$, 
-then the conjugation action makes $(\partial : S \rightarrow R)$ 
+on setting $S = \ker t,~ R = \im t$ and $\partial = h|_{S}$, 
+the conjugation action makes $(\partial : S \rightarrow R)$ 
 into a crossed module. 
 Conversely, if $(\partial : S \rightarrow R)$ is a crossed module, 
-then setting $G = S \rtimes R$ and letting $t,h$ be defined by 
-$t(s,r) = (1,r)$ and $h(s,r) = (1,(\partial s)r)$ for $s \in S$, $r \in R$, 
-then $(G,t,h)$ is a cat$^{1}$-group.
+then setting $G = S \rtimes R$ and defining $t,h$ by $t(s,r) = (1,r)$ 
+and $h(s,r) = (1,(\partial s)r)$ for $s \in S$, $r \in R$, 
+produces a cat$^{1}$-group $(G,t,h)$.
 
 
 %---------------------------------------------------------------------------% 
@@ -290,9 +290,9 @@ A \emph{crossed square of groups} $\calS$ is a commutative square of groups
 \end{equation}
 \noindent together with left actions of $P$ on $L,M,N$ 
 and a \emph{crossed pairing} map ${\ \bt\ } : M \times N \rightarrow L$. 
-Let $M$ act on $N,L$ via $P$ and let $N$ act on $M,L$ via $P$. 
-The diagram illustrates a \emph{oriented crossed square} since a choice 
-of where to place $M$ and $N$ has been made. 
+Then $M$ acts on $N,L$ via $P$ and $N$ acts on $M,L$ via $P$. 
+The diagram illustrates an \emph{oriented crossed square}, 
+since a choice of where to place $M$ and $N$ has been made. 
 The \emph{transpose} $\tilde{\calS}$ of $\calS$ is obtained by making the alternative choice. 
 Since crossed pairing identities are similar to those for commutators, 
 the crossed pairing for $\tilde{\calS}$ is $\btt$ 
@@ -312,13 +312,13 @@ $(mm^{\prime} {\ \bt\ } n) ~=~ (^{m}m^{\prime} {\ \bt\ } {^{m}n})\,(m {\ \bt\ } 
 \quad and \quad 
 $(m {\ \bt\ } {nn^{\prime}}) ~=~ (m {\ \bt\ } n)\,(^{n}m {\ \bt\ } ^{n}n^{\prime})$, 
 \item 
-$\kappa(m {\ \bt\ } n) ~=~ m^{n}\ m^{-1}$ 
+$\kappa(m {\ \bt\ } n) ~=~ m({}^{n} m^{-1})$ 
 \quad and \quad 
-$\lambda(m {\ \bt\ } n) ~=~ ^{m}n\ n^{-1}$, 
+$\lambda(m {\ \bt\ } n) ~=~ ({}^{m}n)n^{-1}$, 
 \item 
-$(\kappa l {\ \bt\ } n) ~=~ l^{n}\ l^{-1}$  
+$(\kappa l {\ \bt\ } n) ~=~ l({}^{n} l^{-1})$  
 \quad and \quad 
-$(m {\ \bt\ } \lambda l) ~=~ ^{m}l\ l^{-1}$, 
+$(m {\ \bt\ } \lambda l) ~=~ ({}^{m}l)l^{-1}$, 
 \item 
 $^{p}(m {\ \bt\ } n) ~=~ (^{p}m {\ \bt\ } ^{p}n)$. 
 \end{enumerate} 
@@ -330,8 +330,8 @@ If $M,N$ are normal subgroups of the group $P$ then the diagram of inclusions
 \[
 \xymatrix@R=40pt@C=40pt
 { M \cap N \ar[r]^(0.6){} \ar[d]_{}  
-	& N \ar[d]^{} \\
-	M \ar[r]_{}  
+	& M \ar[d]^{} \\
+	N \ar[r]_{}  
 	& P }
 \] 
 \noindent together with the actions of $P$ on $M,N$ and $M\cap N$ 
@@ -370,20 +370,22 @@ then there is a crossed square
 \[
 \xymatrix@R=40pt@C=40pt
 { A \ar[r]^{0} \ar[d]_{0}  
-	& N \ar[d]^{0} \\
-	M \ar[r]_{0} 
+	& M \ar[d]^{0} \\
+	N \ar[r]_{0} 
 	& P }
 \]
 \item 
 Given two crossed modules, $(\mu : M \rightarrow P)$ and $(\nu : N \rightarrow P)$, 
-there is a universal crossed square defining a tensor product of the crossed modules, 
+there is a universal crossed square 
 \[
 \xymatrix@R=40pt@C=40pt
 { M \otimes N \ar[d]_{\lambda} \ar[r]^{\kappa} 
 	& M \ar[d]^{\mu} \\ 
 	N \ar[r]_{\nu} 
 	& P } 
-\]
+\] 
+where $M \otimes N$ is constructed using the nonabelian tensor product of groups 
+\cite{brown-loday}. 
 \end{enumerate}
 
 The crossed square (\ref{xsq-diag}) can be thought of as a horizontal or vertical 
@@ -406,13 +408,13 @@ crossed module of crossed modules:
 \noindent 
 where $(\kappa,\nu)$ is the boundary of the crossed module with 
 domain $(\lambda : L \rightarrow N)$ and codomain $(\mu : M \rightarrow P)$. 
-(See also section 10.2 of \cite{wensley-notes}.)
+(See also section 9.2 of \cite{wensley-notes}.)
 
 There is an evident notion of morphism of crossed squares  
 which preserves all the structure, 
-and we obtain a category \textbf{Crs}$^{2}$, the category of crossed squares.
+so we obtain a category \catXSq, the category of crossed squares.
 
-Although when first introduced by Loday and Walery \cite{walery-loday} 
+Although, when first introduced by Loday and Walery \cite{walery-loday}, 
 the notion of crossed square of groups was not linked to that of cat$^{2}$-groups, 
 it was in this form that Loday gave their generalisation 
 to an $n$-fold structure, cat$^{n}$-groups (see \cite{Loday}). 
@@ -467,7 +469,7 @@ and $\rho_2 = \gamma|_{R_2}$ are homomorphisms satisfying:
 \rho_2 \circ t_2 = t_2^{\prime} \circ \gamma, \qquad 
 \rho_2 \circ h_2 = h_2^{\prime} \circ \gamma. 
 \] 
-We thus obtain a category \textbf{Cat}$^{2}$\textbf{-Grp}, 
+We thus obtain a category \catCatt, 
 the category of cat$^{2}$-groups. 
 The following proposition was given by Loday \cite{Loday}. 
 We present a sketch proof of this result (see also \cite{mutlu-porter-2003}) 
@@ -475,8 +477,8 @@ as some of the ideas used will be needed later.
 
 \begin{proposition}
 \label{loday} \emph{(\cite{Loday})} 
-There is an equivalence of categories between the category of cat$^{2}$-groups 
-and that of crossed squares.
+There is an equivalence of categories between the category \catCatt\  
+and the category \catXSq.
 \end{proposition}
 \begin{proof}
 The cat$^{2}$-group $(G,t_1,h_1,t_2,h_2)$ determines a diagram of homomorphisms 
@@ -522,8 +524,9 @@ and induced endomorphisms $t_1,h_1,t_2,h_2$.
 \end{proof}
 
 \begin{definition}
-A \emph{cat$^{n}$-group} is a group $G$ with $n$ cat$^{1}$-group structures  
-$(G,t_{i},h_{i}),~ 1\leq i\leq n$, such that for all $i \ne j$ 
+A \emph{cat$^{n}$-group} consists of a group $G$ 
+with $n$ independent cat$^{1}$-group structures $(G,t_{i},h_{i})$, 
+$1 \leq i \leq n$, such that for all $i \ne j$ 
 \[
 t_{i}t_{j} = t_{j}t_{i}, \quad 
 h_{i}h_{j} = h_{j}h_{i} \quad \mbox{and} \quad 
@@ -559,7 +562,7 @@ The library contains all groups of order at most 2000 except 1024.
 %...............................%
 \subsection{2-Dimensional Groups}
 
-The \XMod\ package for \GAP\ contains functions for computing 
+The \XMod\ package for \GAP\ contains functions for computing with 
 crossed modules, cat$^{1}$-groups and their morphisms, 
 and was first described in \cite{xmod}. 
 A more general notion of cat$^1$-group is implemented in \XMod, 
@@ -742,8 +745,8 @@ true
 %..............................%
 \subsection{Natural Equivalence}
 
-By using the natural equivalence of categories of crossed squares 
-and cat$^{2}$-groups, the package includes the functions 
+The equivalence between categories \catXSq\ and \catCatt\ 
+is implemented by the functions 
 \textbf{CrossedSquareByCat2Group} and \textbf{Cat2GroupByCrossedSquare} 
 which construct crossed squares and cat$^{2}$-groups 
 from the given cat$^{2}$-groups and crossed squares, respectively.
@@ -753,7 +756,7 @@ The dihedral group $D_{20}$ has two normal subgroups $D_{10}$
 whose intersection is the cyclic $C_5$.  
 We construct the crossed square of normal subgroups, 
 and then use the conversion functions to obtain the associated cat$^{2}$-group. 
-We then obtain the crossed square $Xab$ associated to the cat$^2$-group $Cab$ 
+We then obtain the crossed square $Xab$ associated to the cat$^2$-group $C2ab$ 
 obtained earlier. 
 
 \begin{Verbatim}[frame=single, fontsize=\small, commandchars=\\\{\}]
@@ -1084,7 +1087,7 @@ University Scientific Research Projects (Grant No: 2017/19033).
 	
 	\bibitem{alp-wensley-ijac} \textsc{Alp, M.} and \textsc{Wensley, C.D.}, 
 	\emph{Enumeration of cat$^{1}$-groups of low order}, 
-	Int. J. Algebra Comput., 10, 407-424 (2000).
+	Int. J. Algebra Comput., \textbf{10}, 407-424 (2000).
 	
 %	\bibitem{artin-mazur} \textsc{Artin, M.} and \textsc{Mazur, B.}, 
 %	\emph{On the Van Kampen theorem},  
@@ -1097,11 +1100,11 @@ University Scientific Research Projects (Grant No: 2017/19033).
 	
 	\bibitem{arvasi-odabas} \textsc{Arvasi, Z.} and \textsc{Odabas, A.}, 
 	\emph{Computing 2-dimensional algebras: Crossed modules and Cat$^1$-algebras}, 
-	J. Algebra Appl., 15, 165-185 (2016).
+	J. Algebra Appl., \textbf{15}, 165-185 (2016).
 	
 	\bibitem{arvasi-ulualan} \textsc{Arvasi, Z.} and \textsc{Ulualan, E.}, 
 	\emph{On Algebraic Models for Homotopy $3$-types}, 
-	J. Homotopy and Related Structures, 1, 1-27, (2006).
+	J. Homotopy and Related Structures, \textbf{1}, 1-27, (2006).
 		
 	%\bibitem{baus1} \textsc{H.J. Baues}, 
 	%\textrm{Algebraic homotopy, } 
@@ -1109,8 +1112,8 @@ University Scientific Research Projects (Grant No: 2017/19033).
 	%\textbf{15}, (1998), 450 pages.
 	
 	\bibitem{baues} \textsc{H.J. Baues}, 
-	\textrm{Combinatorial homotopy and 4-dimensional complexes,} 
-	\emph{Walter de Gruyter,} \textbf{15}, (1991).
+	\textrm{Combinatorial homotopy and $4$-dimensional complexes,} 
+	\emph{Walter de Gruyter Expositions in Mathematics,} \textbf{2}, (1991).
 	
 	%\bibitem{berger} \textsc{C. Berger}, 
 	%\textrm{Double Loop spaces, braided monoidal categories 
@@ -1125,7 +1128,11 @@ University Scientific Research Projects (Grant No: 2017/19033).
 	\bibitem{brown-lms} \textsc{Brown, R.}, 
 	\emph{Higher Dimensional Group Theory}, 
 	in: Low Dimensional Topology, 
-	London Math. Soc. Lecture Note Series, 48, 215-238 (1982).
+	London Math. Soc. Lecture Note Series, \textbf{48}, 215-238 (1982).
+	
+	\bibitem{brown-indag} \textsc{Brown, R.}, 
+	\emph{Modelling and computing homotopy types}, 
+	Indag. Math., \textbf{29} 459-482 (2018).
 	
 	%\bibitem{brown-spencer} \textsc{Brown, R.} and \textsc{Spencer, C.B.}, 
 	%\textrm{G-groupoids, crossed modules and the fundamental groupoid 
@@ -1137,9 +1144,9 @@ University Scientific Research Projects (Grant No: 2017/19033).
 	for crossed modules}, 
 	Proc. London Math. Soc. \ (3) \textbf{59}, 51-73 (1989).
 	
-%	\bibitem{brown-loday} \textsc{Brown, R.} and \textsc{Loday, J.-L.}, 
-%	\emph{Van Kampen theorems for diagram of spaces,} 
-%	Topology, \textbf{26}, 311-335 (1987).
+	\bibitem{brown-loday} \textsc{Brown, R.} and \textsc{Loday, J.-L.}, 
+	\emph{Van Kampen theorems for diagram of spaces,} 
+	Topology, \textbf{26 (3)}, 311-335 (1987).
 	
 	%\bibitem{bullejos} \textsc{M.Bullejos, J.G. Cabello} and \textsc{E. Faro},
 	%\textrm{On the equivariant 2-type of a G-space}, 
@@ -1203,7 +1210,7 @@ University Scientific Research Projects (Grant No: 2017/19033).
 	
 	\bibitem{mutlu-porter-2003} \textsc{Mutlu, A.} and \textsc{Porter, T.}, 
 	\emph{Crossed squares and $2$-crossed modules}, 
-	preprint (2003).
+	arXiv:math/0210462, \url{https://arxiv.org/math/0210462v1.pdf} (2002).
 	
 %	\bibitem{porter-topology} \textsc{Porter, T.}, 
 %	\emph{$n$-type of simplicial groups and crossed $n$-cubes}, 
@@ -1215,8 +1222,9 @@ University Scientific Research Projects (Grant No: 2017/19033).
 %	\emph{Lecture Notes} (2010).
 	
 	\bibitem{wensley-notes} \textsc{Wensley C.D.},  
-	\emph{Notes on higher dimensional groups and related topics}, 
-	development version (2017).
+	\emph{Notes on higher dimensional groups and groupoids and related topics}, 
+	\url{https://github.com/cdwensley/xmod-notes/blob/master/notes.pdf}
+	(2019).
 	
 	\bibitem{whitehead-II} \textsc{J.H.C. Whitehead}, 
 	\emph{Combinatorial homotopy II }, 

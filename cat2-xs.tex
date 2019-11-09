@@ -302,7 +302,7 @@ oriented crossed squares, and a crossed square is an equivalence class.
 
 The structure of an oriented crossed square must satisfy the following axioms 
 for all $l \in L,~ m,m^{\prime} \in M,~ n,n^{\prime} \in N$ and $p \in P$. 
-\begin{enumerate}
+\begin{enumerate} 
 \item 
 The homomorphisms $\kappa, \lambda, \mu, \nu$ 
 and $\pi = \mu\circ\kappa = \nu\circ\lambda$ are crossed modules, 
@@ -323,6 +323,12 @@ $(m {\ \bt\ } \lambda l) ~=~ ({}^{m}l)l^{-1}$,
 $^{p}(m {\ \bt\ } n) ~=~ (^{p}m {\ \bt\ } ^{p}n)$. 
 \end{enumerate} 
 
+\noindent 
+Note that axiom 1. implies that $(\id,\mu), (\id,\nu), (\kappa,\id)$ 
+and $(\lambda,\id)$ are crossed module morphisms. 
+
+\medskip 
+\noindent 
 Standard constructions for crossed squares include the following.
 \begin{enumerate}
 \item 
@@ -663,7 +669,7 @@ The group $G$ is positioned where the front, up and left faces meet.
 \textcolor{blue}{gap> t1b := GroupHomomorphismByImages( G, G, [a,b,c], [a,(),()] );;}
 \textcolor{blue}{gap> C1b := PreCat1GroupByEndomorphisms( t1b, t1b );;}
 \textcolor{blue}{gap> C2ab := Cat2Group( C1a, C1b );}
-cat2-group with generating (pre-)cat1-groups:
+(pre-)cat2-group with generating (pre-)cat1-groups:
 1 : [c4c2:c2 => Group( [ (), (), (2,6)(4,8) ] )]
 2 : [c4c2:c2 => Group( [ (1,2,3,4)(5,6,7,8), (), () ] )]
 \textcolor{blue}{gap> IsCat2Group( C2ab );}
@@ -673,7 +679,7 @@ true
 \textcolor{blue}{gap> t1c := GroupHomomorphismByImages( G, G, [a,b,c], [a,b,c] );;}
 \textcolor{blue}{gap> C1c := PreCat1GroupByEndomorphisms( t1c, t1c );;}
 \textcolor{blue}{gap> C3abc := Cat3Group( C1a, C1b, C1c );}
-cat3-group with generating (pre-)cat1-groups:
+(pre-)cat3-group with generating (pre-)cat1-groups:
 1 : [c4c2:c2 => Group( [ (), (), (2,6)(4,8) ] )]
 2 : [c4c2:c2 => Group( [ (1,2,3,4)(5,6,7,8), (), () ] )]
 3 : [c4c2:c2 => Group( [ (1,2,3,4)(5,6,7,8), (1,5)(2,6)(3,7)(4,8),
@@ -683,7 +689,7 @@ true
 \textcolor{blue}{gap> HigherDimension( C3abc );}
 4
 \textcolor{blue}{gap> Front3DimensionalGroup( C3abc );} 
-cat2-group with generating (pre-)cat1-groups:
+(pre-)cat2-group with generating (pre-)cat1-groups:
 1 : [c4c2:c2 => Group( [ (), (), (2,6)(4,8) ] )]
 2 : [c4c2:c2 => Group( [ (1,2,3,4)(5,6,7,8), (), () ] )]
 \end{Verbatim}
@@ -705,12 +711,12 @@ using these functions.
 
 \begin{Verbatim}[frame=single, fontsize=\small, commandchars=\\\{\}]
 \textcolor{blue}{gap> C2_82 := Cat2Group( Cat1Group(8,2,1), Cat1Group(8,2,2) );}
-cat2-group with generating (pre-)cat1-groups:
+(pre-)cat2-group with generating (pre-)cat1-groups:
 1 : [C4 x C2 => Group( [ <identity> of ..., <identity> of ...,
 <identity> of ... ] )]
 2 : [C4 x C2 => Group( [ <identity> of ..., f2 ] )]
 \textcolor{blue}{gap> C2_83 := Cat2Group( Cat1Group(8,3,2), Cat1Group(8,3,3) );}
-cat2-group with generating (pre-)cat1-groups:
+(pre-)cat2-group with generating (pre-)cat1-groups:
 1 : [D8 => Group( [ f1, f1 ] )]
 2 : [D8=>D8]
 \textcolor{blue}{gap> up1 := GeneratingCat1Groups( C2_82 )[1];;}
@@ -727,10 +733,10 @@ cat2-group with generating (pre-)cat1-groups:
 true
 \textcolor{blue}{gap> ltmor := Cat1GroupMorphism( lt1, lt2, homG[1], homQ[1] );;}
 \textcolor{blue}{gap> mor2 := PreCat2GroupMorphism( C2_82, C2_83, upmor, ltmor );}
-<mapping: cat2-group with generating (pre-)cat1-groups:
+<mapping: (pre-)cat2-group with generating (pre-)cat1-groups:
 1 : [C4 x C2 => Group( [ <identity> of ..., <identity> of ..., 
   <identity> of ... ] )]
-2 : [C4 x C2 => Group( [ <identity> of ..., f2 ] )] -> cat
+2 : [C4 x C2 => Group( [ <identity> of ..., f2 ] )] -> (pre-)cat
 2-group with generating (pre-)cat1-groups:
 1 : [D8 => Group( [ f1, f1 ] )]
 2 : [D8=>D8] >
@@ -777,7 +783,7 @@ obtained earlier.
 \textcolor{blue}{gap> IsCrossedSquare(XS1); }
 true
 \textcolor{blue}{gap> C2G1 := Cat2GroupOfCrossedSquare( XS1 ); }
-cat2-group with generating (pre-)cat1-groups:
+(pre-)cat2-group with generating (pre-)cat1-groups:
 1 : [((d20 |X d10a) |X (d10b |X c5d))=>(d20 |X d10a)]
 2 : [((d20 |X d10a) |X (d10b |X c5d))=>(d20 |X d10b)]
 \textcolor{blue}{gap> IsCat2Group( C2G1 ); }
@@ -811,8 +817,8 @@ $[1 \ldots n_G]$ partitioned according to these classes.
 In the following \GAP\ session, we compute all $47$ cat$^{2}$-groups on 
 $C_{4} \times C_{2}$; representatives of the $14$ isomorphism classes; 
 and the list of lists of positions in the families. 
-So the tenth class consists of cat$^2$-group numbers $[31,34,35,38]$, 
-and \texttt{iso82[10]=all82[31]}. 
+So the eighth class consists of cat$^2$-group numbers $[31,34,35,38]$, 
+and \texttt{iso82[8]=all82[31]}. 
 
 \begin{Verbatim}[frame=single, fontsize=\small, commandchars=\\\{\}]
 \textcolor{blue}{gap> c4c2 := SmallGroup(8,2);;}
@@ -823,12 +829,12 @@ and \texttt{iso82[10]=all82[31]}.
 \textcolor{blue}{gap> Length(iso82);}
 14
 \textcolor{blue}{gap> AllCat2GroupFamilies( c4c2 );}
-[ [ 1 ], [ 2, 5, 8, 11 ], [ 3, 4, 9, 10 ], [ 6, 7, 12, 13 ], 
-  [ 14, 17, 22, 25 ], [ 15, 16, 23, 24 ], [ 18, 19, 26, 27 ], 
-  [ 20, 21, 28, 29 ], [ 30 ], [ 31, 34, 35, 38 ], [ 32, 33, 36, 37 ], 
+[ [ 1 ], [ 2, 5, 8, 11 ], [ 3, 4, 9, 10 ], [ 14, 17, 22, 25 ], 
+  [ 15, 16, 23, 24 ], [ 30 ], [ 6, 7, 12, 13 ], [ 31, 34, 35, 38 ], 
+  [ 32, 33, 36, 37 ], [ 18, 19, 26, 27 ], [ 20, 21, 28, 29 ], 
   [ 39, 42, 43, 46 ], [ 40, 41, 44, 45 ], [ 47 ] ]
-\textcolor{blue}{gap> iso82[10];}
-cat2-group with generating (pre-)cat1-groups:
+\textcolor{blue}{gap> iso82[8];}
+(pre-)cat2-group with generating (pre-)cat1-groups:
 1 : [Group( [ f1, f2, f3 ] ) => Group( [ f2, f2 ] )]
 2 : [Group( [ f1, f2, f3 ] ) => Group( [ f2, f1 ] )]
 \textcolor{blue}{gap> IsomorphismCat2Groups( all82[31], all82[34] ) = fail;}
@@ -1210,7 +1216,7 @@ University Scientific Research Projects (Grant No: 2017/19033).
 	
 	\bibitem{mutlu-porter-2003} \textsc{Mutlu, A.} and \textsc{Porter, T.}, 
 	\emph{Crossed squares and $2$-crossed modules}, 
-	arXiv:math/0210462, \url{https://arxiv.org/math/0210462v1.pdf} (2002).
+	arXiv:math/0210462, \url{https://arxiv.org/pdf/math/0210462v1.pdf} (2002).
 	
 %	\bibitem{porter-topology} \textsc{Porter, T.}, 
 %	\emph{$n$-type of simplicial groups and crossed $n$-cubes}, 

@@ -76,7 +76,7 @@ Functions for computing with these structures have been developed in
 the package \XMod\ written using the \GAP\ computational discrete algebra 
 programming language.
 This paper includes details of the algorithms used. 
-It contains tables listing the $993$ isomorphism classes of cat$^2$-groups on groups of order at most $30$. 
+It contains tables listing the $1,006$ isomorphism classes of cat$^2$-groups on groups of order at most $30$. 
 
 
 \end{abstract}
@@ -116,7 +116,7 @@ is concerned with objects in the category \catXSq\ of crossed squares
 and the equivalent cat$^2$-groups category \catCatt. 
 The mathematical basis is described in section 3, 
 and some computational details are included in section 4. 
-In section 5 we enumerate the $993$ isomorphism 
+In section 5 we enumerate the $1,006$ isomorphism 
 classes of cat$^2$-group structures on the $92$ groups of order at most $30$. 
 
 There are many other ways of viewing crossed squares and cat$^2$-groups. 
@@ -242,7 +242,7 @@ with $R_1, R_2$ acting trivially on $S_2,\ S_1$ respectively.
 \end{enumerate}
 
 Loday reformulated the notion of crossed module as a cat$^{1}$-group. 
-Recall from \cite{Loday} that a \emph{cat$^{1}$-group} is a triple $(G,t,h)$ consisting of a group $G$ with two endomorphisms: 
+Recall from \cite{Loday} that a \emph{cat$^{1}$-group} is a triple $(G;t,h)$ consisting of a group $G$ with two endomorphisms: 
 the \emph{tail map} $t$ and the \emph{head map} $h$, 
 having a common image $R$ and satisfying the following axioms. 
 \begin{equation} \label{cat1-axioms} 
@@ -252,7 +252,7 @@ h \circ t = t,
 \end{equation} 
 It follows immediately that $t \circ t = t$ and $h \circ h = h$. 
 A \emph{morphism of cat}$^{1}$\emph{-groups} 
-$(G_{1},t_1,h_1) \rightarrow (G_{2},t_2,h_2)$ 
+$(G_{1};t_1,h_1) \rightarrow (G_{2};t_2,h_2)$ 
 is a group homomorphism $f : G_{1} \rightarrow G_{2}$ such that 
 \[ 
 f \circ t_1 ~=~ t_2 \circ f  
@@ -268,7 +268,7 @@ into a crossed module.
 Conversely, if $(\partial : S \rightarrow R)$ is a crossed module, 
 then setting $G = S \rtimes R$ and defining $t,h$ by $t(s,r) = (1,r)$ 
 and $h(s,r) = (1,(\partial s)r)$ for $s \in S$, $r \in R$, 
-produces a cat$^{1}$-group $(G,t,h)$.
+produces a cat$^{1}$-group $(G;t,h)$.
 
 
 %---------------------------------------------------------------------------% 
@@ -420,6 +420,7 @@ There is an evident notion of morphism of crossed squares
 which preserves all the structure, 
 so we obtain a category \catXSq, the category of crossed squares.
 
+\medskip
 Although, when first introduced by Loday and Walery \cite{walery-loday}, 
 the notion of crossed square of groups was not linked to that of cat$^{2}$-groups, 
 it was in this form that Loday gave their generalisation 
@@ -429,8 +430,8 @@ When $n=1$ this is the notion of cat$^1$-group given earlier.
 When $n=2$ we obtain a cat$^{2}$-group. 
 Again we have a group $G$, but this time with two \emph{independent} 
 cat$^{1}$-group structures on it. 
-So a \emph{cat$^{2}$-group} is a $5$-tuple, $(G,t_1,h_1,t_2,h_2)$, 
-where $(G,t_{i},h_{i}),~ i=1,2$ are cat$^{1}$-groups, and
+So a \emph{cat$^{2}$-group} is a $5$-tuple, $(G;t_1,h_1;t_2,h_2)$, 
+where $(G;t_{i},h_{i}),~ i=1,2$ are cat$^{1}$-groups, and
 \[
 t_{1} \circ t_{2} ~=~ t_{2} \circ t_{1}, \quad 
 h_{1} \circ h_{2} ~=~ h_{2} \circ h_{1}, \quad 
@@ -439,7 +440,7 @@ t_{2} \circ h_{1} ~=~ h_{1} \circ t_{2}.
 \]
 To emphasise the relationship with crossed squares 
 we may illustrate an \emph{oriented} cat$^2$-group by the diagram 
-\[
+\begin{equation} \label{cat2-diag}
 \xymatrix@R=50pt@C=50pt 
 { G \ar@<+0.4ex>[r]^{t_1,h_1} \ar@<-0.4ex>[r] 
     \ar@<-0.4ex>[d]_{t_2,h_2} \ar@<+0.4ex>[d] 
@@ -448,10 +449,10 @@ we may illustrate an \emph{oriented} cat$^2$-group by the diagram
   R_2 \ar@<-0.4ex>[r]_{t_1,h_1} \ar@<+0.4ex>[r] 
 	& R_{12} 
 }
-\]
+\end{equation} 
 where $R_{12}$ is the image of $t_1 \circ t_2 = t_2 \circ t_1$. 
 
-\vspace{3mm}
+\medskip
 A morphism of cat$^{2}$-groups is a triple $(\gamma ,\rho_1 ,\rho_2)$,
 as shown in the diagram 
 \[
@@ -475,26 +476,30 @@ and $\rho_2 = \gamma|_{R_2}$ are homomorphisms satisfying:
 \rho_2 \circ t_2 = t_2^{\prime} \circ \gamma, \qquad 
 \rho_2 \circ h_2 = h_2^{\prime} \circ \gamma. 
 \] 
-We thus obtain a category \catCatt, 
-the category of cat$^{2}$-groups. 
-The following proposition was given by Loday \cite{Loday}. 
-We present a sketch proof of this result (see also \cite{mutlu-porter-2003}) 
-as some of the ideas used will be needed later.
+We thus obtain a category \catCatt, the category of cat$^{2}$-groups. 
 
-\begin{proposition}
-\label{loday} \emph{(\cite{Loday})} 
-There is an equivalence of categories between the category \catCatt\  
-and the category \catXSq.
-\end{proposition}
-\begin{proof}
-The cat$^{2}$-group $(G,t_1,h_1,t_2,h_2)$ determines a diagram of homomorphisms 
-\[
+Notice that, unlike the situation with crossed squares 
+where the diagonal is a crossed module, 
+it is \emph{not} required that the diagonal in (\ref{cat2-diag}) 
+is a cat$^1$-group. 
+The simplest example where the diagonal is only a pre-cat$^1$-group 
+is described in Example \ref{ex-d8} below. 
+But first we consider the equivalence between the categories 
+\catXSq\ and \catCatt. 
+
+Loday, in \cite{Loday} proved that there is an equivalence of categories 
+between the category \catCatt\ and the category \catXSq.
+We now consider the sketch proof of this result 
+(see also \cite{mutlu-porter-2003}). 
+
+The cat$^{2}$-group $(G;t_1,h_1;t_2,h_2)$ determines a diagram of homomorphisms 
+\begin{equation} \label{ker-im-diag}
 \xymatrix@R=50pt@C=50pt
 { \ker t_1 \cap \ker t_2 \ar[d]_{(\id,\partial_2)} \ar[r]^{(\partial_1,\id)} 
   	  & \im t_1 \cap \ker t_2 \ar[d]^{(\id,\partial_2)} \\ 
   \ker t_1 \cap \im t_2 \ar[r]_{(\partial_1,\id)}  
 	  & \im t_1 \cap \im t_2 } 
-\]
+\end{equation} 
 \noindent where each morphism is a crossed module for the natural action, 
 conjugation in $G$. 
 The required crossed pairing is given by the commutator in $G$ since, 
@@ -527,11 +532,41 @@ given by
 Using this action, we form its associated cat$^{2}$-group with source  
 $(L \rtimes N) \rtimes (M \rtimes P)$ 
 and induced endomorphisms $t_1,h_1,t_2,h_2$. 
-\end{proof}
+
+\begin{example} \label{ex-d8} 
+Let $D_8 = \langle a,b ~|~ a^2, b^2, (ab)^4 \rangle$ 
+be the dihedral group of order $8$, 
+and let $c=[a,b]=(ab)^2$ so that $a^b=ac$ and $b^a=bc$.  
+(The standard permutation representation is given by 
+$a=(1,2)(3,4), b=(1,3), ab=(1,2,3,4), c=(1,3)(2,4)$.) 
+
+Define $t_a,t_b : D_8 \to D_8$ by $t_a : [a,b] \mapsto [a,1]$ 
+and $t_b : [a,b] \mapsto [1,b]$. 
+Construct cat$^1$-groups $C_a = (D_8,t_a,t_a)$ and $C_b = (D_8,t_b,t_b)$. 
+Diagrams (\ref{cat2-diag}) and (\ref{ker-im-diag}) become 
+\[
+\xymatrix@R=40pt@C=40pt
+{ D_8 \ar@<+0.4ex>[r]^{t_a} \ar@<-0.4ex>[r] 
+    \ar@<-0.4ex>[d]_{t_b} \ar@<+0.4ex>[d] 
+    \ar@<-0.4ex>[rd]^{\ t} \ar@<+0.4ex>[rd] 
+	& A \ar@<+0.4ex>[d]^{t_b} \ar@<-0.4ex>[d] 
+	   &  & C \ar[r]^{c \mapsto 1} \ar[d]_{c \mapsto 1}  
+	         & A \ar[d]^{a \mapsto 1} \\
+  B \ar@<-0.4ex>[r]_{t_a} \ar@<+0.4ex>[r] 
+	& I 
+	   &  & B \ar[r]_{b \mapsto 1}  
+	         & I }
+\] 
+where $A = \langle a \rangle$, $B = \langle b \rangle$, $C = \langle c \rangle$ 
+and $I$ is the trivial group. 
+The crossed pairing is given by $\bt(a,b)=c$. 
+The diagonal map $t = t_a \circ t_b$ has kernel $D_8$, 
+and $[\ker t,\ker t] = C$, so the diagonal is \emph{not} a cat$^1$-group. 
+\end{example} 
 
 \begin{definition}
 A \emph{cat$^{n}$-group} consists of a group $G$ 
-with $n$ independent cat$^{1}$-group structures $(G,t_{i},h_{i})$, 
+with $n$ independent cat$^{1}$-group structures $(G;t_{i},h_{i})$, 
 $1 \leq i \leq n$, such that for all $i \ne j$ 
 \[
 t_{i}t_{j} = t_{j}t_{i}, \quad 
@@ -542,7 +577,7 @@ t_{i}h_{j} = h_{j}t_{i}.
 
 A generalisation of crossed square to higher dimensions was given by Ellis
 and Stenier (cf. \cite{ellis-stenier}). 
-It is called a \textquotedblleft crossed $n$-cube \textquotedblright. 
+It is called a \textquotedblleft crossed $n$-cube\textquotedblright. 
 We only use this construction for $n=2$.
 
 
@@ -625,7 +660,9 @@ Functions for (pre-)cat$^{2} $-groups include \textbf{PreCat2Group},
 \textbf{Cat2Group}, \textbf{IsPreCat2Group}, \textbf{IsCat2Group} 
 and \textbf{PreCat2GroupByPreCat1Groups}. 
 Attributes of a (pre)cat$^{2}$-group constructed in this way include 
-\textbf{GeneratingCat1Groups}, \textbf{Size} and \textbf{Name}. 
+\textbf{GeneratingCat1Groups}, \textbf{Size}, \textbf{Name} and 
+\textbf{Edge2DimensionalGroup} where '\textbf{Edge}' is one of 
+\{\textbf{Up, Left, Right, Down, Diagonal}\}.  
 
 As with cat$^1$-groups, we use a more general notion for cat$^2$-groups. 
 An \emph{oriented cat$^2$-group} has the form 
@@ -655,8 +692,10 @@ Generalizing these functions, we have introduced \textbf{Cat3Group} and \textbf{
 Functions for general cat$^{n}$-groups will be added as time permits. 
 An orientation of a cat$^{3}$-group on $G$ displays a cube whose six faces 
 (ordered as front; up, left, right, down, back) are cat$^{2}$-groups. 
-The following \GAP\ session illustrates the use of these functions. 
 The group $G$ is positioned where the front, up and left faces meet. 
+The following \GAP\ session illustrates the use of these functions. 
+Notice that the cat$^2$-group \verb|C2ab| is the second example 
+with a diagonal which is only a pre-cat$^1$-group. 
 
 \begin{Verbatim}[frame=single, fontsize=\small, commandchars=\\\{\}]
 \textcolor{blue}{gap> a := (1,2,3,4)(5,6,7,8);;}
@@ -676,6 +715,8 @@ The group $G$ is positioned where the front, up and left faces meet.
 true
 \textcolor{blue}{gap> Size( C2ab );}
 [ 16, 2, 4, 1 ]
+\textcolor{blue}{gap> IsCat1Group( Diagonal2DimensionalGroup( C2ab ) );} 
+false
 \textcolor{blue}{gap> t1c := GroupHomomorphismByImages( G, G, [a,b,c], [a,b,c] );;}
 \textcolor{blue}{gap> C1c := PreCat1GroupByEndomorphisms( t1c, t1c );;}
 \textcolor{blue}{gap> C3abc := Cat3Group( C1a, C1b, C1c );}
@@ -806,7 +847,7 @@ true
 \section{Table of cat$^{2}$-groups}
 
 The function \textbf{AllCat2Groups(G)} constructs a list $L_G$ 
-of all $n_G$ cat$^{2}$-groups $(G,t_1,h_1,t_2,h_2)$ over $G$. 
+of all $n_G$ cat$^{2}$-groups $(G;t_1,h_1;t_2,h_2)$ over $G$. 
 The function \textbf{AreIsomorphicCat2Groups} is used for checking whether 
 or not two cat$^{2}$-groups are isomorphic, 
 and \textbf{AllCat2GroupsUpToIsomorphism} returns a list of representatives 
@@ -1013,7 +1054,7 @@ The following table contains the results for those $G$ which are not cyclic.
 	4/2 & $K_4 = C_2 \times C_2$ & 8 & 14 & 4 & 36 & 9 \\ 
 	6/1 & $S_3$ & 5 & 4 & 2 & 7 & 3 \\ 
 	8/2 & $C_4 \times C_2$ & 10 & 18 & 6 & 47 & 14 \\ 
-	8/3 & $D_8$ & 10 & 9 & 3 & 17 & 5 \\ 
+	8/3 & $D_8$ & 10 & 9 & 3 & 21 & 6 \\ 
 	8/4 & $Q_8$ & 2 & 1 & 1 & 1 & 1 \\ 
 	8/5 & $C_2 \times C_2 \times C_2$ & 58 & 226 & 6 & 1,711 & 23 \\ 
 	9/2 & $C_3 \times C_3$ & 14 & 38 & 4 & 93 & 9 \\ 
@@ -1024,7 +1065,7 @@ The following table contains the results for those $G$ which are not cyclic.
 	12/5 & $C_3 \times K_4$ & 16 & 28 & 8 & 136 & 32 \\ 
 	14/1 & $D_{14}$ & 9 & 8 & 2 & 15 & 3 \\ 
 	16/2 & $C_4 \times C_4$ & 26 & 98 & 5 & 231 & 11 \\ 
-	16/3 & $(C_4 \times C_2) \ltimes C_2$ & 18 & 25 & 4 & 41 & 6 \\ 
+	16/3 & $(C_4 \times C_2) \ltimes C_2$ & 18 & 25 & 4 & 57 & 7 \\ 
 	16/4 & $C_4 \ltimes C_4$ & 10 & 17 & 3 & 25 & 4 \\ 
 	16/5 & $C_8 \times C_2$ & 10 & 18 & 6 & 47 & 14 \\ 
 	16/6 & $C_8 \ltimes C_2$ & 6 & 5 & 2 & 9 & 3 \\ 
@@ -1032,9 +1073,9 @@ The following table contains the results for those $G$ which are not cyclic.
 	16/8 & $QD_{16}$ & 10 & 5 & 2 & 9 & 3 \\ 
 	16/9 & $Q_{16}$ & 2 & 1 & 1 & 1 & 1 \\ 
 	16/10 & $C_4 \times K_4$ & 82 & 322 & 12 & 2,875 & 53 \\ 
-	16/11 & $C_2 \times D_8$ & 82 & 97 & 9 & 473 & 24 \\ 
+	16/11 & $C_2 \times D_8$ & 82 & 97 & 9 & 649 & 30 \\ 
 	16/12 & $C_2 \times Q_8$ & 18 & 17 & 3 & 25 & 4 \\ 
-	16/13 & $(C4 \times C2) \ltimes C_2$ & 26 & 13 & 2 & 25 & 3 \\ 
+	16/13 & $(C4 \times C2) \ltimes C_2$ & 26 & 13 & 2 & 37 & 4 \\ 
 	16/14 & $K_4 \times K_4$ & 382 & 4,162 & 9 & 298,483 & 53  \\ 
 	18/1 & $D_{18}$ & 11 & 10 & 2 & 19 & 4 \\ 
 	18/3 & $C_3 \times S_3$ & 12 & 8 & 4 & 24 & 10 \\ 
@@ -1054,7 +1095,7 @@ The following table contains the results for those $G$ which are not cyclic.
 	24/7 & $Q_{12} \times C_2$ & 25 & 36 & 6 & 115 & 14 \\ 
 	24/8 & $D_8 \ltimes C_3$ & 23 & 12 & 4 & 41 & 10 \\ 
 	24/9 & $C_{12} \times C_2$ & 20 & 36 & 12 & 178 & 52 \\ 
-	24/10 & $D_8 \times C_3$ & 20 & 18 & 6 & 59 & 17 \\ 
+	24/10 & $D_8 \times C_3$ & 20 & 18 & 6 & 75 & 20 \\ 
 	24/11 & $Q_8 \times C_3$ & 4 & 2 & 2 & 3 & 3 \\ 
 	24/12 & $S_4$ & 12 & 5 & 2 & 9 & 3 \\ 
 	24/13 & $A_4 \times C_2$ & 15 & 10 & 4 & 31 & 10 \\ 
@@ -1063,7 +1104,7 @@ The following table contains the results for those $G$ which are not cyclic.
 	25/2 & $C_5 \times C_5$ & 32 & 152 & 4 & 348 & 9 \\ 
 	26/1 & $D_{26}$ & 15 & 14 & 2 & 27 & 3 \\ 
 	27/2 & $C_9 \times C_3$ & 20 & 56 & 6 & 138 & 14 \\ 
-	27/3 & $(C_3 \times C_3) \ltimes C_3$ & 38 & 37 & 2 & 73 & 3 \\ 
+	27/3 & $(C_3 \times C_3) \ltimes C_3$ & 38 & 37 & 2 & 127 & 4 \\ 
 	27/4 & $C_9 \ltimes C_3$ & 11 & 10 & 2 & 19 & 3 \\ 
 	27/5 & $C_3 \times C_3 \times C_3$ & 236 & 2,108 & 6 & 24,222  & 16 \\ 
 	28/1 & $Q_{28}$ & 9 & 8 & 2 & 15 & 3 \\ 
@@ -1075,7 +1116,10 @@ The following table contains the results for those $G$ which are not cyclic.
 	\hline
 \end{longtable}
 %}
-
+The $1,006$ isomorphism classes contain just $13$ cat$^2$-groups 
+whose diagonal is \emph{not} a cat$^1$-group: 
+one each for groups [8/3, 16/3, 16/13, 27/3], 
+three for 24/10 and six for 16/11. 
 
 %---------------------------------------------------------------------------% 
 \section*{Acknowledgement}

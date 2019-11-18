@@ -76,7 +76,7 @@ Functions for computing with these structures have been developed in
 the package \XMod\ written using the \GAP\ computational discrete algebra 
 programming language.
 This paper includes details of the algorithms used. 
-It contains tables listing the $1,006$ isomorphism classes of cat$^2$-groups on groups of order at most $30$. 
+It contains tables listing the $1,000$ isomorphism classes of cat$^2$-groups on groups of order at most $30$. 
 
 
 \end{abstract}
@@ -116,7 +116,7 @@ is concerned with objects in the category \catXSq\ of crossed squares
 and the equivalent cat$^2$-groups category \catCatt. 
 The mathematical basis is described in section 3, 
 and some computational details are included in section 4. 
-In section 5 we enumerate the $1,006$ isomorphism 
+In section 5 we enumerate the $1,000$ isomorphism 
 classes of cat$^2$-group structures on the $92$ groups of order at most $30$. 
 
 There are many other ways of viewing crossed squares and cat$^2$-groups. 
@@ -238,7 +238,9 @@ The \emph{direct product} of \index{direct product!of crossed modules}
 $\calX_1 = (\partial_1 : S_1 \to R_1)$ and $\calX_2 = (\partial_2 : S_2 \to R_2)$ 
 is $\calX_1 \times \calX_2 
 = (\partial_1 \times \partial_2 : S_1 \times S_2 \to R_1 \times R_2)$ 
-with $R_1, R_2$ acting trivially on $S_2,\ S_1$ respectively.
+% with $R_1, R_2$ acting trivially on $S_2,\ S_1$ respectively. 
+with direct product action 
+${}^{(r_1,r_2)}(s_1,s_2) = \left({}^{r_1}s_1,{}^{r_2}s_2\right)$. 
 \end{enumerate}
 
 Loday reformulated the notion of crossed module as a cat$^{1}$-group. 
@@ -392,6 +394,26 @@ there is a universal crossed square
 \] 
 where $M \otimes N$ is constructed using the nonabelian tensor product of groups 
 \cite{brown-loday}. 
+\item
+The \emph{direct product} of cat$^2$-groups $\calS_1,\calS_2$ is 
+\[
+\xymatrix@R=40pt@C=50pt
+{ L_1 \times L_2 \ar[r]^{\kappa_1 \times \kappa_2} 
+                 \ar[d]_{\lambda_1 \times \lambda_2}  
+	& M_1 \times M_2 \ar[d]^{\mu_1 \times \mu_2} \\
+	N_1 \times N_2 \ar[r]_{\nu_1 \times \nu_2} 
+	& P_1 \times P_2 }
+\] 
+with actions 
+\[
+{}^{(p_1,p_2)}(l_1,l_2) = \left({}^{p_1}l_1,{}^{p_2}l_2\right), \quad 
+{}^{(p_1,p_2)}(m_1,m_2) = \left({}^{p_1}m_1,{}^{p_2}m_2\right), \quad 
+{}^{(p_1,p_2)}(n_1,n_2) = \left({}^{p_1}n_1,{}^{p_2}n_2\right),  
+\]
+and crossed pairing 
+\[
+\bt\left((m_1,m_2),(n_1,n_2)\right) ~=~ \left(\bt_1(m_1,n_1),\bt_2(m_2,n_2)\right). 
+\]
 \end{enumerate}
 
 The crossed square (\ref{xsq-diag}) can be thought of as a horizontal or vertical 
@@ -1116,7 +1138,7 @@ The following table contains the results for those $G$ which are not cyclic.
 	\hline
 \end{longtable}
 %}
-The $1,006$ isomorphism classes contain just $13$ cat$^2$-groups 
+The $1,000$ isomorphism classes contain just $13$ cat$^2$-groups 
 whose diagonal is \emph{not} a cat$^1$-group: 
 one each for groups [8/3, 16/3, 16/13, 27/3], 
 three for 24/10 and six for 16/11. 

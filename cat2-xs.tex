@@ -95,8 +95,8 @@ by Brown in \cite{brown-lms}.
 The $2$-dimensional part of these programmes is concerned with group objects 
 in the categories of groups or groupoids, and these objects may equivalently 
 be considered as crossed modules or cat$^1$-groups. 
-Section 2 contains a summary of the definitions of these objects, 
-with some examples. 
+A summary of the definitions of these objects, 
+with some examples, is contained in \S 2. 
 
 The initial computational part of this programme was described in 
 Alp and Wensley \cite{alp-wensley-ijac}. 
@@ -114,9 +114,9 @@ as described in \cite{arvasi-odabas}.
 The $3$-dimensional part of the higher-dimensional group theory programme 
 is concerned with objects in the category \catXSq\ of crossed squares 
 and the equivalent cat$^2$-groups category \catCatt. 
-The mathematical basis is described in section 3, 
-and some computational details are included in section 4. 
-In section 5 we enumerate the $1,000$ isomorphism 
+The mathematical basis of these structures is described in \S 3, 
+and some computational details are included in \S 4. 
+In \S 5 we enumerate the $1,000$ isomorphism 
 classes of cat$^2$-group structures on the $92$ groups of order at most $30$. 
 
 There are many other ways of viewing crossed squares and cat$^2$-groups. 
@@ -132,15 +132,13 @@ and the homotopy equivalences between them.
 
 The impetus for the study of higher-dimensional groups 
 comes from algebraic topology \cite{brown-indag}. 
-% -- in the $2$-dimensional case by describing 
-% the homotopy double groupoid of a based pair of spaces. 
 Crossed modules are algebraic models of connected (weak homotopy) $2$-types, 
 while crossed squares model connected $3$-types. 
 The principal topological example of a crossed module arises from 
 a pointed pair of spaces $ A \subseteq X$ where the boundary map is 
 $\partial : \pi_2(X,A) \to \pi_1(A)$. 
 Similarly, given a triad of pointed spaces $A \subseteq X,\ B \subseteq X$ 
-we obtain a crossed square as shown on the left below. 
+we obtain a crossed square as shown in the left-hand diagram below. 
 A simple case, when $X$ is a $2$-sphere and $A,B$ are the 
 upper and lower hemispheres, results in the square on the right. 
 Here $F$ is a free group on one generator $x$, 
@@ -252,7 +250,15 @@ t \circ h = h, \quad
 h \circ t = t, 
 \quad \mbox{and}\quad  [\ker t,\ker h] = 1. 
 \end{equation} 
+When only the first two of these axioms are satisfied, the structure is a 
+\emph{pre-cat$^1$-group}. 
 It follows immediately that $t \circ t = t$ and $h \circ h = h$. 
+We picture $(G;t,h)$ as 
+\[
+\xymatrix@R=40pt@C=40pt
+{ G \ar@<+0.4ex>[r]^{t,h} \ar@<-0.4ex>[r]  &  R }
+\] 
+
 A \emph{morphism of cat}$^{1}$\emph{-groups} 
 $(G_{1};t_1,h_1) \rightarrow (G_{2};t_2,h_2)$ 
 is a group homomorphism $f : G_{1} \rightarrow G_{2}$ such that 
@@ -292,7 +298,7 @@ A \emph{crossed square of groups} $\calS$ is a commutative square of groups
 \end{equation}
 \noindent together with left actions of $P$ on $L,M,N$ 
 and a \emph{crossed pairing} map ${\ \bt\ } : M \times N \rightarrow L$. 
-Then $M$ acts on $N,L$ via $P$ and $N$ acts on $M,L$ via $P$. 
+Then $M$ acts on $N$ and $L$ via $P$ and $N$ acts on $M$ and $L$ via $P$. 
 The diagram illustrates an \emph{oriented crossed square}, 
 since a choice of where to place $M$ and $N$ has been made. 
 The \emph{transpose} $\tilde{\calS}$ of $\calS$ is obtained by making the alternative choice. 
@@ -306,7 +312,7 @@ The structure of an oriented crossed square must satisfy the following axioms
 for all $l \in L,~ m,m^{\prime} \in M,~ n,n^{\prime} \in N$ and $p \in P$. 
 \begin{enumerate} 
 \item 
-The homomorphisms $\kappa, \lambda, \mu, \nu$ 
+With the given actions, the homomorphisms $\kappa, \lambda, \mu, \nu$ 
 and $\pi = \mu\circ\kappa = \nu\circ\lambda$ are crossed modules, 
 and both $\kappa, \lambda$ are $P$-equivariant, 
 \item
@@ -327,7 +333,7 @@ $^{p}(m {\ \bt\ } n) ~=~ (^{p}m {\ \bt\ } ^{p}n)$.
 
 \noindent 
 Note that axiom 1. implies that $(\id,\mu), (\id,\nu), (\kappa,\id)$ 
-and $(\lambda,\id)$ are crossed module morphisms. 
+and $(\lambda,\id)$ are morphisms of crossed modules. 
 
 \medskip 
 \noindent 
@@ -363,7 +369,7 @@ The diagram
 where $\alpha $ maps $m\in M$ to the inner automorphism%
 \[
 \beta_{m} : M \rightarrow M,\quad 
-m^{\prime}\mapsto m^{-1}m^{\prime}m, 
+m^{\prime}\mapsto mm^{\prime}m^{-1}, 
 \]
 and where $\iota $ is the inclusion of $\Inn\,M$ in $\Aut\,M$; 
 the actions are standard; and the crossed pairing is
@@ -395,7 +401,7 @@ there is a universal crossed square
 where $M \otimes N$ is constructed using the nonabelian tensor product of groups 
 \cite{brown-loday}. 
 \item
-The \emph{direct product} of cat$^2$-groups $\calS_1,\calS_2$ is 
+The \emph{direct product} of crossed squares $\calS_1,\calS_2$ is 
 \[
 \xymatrix@R=40pt@C=50pt
 { L_1 \times L_2 \ar[r]^{\kappa_1 \times \kappa_2} 
@@ -416,8 +422,8 @@ and crossed pairing
 \]
 \end{enumerate}
 
-The crossed square (\ref{xsq-diag}) can be thought of as a horizontal or vertical 
-crossed module of crossed modules:
+The crossed square $\calS$ in (\ref{xsq-diag}) can be thought of 
+as a horizontal or vertical crossed module of crossed modules:
 \[
 \xymatrix@R=20pt@C=20pt
 { L \ar[dd]_{\lambda}  
@@ -440,7 +446,7 @@ domain $(\lambda : L \rightarrow N)$ and codomain $(\mu : M \rightarrow P)$.
 
 There is an evident notion of morphism of crossed squares  
 which preserves all the structure, 
-so we obtain a category \catXSq, the category of crossed squares.
+so that we obtain a category \catXSq, the category of crossed squares.
 
 \medskip
 Although, when first introduced by Loday and Walery \cite{walery-loday}, 
@@ -503,11 +509,9 @@ We thus obtain a category \catCatt, the category of cat$^{2}$-groups.
 Notice that, unlike the situation with crossed squares 
 where the diagonal is a crossed module, 
 it is \emph{not} required that the diagonal in (\ref{cat2-diag}) 
-is a cat$^1$-group. 
-The simplest example where the diagonal is only a pre-cat$^1$-group 
+is a cat$^1$-group -- it may just be a pre-cat$^1$-group. 
+The simplest example of this situation  
 is described in Example \ref{ex-d8} below. 
-But first we consider the equivalence between the categories 
-\catXSq\ and \catCatt. 
 
 Loday, in \cite{Loday} proved that there is an equivalence of categories 
 between the category \catCatt\ and the category \catXSq.
@@ -538,7 +542,7 @@ Conversely, if
 	  & P }  
 \]
 \noindent is a crossed square, 
-then we can think of it as a morphism of crossed modules 
+then we consider it as a morphism of crossed modules 
 $(\kappa,\nu) : (\lambda : L \to N) \rightarrow (\mu : M  \to P)$.
 Using the equivalence between crossed modules and cat$^{1}$-groups this
 gives a morphism
@@ -567,16 +571,16 @@ and $t_b : [a,b] \mapsto [1,b]$.
 Construct cat$^1$-groups $C_a = (D_8,t_a,t_a)$ and $C_b = (D_8,t_b,t_b)$. 
 Diagrams (\ref{cat2-diag}) and (\ref{ker-im-diag}) become 
 \[
-\xymatrix@R=40pt@C=40pt
+\xymatrix@R=40pt@C=50pt
 { D_8 \ar@<+0.4ex>[r]^{t_a} \ar@<-0.4ex>[r] 
     \ar@<-0.4ex>[d]_{t_b} \ar@<+0.4ex>[d] 
     \ar@<-0.4ex>[rd]^{\ t} \ar@<+0.4ex>[rd] 
 	& A \ar@<+0.4ex>[d]^{t_b} \ar@<-0.4ex>[d] 
-	   &  & C \ar[r]^{c \mapsto 1} \ar[d]_{c \mapsto 1}  
-	         & A \ar[d]^{a \mapsto 1} \\
+	   &  & C \ar[r]^{c\ \mapsto\ 1} \ar[d]_{c\ \mapsto\ 1}  
+	         & A \ar[d]^{a\ \mapsto\ 1} \\
   B \ar@<-0.4ex>[r]_{t_a} \ar@<+0.4ex>[r] 
 	& I 
-	   &  & B \ar[r]_{b \mapsto 1}  
+	   &  & B \ar[r]_{b\ \mapsto\ 1}  
 	         & I }
 \] 
 where $A = \langle a \rangle$, $B = \langle b \rangle$, $C = \langle c \rangle$ 
@@ -610,7 +614,7 @@ We only use this construction for $n=2$.
 algebra. The system consists of a library of implementations of mathematical
 structures: groups, vector spaces, modules, algebras, graphs, codes,
 designs, etc.; plus databases of groups of small order, character tables, etc. 
-The system has world wide usage in the area of education and scientific research. 
+The system has world-wide usage in the area of education and scientific research. 
 \GAP\ is free software and user contributions to the system are supported. 
 These contributions are organized in a form of \GAP\ packages 
 and are distributed together with the system.  Contributors can
@@ -651,14 +655,15 @@ The function \textbf{Cat1Select} may be used in three ways.
 while \textbf{Cat1Select( size, gpnum )} prints a list of cat$^1$1-structures 
 for this chosen group. 
 \textbf{Cat1Select( size, gpnum, num )} returns the chosen cat$^1$1-group.
+\textbf{XModOfCat1Group} produces the associated crossed module. 
 
 The following \GAP\ session illustrates the use of these functions.
 
 \begin{Verbatim}[frame=single, fontsize=\small, commandchars=\\\{\}]
-\textcolor{blue}{gap> Cat1Select(12);}
+\textcolor{blue}{gap> Cat1Select( 12 );}
 Usage:  Cat1Select( size, gpnum, num );
 [ "C3 : C4", "C12", "A4", "D12", "C6 x C2" ]
-\textcolor{blue}{gap> Cat1Select(12,3);}
+\textcolor{blue}{gap> Cat1Select( 12, 3 );}
 Usage:  Cat1Select( size, gpnum, num );
 There are 2 cat1-structures for the group A4.
 Using small generating set [ f1, f2 ] for source of homs.
@@ -666,9 +671,9 @@ Using small generating set [ f1, f2 ] for source of homs.
 (1)  [ [ f1 ], [ f1, <identity> of ... ], [ f1, <identity> of ... ] ]
 (2)  [ [ f1, f2 ],  tail = head = identity mapping ]
 2
-\textcolor{blue}{gap> C1 := Cat1Select(12,3,2);}
+\textcolor{blue}{gap> C1 := Cat1Select( 12, 3, 2 );}
 [A4=>A4]
-\textcolor{blue}{gap> X1 := XModOfCat1Group(C1);}
+\textcolor{blue}{gap> X1 := XModOfCat1Group( C1 );}
 [triv->A4]
 \end{Verbatim}
 
@@ -707,11 +712,12 @@ An \emph{oriented cat$^2$-group} has the form
 \]
 where $R_1, R_2$ need not be subgroups of $G$, 
 but $R_{12}$ is taken to be the common image of 
-$t_1*e_1*t_2*e_2$ and $t_2*e_2*t_1*e_1$, a subgroup of $G$. 
+$e_2 \circ t_2 \circ e_1 \circ t_1$ and 
+$e_1 \circ t_1 \circ e_2 \circ t_2$, a subgroup of $G$. 
 
 
 Generalizing these functions, we have introduced \textbf{Cat3Group} and \textbf{HigherDimension} which construct cat$^{3}$-groups. 
-Functions for general cat$^{n}$-groups will be added as time permits. 
+Functions for cat$^{n}$-groups of higher dimension will be added as time permits. 
 An orientation of a cat$^{3}$-group on $G$ displays a cube whose six faces 
 (ordered as front; up, left, right, down, back) are cat$^{2}$-groups. 
 The group $G$ is positioned where the front, up and left faces meet. 
@@ -786,11 +792,11 @@ using these functions.
 \textcolor{blue}{gap> lt1 := GeneratingCat1Groups( C2_82 )[2];;}
 \textcolor{blue}{gap> up2 := GeneratingCat1Groups( C2_83 )[1];;}
 \textcolor{blue}{gap> lt2 := GeneratingCat1Groups( C2_83 )[2];;}
-\textcolor{blue}{gap> G1 := Source(up1);; R1 := Range(up1);; Q1 := Range(lt1);;}
-\textcolor{blue}{gap> G2 := Source(up2);; R2 := Range(up2);; Q2 := Range(lt2);;}
-\textcolor{blue}{gap> homG := AllHomomorphisms(G1,G2);;}
-\textcolor{blue}{gap> homR := AllHomomorphisms(R1,R2);;}
-\textcolor{blue}{gap> homQ := AllHomomorphisms(Q1,Q2);;}
+\textcolor{blue}{gap> G1 := Source( up1 );; R1 := Range( up1 );; Q1 := Range( lt1 );;}
+\textcolor{blue}{gap> G2 := Source( up2 );; R2 := Range( up2 );; Q2 := Range( lt2 );;}
+\textcolor{blue}{gap> homG := AllHomomorphisms( G1, G2 );;}
+\textcolor{blue}{gap> homR := AllHomomorphisms( R1, R2 );;}
+\textcolor{blue}{gap> homQ := AllHomomorphisms( Q1, Q2 );;}
 \textcolor{blue}{gap> upmor := Cat1GroupMorphism( up1, up2, homG[1], homR[1] );;}
 \textcolor{blue}{gap> IsCat1GroupMorphism( upmor );}
 true
@@ -816,7 +822,7 @@ true
 
 The equivalence between categories \catXSq\ and \catCatt\ 
 is implemented by the functions 
-\textbf{CrossedSquareByCat2Group} and \textbf{Cat2GroupByCrossedSquare} 
+\textbf{CrossedSquareOfCat2Group} and \textbf{Cat2GroupOfCrossedSquare} 
 which construct crossed squares and cat$^{2}$-groups 
 from the given cat$^{2}$-groups and crossed squares, respectively.
 
@@ -825,8 +831,8 @@ The dihedral group $D_{20}$ has two normal subgroups $D_{10}$
 whose intersection is the cyclic $C_5$.  
 We construct the crossed square of normal subgroups, 
 and then use the conversion functions to obtain the associated cat$^{2}$-group. 
-We then obtain the crossed square $Xab$ associated to the cat$^2$-group $C2ab$ 
-obtained earlier. 
+We then obtain the crossed square \texttt{Xab} 
+associated to the cat$^2$-group \texttt{C2ab} obtained earlier. 
 
 \begin{Verbatim}[frame=single, fontsize=\small, commandchars=\\\{\}]
 \textcolor{blue}{gap> d20 := DihedralGroup( IsPermGroup, 20 );;}
@@ -843,7 +849,7 @@ obtained earlier.
 [  c5d -> d10a ]
 [   |  |   ]
 [ d10b -> d20  ]
-\textcolor{blue}{gap> IsCrossedSquare(XS1); }
+\textcolor{blue}{gap> IsCrossedSquare( XS1 ); }
 true
 \textcolor{blue}{gap> C2G1 := Cat2GroupOfCrossedSquare( XS1 ); }
 (pre-)cat2-group with generating (pre-)cat1-groups:
@@ -884,12 +890,12 @@ So the eighth class consists of cat$^2$-group numbers $[31,34,35,38]$,
 and \texttt{iso82[8]=all82[31]}. 
 
 \begin{Verbatim}[frame=single, fontsize=\small, commandchars=\\\{\}]
-\textcolor{blue}{gap> c4c2 := SmallGroup(8,2);;}
+\textcolor{blue}{gap> c4c2 := SmallGroup( 8, 2 );;}
 \textcolor{blue}{gap> all82 := AllCat2Groups( c4c2 );;}
-\textcolor{blue}{gap> Length(all82);}
+\textcolor{blue}{gap> Length( all82 );}
 47
 \textcolor{blue}{gap> iso82 := AllCat2GroupsUpToIsomorphism( c4c2 );;}
-\textcolor{blue}{gap> Length(iso82);}
+\textcolor{blue}{gap> Length( iso82 );}
 14
 \textcolor{blue}{gap> AllCat2GroupFamilies( c4c2 );}
 [ [ 1 ], [ 2, 5, 8, 11 ], [ 3, 4, 9, 10 ], [ 14, 17, 22, 25 ], 
